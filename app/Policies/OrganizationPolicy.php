@@ -10,85 +10,28 @@ class OrganizationPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
-     * @return mixed
-     */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
-        //
+        return $user->hasPermissionTo('list organizations');
     }
 
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\AppOrganization  $appOrganization
-     * @return mixed
-     */
-    public function view(User $user, Organization $Organization)
+    public function view(User $user, Organization $Organization): bool
     {
-        //
+        return $user->hasPermissionTo('show organizations');
     }
 
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return mixed
-     */
-    public function create(User $user)
+    public function create(User $user): bool
     {
-        return true;        
+        return $user->hasPermissionTo('create organizations');
     }
 
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Organization  $Organization
-     * @return mixed
-     */
-    public function update(User $user, Organization $Organization)
+    public function update(User $user, Organization $Organization): bool
     {
-        //
+        return $user->hasPermissionTo('update organizations');
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Organization  $Organization
-     * @return mixed
-     */
-    public function delete(User $user, Organization $Organization)
+    public function delete(User $user, Organization $Organization): bool
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Organization  $Organization
-     * @return mixed
-     */
-    public function restore(User $user, Organization $Organization)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\AppOrganization  $appOrganization
-     * @return mixed
-     */
-    public function forceDelete(User $user, AppOrganization $appOrganization)
-    {
-        //
+        return $user->hasPermissionto('delete organizations');
     }
 }
