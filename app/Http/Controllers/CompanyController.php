@@ -2,84 +2,124 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Companies\CreateCompany;
+use App\Actions\Companies\DeleteCompany;
+use App\Actions\Companies\UpdateCompany;
 use App\Models\Company;
+use App\Models\Organization;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
+use Laravel\Jetstream\RedirectsActions;
 
 class CompanyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    use RedirectsActions;
+
+    public function __construct()
     {
-        //
+        $this->authorizeResource(Company::class, 'company');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the company creation screen.
      *
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return InertiaResponse
      */
-    public function create()
+    public function create(Request $request): InertiaResponse
     {
-        //
+        $organizationOptions = Organization::query()
+            ->select('id', 'name')
+            ->limit(500)
+            ->get();
+        return Inertia::render('Companies/Create', compact('organizationOptions'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * List the companies.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return InertiaResponse
      */
-    public function store(Request $request)
+    public function index(Request $request): InertiaResponse
     {
-        //
+        $companies = Company::paginate(15);
+
+        return Inertia::render('Companies/Index', compact('companies'));
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\Response
+     * Show the company page
+     * @param  Request  $request
+     * @param  Company  $company
+     * @return InertiaResponse
      */
-    public function show(Company $company)
+    public function show(Request $request, Company $company): InertiaResponse
     {
-        //
+        return Inertia::render('Companies/Show', compact('company'));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Company  $company
+     * @return InertiaResponse
      */
-    public function edit(Company $company)
+    public function edit(Request $request, Company $company): InertiaResponse
     {
-        //
+        $organizationOptions = Organization::query()
+            ->select('id', 'name')
+            ->limit(500)
+            ->get();
+
+        return Inertia::render('Companies/Edit', compact('company', 'organizationOptions'));
+    }
+
+
+    /**
+     * Update the given company
+     * @param  Request  $request
+     * @param  Company  $company
+     * @return RedirectResponse
+     */
+    public function update(Request $request, Company $company): RedirectResponse
+    {
+        app(UpdateCompany::class)->update($request->user(), $company, $request->all());
+
+        return redirect()->route('companies.index');
     }
 
     /**
-     * Update the specified resource in storage.
+     * Create a new company.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return RedirectResponse|Response
      */
-    public function update(Request $request, Company $company)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $creator = app(CreateCompany::class);
+
+        $creator->create($request->user(), $request->all());
+
+        return redirect()->route('companies.index');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\Response
+     * Delete the given company
+     * @param  Request  $request
+     * @param  Company  $company
+     * @return RedirectResponse
      */
-    public function destroy(Company $company)
+    public function destroy(Request $request, Company $company): RedirectResponse
     {
-        //
+        $request->validate([
+            'password' => 'required|string|password',
+        ]);
+
+        app(DeleteCompany::class)->delete($company);
+
+        return redirect()->route('companies.index');
     }
 }

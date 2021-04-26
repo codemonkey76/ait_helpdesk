@@ -17,6 +17,7 @@ class CreateOrganizationsTable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('head_office_id')->nullable();
+            $table->string('headOfficeName')->nullable();
             $table->timestamps();
         });
     }

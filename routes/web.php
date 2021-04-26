@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\CompanySearchController;
+use App\Http\Controllers\OrganizationSearchController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\CompanyController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -25,6 +28,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::resource('organizations', OrganizationController::class);
+    Route::post('organizations/search', [OrganizationSearchController::class, 'index'])->name('organizations.search');
+
+    Route::resource('companies', CompanyController::class);
+    Route::post('companies/search', [CompanySearchController::class, 'index'])->name('companies.search');
 });
 
 
