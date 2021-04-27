@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\CompanyNoteController;
+use App\Http\Controllers\CompanyNoteFavoriteController;
+use App\Http\Controllers\CompanyNoteSearchController;
 use App\Http\Controllers\CompanySearchController;
+use App\Http\Controllers\NoteFavoriteController;
 use App\Http\Controllers\OrganizationSearchController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +35,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('organizations/search', [OrganizationSearchController::class, 'index'])->name('organizations.search');
 
     Route::resource('companies', CompanyController::class);
+    Route::resource('companies/{company}/notes', CompanyNoteController::class, ['as'=> 'companies']);
+    Route::post('companies/{company}/notes/search', [CompanyNoteSearchController::class,'index'])->name('companies.notes.search');
+    Route::post('notes/{note}/favorite', [NoteFavoriteController::class, 'store'])->name('notes.favorite.store');
+    Route::delete('notes/{note}/favorite', [NoteFavoriteController::class, 'destroy'])->name('notes.favorite.destroy');
     Route::post('companies/search', [CompanySearchController::class, 'index'])->name('companies.search');
 });
 

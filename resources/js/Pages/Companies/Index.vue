@@ -48,6 +48,9 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <tr v-if="!$page.props.companies.data.length" class="odd:bg-white even:bg-gray-50">
+                                        <td colspan="6" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500 text-center italic">Nothing to show</td>
+                                    </tr>
                                     <tr v-for="company in $page.props.companies.data"
                                         class="odd:bg-white even:bg-gray-50">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -67,6 +70,13 @@
                                         </td>
                                     </tr>
                                     </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th scope="col" colspan="6">
+                                            <jet-paginator :data="$page.props.companies"></jet-paginator>
+                                        </th>
+                                    </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>
@@ -82,12 +92,14 @@
 import ButtonLink from '@/Jetstream/ButtonLink'
 import AppLayout from '@/Layouts/AppLayout'
 import JetSearch from '@/Jetstream/Search'
+import JetPaginator from '@/Jetstream/Paginator'
 
 export default {
     components: {
         AppLayout,
         ButtonLink,
-        JetSearch
+        JetSearch,
+        JetPaginator
     },
 }
 </script>

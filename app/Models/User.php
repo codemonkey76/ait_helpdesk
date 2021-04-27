@@ -61,4 +61,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
 }

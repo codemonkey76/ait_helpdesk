@@ -36,6 +36,9 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <tr v-if="!$page.props.organizations.data.length" class="odd:bg-white even:bg-gray-50">
+                                        <td colspan="3" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500 text-center italic">Nothing to show</td>
+                                    </tr>
                                     <tr v-for="organization in $page.props.organizations.data"
                                         class="odd:bg-white even:bg-gray-50">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">

@@ -1,0 +1,3 @@
+<template>
+    Notes Create
+</template>

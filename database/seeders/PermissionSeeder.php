@@ -36,6 +36,11 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'update companies']);
         Permission::create(['name' => 'delete companies']);
 
+        Permission::create(['name' => 'list notes']);
+        Permission::create(['name' => 'favorite notes']);
+        Permission::create(['name' => 'unfavorite notes']);
+        Permission::create(['name' => 'delete notes']);
+
         $superAdminRole = Role::create(['name' => 'super-admin']);
 
         $adminRole = Role::create(['name' => 'admin']);
@@ -45,12 +50,16 @@ class PermissionSeeder extends Seeder
         $adminRole->givePermissionTo('create companies');
         $adminRole->givePermissionTo('update companies');
         $adminRole->givePermissionTo('delete companies');
+        $adminRole->givePermissionTo('delete notes');
 
         $agentRole = Role::create(['name' => 'agent']);
         $agentRole->givePermissionTo('list organizations');
         $agentRole->givePermissionTo('show organizations');
         $agentRole->givePermissionTo('list companies');
         $agentRole->givePermissionTo('show companies');
+        $agentRole->givePermissionTo('list notes');
+        $agentRole->givePermissionTo('favorite notes');
+        $agentRole->givePermissionTo('unfavorite notes');
 
         $userRole = Role::create(['name' => 'user']);
 

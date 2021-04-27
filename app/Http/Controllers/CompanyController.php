@@ -59,7 +59,9 @@ class CompanyController extends Controller
      */
     public function show(Request $request, Company $company): InertiaResponse
     {
-        return Inertia::render('Companies/Show', compact('company'));
+        $notes = $company->notes()->paginate(15);
+
+        return Inertia::render('Companies/Show', compact('company', 'notes'));
     }
 
     /**

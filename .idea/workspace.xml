@@ -5,53 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6f6d0bc-ad43-488c-86b8-0813f7b93565" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Actions/Companies/CreateCompany.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Actions/Companies/DeleteCompany.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Actions/Companies/UpdateCompany.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Actions/Organizations/DeleteOrganization.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Actions/Organizations/UpdateOrganization.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Jetstream/Combo.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Jetstream/Paginator.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Jetstream/Search.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Jetstream/Select.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/Create.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/CreateCompanyForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/DeleteCompanyForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/Edit.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/EditCompanyForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/Index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/NotesList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/Show.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/ShowCompanyForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/DeleteOrganizationForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/Edit.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/EditOrganizationForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/Show.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ait_helpdesk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ait_helpdesk.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Notes/Create.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Notes/List.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Notes/NoteCard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Actions/Organizations/CreateOrganization.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/Organizations/CreateOrganization.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrganizationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrganizationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Company.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Company.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Note.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Organization.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Organization.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Policies/OrganizationPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/OrganizationPolicy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Traits/HasNotes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/HasNotes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_21_015415_create_organizations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_21_015415_create_organizations_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_21_031116_create_companies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_21_031116_create_companies_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/CompanyFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/CompanyFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/NoteFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/NoteFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/OrganizationFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/OrganizationFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_21_031403_create_notes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_21_031403_create_notes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/CompanySeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/CompanySeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/NoteSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/NoteSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/OrganizationSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/OrganizationSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeders/PermissionSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/PermissionSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Jetstream/Input.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Jetstream/Input.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Companies/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Companies/NotesList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Companies/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/Show.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Companies/ShowCompanyForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/ShowCompanyForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/Organizations/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Organizations/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/Show.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,6 +201,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -223,6 +209,11 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Actions/Notes" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -242,6 +233,9 @@
       <workItem from="1619062350158" duration="111000" />
       <workItem from="1619062512820" duration="7786000" />
       <workItem from="1619130732508" duration="29744000" />
+      <workItem from="1619478607759" duration="667000" />
+      <workItem from="1619479285919" duration="67000" />
+      <workItem from="1619479381268" duration="20748000" />
     </task>
     <servers />
   </component>

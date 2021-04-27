@@ -22,5 +22,6 @@ class Organization extends Model
 
     protected static function booted() {
         static::saving(fn($organization) => $organization->setAttribute('headOfficeName', $organization->headOffice?->name));
+        static::deleted(fn($organization) => $organization->notes()->delete());
     }
 }

@@ -55,13 +55,17 @@
                 <jet-input-error :message="form.errors.postcode" class="mt-2" />
             </div>
 
-            <jet-select class="col-span-6 sm:col-span-4"
-                        :options="$page.props.organizationOptions"
-                        v-model="form.organization_id">
-                <template #none-selected>
-                    <option :value="null">None selected</option>
-                </template>
-            </jet-select>
+            <div class="col-span-6 sm:col-span-4">
+                <jet-label for="organization_id" value="Organization" />
+                <jet-select
+                    :options="$page.props.organizationOptions"
+                    v-model="form.organization_id">
+                    <template #none-selected>
+                        <option :value="null">None selected</option>
+                    </template>
+                </jet-select>
+                <jet-input-error :message="form.errors.organization_id" class="mt-2" />
+            </div>
 
 
 

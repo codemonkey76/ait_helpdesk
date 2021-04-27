@@ -13,6 +13,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        //Create permissions and roles and admin user
         $this->call(PermissionSeeder::class);
+
+        //Create orgs and companies
+        $this->call(OrganizationSeeder::class);
+        $this->call(CompanySeeder::class);
+
+        //Create some notes
+        $this->call(NoteSeeder::class);
+
     }
 }
