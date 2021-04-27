@@ -72,7 +72,8 @@ class OrganizationController extends Controller
      */
     public function show(Request $request, Organization $organization): InertiaResponse
     {
-        return Inertia::render('Organizations/Show', compact('organization'));
+        $notes = $organization->notes()->paginate(15);
+        return Inertia::render('Organizations/Show', compact('organization', 'notes'));
     }
 
     /**
