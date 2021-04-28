@@ -83,10 +83,14 @@ export default {
             }
             this.confirmingUserDeletion = true
         },
+        closeModal() {
+          this.confirmingUserDeletion = false
+        },
         deleteUser() {
             this.form.delete(route('users.destroy', this.user.id), {
                 errorBag: 'deleteUser',
-                preserveScroll: true
+                preserveScroll: true,
+                onSuccess: () => this.closeModal()
             });
         }
     }

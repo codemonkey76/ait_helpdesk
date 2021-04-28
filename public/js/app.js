@@ -20214,10 +20214,18 @@ __webpack_require__.r(__webpack_exports__);
 
       this.confirmingUserDeletion = true;
     },
+    closeModal: function closeModal() {
+      this.confirmingUserDeletion = false;
+    },
     deleteUser: function deleteUser() {
+      var _this = this;
+
       this.form["delete"](route('users.destroy', this.user.id), {
         errorBag: 'deleteUser',
-        preserveScroll: true
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          return _this.closeModal();
+        }
       });
     }
   }

@@ -22,7 +22,8 @@ class TicketFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'subject' => $this->faker->sentence,
+            'content' => $this->faker->paragraph
         ];
     }
 }

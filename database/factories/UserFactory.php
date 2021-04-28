@@ -66,4 +66,12 @@ class UserFactory extends Factory
             'ownedTeams'
         );
     }
+    public function configure()
+    {
+        return $this->afterMaking(function (User $user) {
+
+        })->afterCreating(function (User $user) {
+            $user->assignRole('user', 'restricted user');
+        });
+    }
 }
