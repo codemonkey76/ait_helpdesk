@@ -6,6 +6,7 @@ use App\Actions\Companies\CreateCompany;
 use App\Actions\Companies\DeleteCompany;
 use App\Actions\Companies\UpdateCompany;
 use App\Models\Company;
+use App\Models\Note;
 use App\Models\Organization;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -46,7 +47,10 @@ class CompanyController extends Controller
      */
     public function index(Request $request): InertiaResponse
     {
-        $companies = Company::paginate(15);
+        if ($request->has('q'))
+            $companies = Company::search($request->q)->paginate(15);
+        else
+            $companies = Company::paginate(15);
 
         return Inertia::render('Companies/Index', compact('companies'));
     }
@@ -59,7 +63,15 @@ class CompanyController extends Controller
      */
     public function show(Request $request, Company $company): InertiaResponse
     {
-        $notes = $company->notes()->paginate(15);
+        if ($request->has('q')) {
+            // Pluck ID's of notes using search terms
+            $ids = Note::search($request->q)->where('noteable_id', $company->id)->get()->pluck('id');
+
+            // Query relation filtering by ID's
+            $notes = $company->notes()->whereIn('id', $ids)->with('user')->paginate(15);
+        }
+        else
+            $notes = $company->notes()->paginate(15);
 
         return Inertia::render('Companies/Show', compact('company', 'notes'));
     }
@@ -116,11 +128,7 @@ class CompanyController extends Controller
      */
     public function destroy(Request $request, Company $company): RedirectResponse
     {
-        $request->validate([
-            'password' => 'required|string|password',
-        ]);
-
-        app(DeleteCompany::class)->delete($company);
+        app(DeleteCompany::class)->delete($request->user(), $company, $request->all());
 
         return redirect()->route('companies.index');
     }

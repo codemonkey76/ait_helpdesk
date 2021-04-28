@@ -25,7 +25,7 @@ class NoteSeeder extends Seeder
                 ->create([
                     'user_id' => $userId,
                     'noteable_id' => $company->id,
-                    'noteable_type' => get_class($company)
+                    'noteable_type' => $company->getMorphClass()
                     ])
         );
 
@@ -35,7 +35,7 @@ class NoteSeeder extends Seeder
             ->create([
                 'user_id' => $userId,
                 'noteable_id' => $org->id,
-                'noteable_type' => get_class($org)
+                'noteable_type' => $org->getMorphClass()
             ])
         );
     }

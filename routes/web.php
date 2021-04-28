@@ -8,6 +8,8 @@ use App\Http\Controllers\NoteFavoriteController;
 use App\Http\Controllers\OrganizationNoteController;
 use App\Http\Controllers\OrganizationNoteSearchController;
 use App\Http\Controllers\OrganizationSearchController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,19 +37,18 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('organizations', OrganizationController::class);
     Route::resource('organizations/{organization}/notes', OrganizationNoteController::class, ['as' => 'organizations']);
-    Route::post('organizations/{organization}/notes/search', [OrganizationNoteSearchController::class, 'index'])->name('organizations.notes.search');
-    Route::post('organizations/search', [OrganizationSearchController::class, 'index'])->name('organizations.search');
 
     Route::resource('companies', CompanyController::class);
     Route::resource('companies/{company}/notes', CompanyNoteController::class, ['as'=> 'companies']);
-    Route::post('companies/{company}/notes/search', [CompanyNoteSearchController::class,'index'])->name('companies.notes.search');
-    Route::post('companies/search', [CompanySearchController::class, 'index'])->name('companies.search');
 
     Route::post('notes/{note}/favorite', [NoteFavoriteController::class, 'store'])->name('notes.favorite.store');
     Route::delete('notes/{note}/favorite', [NoteFavoriteController::class, 'destroy'])->name('notes.favorite.destroy');
 
     Route::resource('notes', NoteController::class);
 
+    Route::resource('tickets', TicketController::class);
+
+    Route::resource('users', UserController::class);
 });
 
 

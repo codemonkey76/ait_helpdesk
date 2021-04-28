@@ -21,11 +21,17 @@
                                     Dashboard
                                 </jet-nav-link>
 
-                                <jet-nav-link :href="route('organizations.index')" :active="route().current('organizations.*')">
+                                <jet-nav-link v-show="$page.props.permissions.canListOrganizations" :href="route('organizations.index')" :active="route().current('organizations.*')">
                                     Organizations
                                 </jet-nav-link>
-                                <jet-nav-link :href="route('companies.index')" :active="route().current('companies.*')">
+                                <jet-nav-link v-show="$page.props.permissions.canListCompanies" :href="route('companies.index')" :active="route().current('companies.*')">
                                     Companies
+                                </jet-nav-link>
+                                <jet-nav-link v-show="$page.props.permissions.canListTickets" :href="route('tickets.index')" :active="route().current('tickets.*')">
+                                    Tickets
+                                </jet-nav-link>
+                                <jet-nav-link v-show="$page.props.permissions.canListUsers" :href="route('users.index')" :active="route().current('users.*')">
+                                    Users
                                 </jet-nav-link>
                             </div>
                         </div>

@@ -27,30 +27,40 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'list organizations']);
         Permission::create(['name' => 'show organizations']);
         Permission::create(['name' => 'create organizations']);
-        Permission::create(['name' => 'update organizations']);
+        Permission::create(['name' => 'edit organizations']);
         Permission::create(['name' => 'delete organizations']);
 
         Permission::create(['name' => 'list companies']);
         Permission::create(['name' => 'show companies']);
         Permission::create(['name' => 'create companies']);
-        Permission::create(['name' => 'update companies']);
+        Permission::create(['name' => 'edit companies']);
         Permission::create(['name' => 'delete companies']);
 
         Permission::create(['name' => 'list notes']);
         Permission::create(['name' => 'favorite notes']);
         Permission::create(['name' => 'unfavorite notes']);
         Permission::create(['name' => 'delete notes']);
+        Permission::create(['name' => 'create notes']);
+
+        Permission::create(['name' => 'list tickets']);
+        Permission::create(['name' => 'create tickets']);
+
+        Permission::create(['name' => 'list users']);
+        Permission::create(['name' => 'show users']);
+        Permission::create(['name' => 'delete users']);
+        Permission::create(['name' => 'edit users']);
 
         $superAdminRole = Role::create(['name' => 'super-admin']);
 
         $adminRole = Role::create(['name' => 'admin']);
         $adminRole->givePermissionTo('create organizations');
-        $adminRole->givePermissionTo('update organizations');
+        $adminRole->givePermissionTo('edit organizations');
         $adminRole->givePermissionTo('delete organizations');
         $adminRole->givePermissionTo('create companies');
-        $adminRole->givePermissionTo('update companies');
+        $adminRole->givePermissionTo('edit companies');
         $adminRole->givePermissionTo('delete companies');
         $adminRole->givePermissionTo('delete notes');
+        $adminRole->givePermissionTo('delete users');
 
         $agentRole = Role::create(['name' => 'agent']);
         $agentRole->givePermissionTo('list organizations');
@@ -60,8 +70,17 @@ class PermissionSeeder extends Seeder
         $agentRole->givePermissionTo('list notes');
         $agentRole->givePermissionTo('favorite notes');
         $agentRole->givePermissionTo('unfavorite notes');
+        $agentRole->givePermissionTo('create notes');
+        $agentRole->givePermissionTo('list users');
+        $agentRole->givePermissionTo('show users');
+        $agentRole->givePermissionTo('edit users');
 
         $userRole = Role::create(['name' => 'user']);
+        $userRole->givePermissionTo('create tickets');
+
+        $restrictedRole = Role::create(['name' => 'restricted user']);
+        $restrictedRole->givePermissionTo('list tickets');
+
 
         app(CreatesNewUsers::class)
             ->create([
@@ -70,7 +89,7 @@ class PermissionSeeder extends Seeder
                 'password'              => 'secret123',
                 'password_confirmation' => 'secret123'
             ])
-            ->assignRole(['admin', 'agent'])
+            ->assignRole(['admin', 'agent', 'user', 'restricted user'])
             ->update(['email_verified_at' => now()]);
     }
 }

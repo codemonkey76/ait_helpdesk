@@ -13,7 +13,7 @@
 
                     <jet-section-border />
                 </div>
-                <div>
+                <div v-show="$page.props.permissions.canDeleteCompanies">
                     <delete-company-form  class="mt-10 sm:mt-0" :company="$page.props.company"/>
 
                     <jet-section-border />

@@ -12,7 +12,7 @@ class Note extends Model
     use HasFactory;
     use Searchable;
 
-    protected $fillable = ['content', 'is_favorite'];
+    protected $fillable = ['content', 'is_favorite', 'noteable_type', 'noteable_id', 'user_id'];
     protected $with = ['user'];
     protected $casts = [
         'is_favorite' => 'boolean'

@@ -60,7 +60,7 @@
                                     <span v-show="!note.is_favorite">Add to favourites</span>
                                     <span v-show="note.is_favorite">Remove from favourites</span>
                                 </a>
-                                <a @click="deleteNote" href="#" class="text-gray-700 flex px-4 py-2 text-sm" role="menuitem" tabindex="-1"
+                                <a v-show="$page.props.permissions.canDeleteNotes" @click="confirmNoteDeletion" href="#" class="text-gray-700 flex px-4 py-2 text-sm" role="menuitem" tabindex="-1"
                                    id="menu-0-item-1">
                                     <!-- Heroicon name: solid/code -->
                                     <svg class="mr-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -69,6 +69,28 @@
 
                                     <span>Delete</span>
                                 </a>
+
+                                <jet-confirmation-modal :show="confirmingNoteDeletion" @close="confirmingNoteDeletion = false">
+                                    <template #title>
+                                        Delete Note
+                                    </template>
+
+                                    <template #content>
+                                        Are you sure you want to delete this note? Once a note is deleted, it cannot be recovered.
+                                    </template>
+
+                                    <template #footer>
+                                        <jet-secondary-button @click="confirmingNoteDeletion = false">
+                                            Cancel
+                                        </jet-secondary-button>
+
+                                        <jet-danger-button class="ml-2" @click="deleteNote" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                            Delete Note
+                                        </jet-danger-button>
+                                    </template>
+                                </jet-confirmation-modal>
+
+
 
                             </div>
                         </div>
@@ -79,12 +101,21 @@
     </div>
 </template>
 <script>
+import JetConfirmationModal from "@/Jetstream/ConfirmationModal";
+import JetSecondaryButton from '@/Jetstream/SecondaryButton'
+import JetDangerButton from '@/Jetstream/DangerButton'
 import moment from 'moment'
 
 export default {
+    components: {
+        JetConfirmationModal,
+        JetSecondaryButton,
+        JetDangerButton
+    },
     props: ['note'],
     data() {
         return {
+            confirmingNoteDeletion: false,
             menuOpen: false,
 
             form: this.$inertia.form({
@@ -118,10 +149,20 @@ export default {
             });
 
         },
+        confirmNoteDeletion() {
+            this.menuOpen = false
+            this.confirmingNoteDeletion = true
+        },
+        closeDeleteModal() {
+            this.confirmingNoteDeletion = false
+        },
         deleteNote() {
-            this.menuOpen = false;
-        }
-
+            this.deleteForm.delete(route('notes.destroy', this.note.id), {
+                errorBag: 'deleteNote',
+                preserveScroll: true,
+                onSuccess: () => this.closeDeleteModal(),
+            })
+        },
     },
 }
 </script>

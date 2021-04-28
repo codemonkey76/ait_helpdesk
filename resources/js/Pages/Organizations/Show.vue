@@ -20,11 +20,11 @@
                         <note-create-modal
                             :show="creatingNote"
                             :noteable-id="$page.props.organization.id"
-                            :noteable-type="'App\\Models\\Organization'"
+                            noteable-type="organization"
                             @close-modal="closeModal">
                         </note-create-modal>
 
-                        <jet-search class="ml-2 flex-1" :search-route="route('organizations.notes.search', $page.props.organization.id)"></jet-search>
+                        <jet-search class="ml-2 flex-1" :search-route="route('organizations.show', $page.props.organization.id)"></jet-search>
 
                     </div>
 
@@ -41,7 +41,7 @@ import AppLayout from "@/Layouts/AppLayout"
 import ShowOrganizationForm from "./ShowOrganizationForm"
 import JetSectionBorder from '@/Jetstream/SectionBorder'
 import NotesList from '../Notes/List'
-import NoteCreateModal from "@/Pages/Organizations/NoteCreateModal";
+import NoteCreateModal from "@/Pages/Notes/NoteCreateModal";
 import JetButton from '@/Jetstream/Button'
 import JetButtonLink from "@/Jetstream/ButtonLink"
 import JetSearch from "@/Jetstream/Search"

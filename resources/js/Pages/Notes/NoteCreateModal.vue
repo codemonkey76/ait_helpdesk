@@ -9,10 +9,11 @@
 
             <div class="mt-4">
 
+                <jet-label for="content" value="Note content" />
                 <jet-text type="text" class="mt-1 block w-full" placeholder="Enter note here"
-                           ref="content"
-                           v-model="form.content" />
-
+                          ref="content"
+                          id="content"
+                          v-model="form.content"/>
                 <jet-input-error :message="form.errors.content" class="mt-2"/>
             </div>
         </template>
@@ -23,7 +24,7 @@
             </jet-secondary-button>
 
             <jet-button class="ml-2" @click="addNote" :class="{ 'opacity-25': form.processing }"
-                               :disabled="form.processing">
+                        :disabled="form.processing">
                 Add Note
             </jet-button>
         </template>
@@ -32,12 +33,14 @@
 
 <script>
 import JetActionSection from '@/Jetstream/ActionSection'
-import JetDialogModal from '@/Jetstream/DialogModal'
 import JetButton from '@/Jetstream/Button'
+import JetDialogModal from '@/Jetstream/DialogModal'
 import JetInput from '@/Jetstream/Input'
 import JetInputError from '@/Jetstream/InputError'
 import JetSecondaryButton from '@/Jetstream/SecondaryButton'
 import JetText from '@/Jetstream/TextArea'
+import JetLabel from '@/Jetstream/Label'
+
 
 export default {
     components: {
@@ -47,25 +50,29 @@ export default {
         JetInput,
         JetInputError,
         JetSecondaryButton,
-        JetText
+        JetText,
+        JetLabel
     },
     props: ['show', 'noteableId', 'noteableType'],
 
     data() {
         return {
             form: this.$inertia.form({
-                password: '',
+                content: '',
                 'noteable_id': this.noteableId,
-                'notable_type': this.notableType,
+                'noteable_type': this.noteableType,
             })
         }
     },
 
     methods: {
-        deleteCompany() {
-            this.closeModal();
-            this.form.post(route('notes.store', this.company.id), {
+        addNote() {
+            this.form.post(route('notes.store'), {
+                errorBag: 'createNote',
                 preserveScroll: true,
+                onSuccess: () => this.closeModal(),
+                onError: () => this.$refs.content.focus(),
+                onFinish: () => this.form.reset(),
             })
         },
 

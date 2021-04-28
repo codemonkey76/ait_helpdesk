@@ -2,23 +2,18 @@
     <app-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Create Organization
+                Edit User
             </h2>
         </template>
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                 <div>
-                    <edit-organization-form :organization="$page.props.organization"/>
+                    <edit-user-form :user="$page.props.targetUser"/>
 
                     <jet-section-border />
                 </div>
 
-                <div v-show="$page.props.permissions.canDeleteOrganizations">
-                    <delete-organization-form class="mt-10 sm:mt-0" :organization="$page.props.organization"/>
-
-                    <jet-section-border />
-                </div>
             </div>
         </div>
     </app-layout>
@@ -27,15 +22,15 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout'
 import JetSectionBorder from '@/Jetstream/SectionBorder'
-import EditOrganizationForm from './EditOrganizationForm'
-import DeleteOrganizationForm from "./DeleteOrganizationForm";
+import EditUserForm from '@/Pages/Users/EditUserForm'
+
 
 export default {
     components: {
         AppLayout,
-        EditOrganizationForm,
+        EditUserForm,
         JetSectionBorder,
-        DeleteOrganizationForm
+
     },
 }
 </script>

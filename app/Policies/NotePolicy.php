@@ -10,15 +10,6 @@ class NotePolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
     public function favorite(User $user, Note $note): bool
     {
         return $user->hasPermissionTo('favorite notes');
@@ -26,5 +17,13 @@ class NotePolicy
     public function unfavorite(User $user, Note $note): bool
     {
         return $user->hasPermissionTo('unfavorite notes');
+    }
+    public function create(User $user): bool
+    {
+        return $user->hasPermissionTo('create notes');
+    }
+    public function delete(User $user, Note $note): bool
+    {
+        return $user->hasPermissionTo('delete notes');
     }
 }

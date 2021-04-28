@@ -2,36 +2,31 @@
     <app-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Organizations
+                Users
             </h2>
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex w-full items-center">
-                    <jet-button-link :href="route('organizations.create')">
-                        Create
-                    </jet-button-link>
-                    <jet-search class="ml-4 w-full" :search-route="route('organizations.index')"></jet-search>
-                </div>
-                <organization-list :organizations="$page.props.organizations" />
+                <jet-search class="w-full" :search-route="route('users.index')"></jet-search>
+
+                <user-list :users="$page.props.users" />
             </div>
         </div>
     </app-layout>
 </template>
 
 <script>
-import JetButtonLink from '@/Jetstream/ButtonLink'
 import JetSearch from '@/Jetstream/Search'
 import AppLayout from '@/Layouts/AppLayout'
 import JetInput from '@/Jetstream/Input'
 import JetFormSection from '@/Jetstream/FormSection'
-import OrganizationList from "@/Pages/Organizations/OrganizationList";
+import UserList from "@/Pages/Users/UserList";
+
 export default {
     components: {
-        OrganizationList,
+        UserList,
         AppLayout,
-        JetButtonLink,
         JetSearch,
         JetInput,
         JetFormSection

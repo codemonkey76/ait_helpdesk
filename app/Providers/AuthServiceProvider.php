@@ -6,10 +6,14 @@ use App\Models\Company;
 use App\Models\Note;
 use App\Models\Team;
 use App\Models\Organization;
+use App\Models\Ticket;
+use App\Models\User;
 use App\Policies\CompanyPolicy;
 use App\Policies\NotePolicy;
 use App\Policies\TeamPolicy;
 use App\Policies\OrganizationPolicy;
+use App\Policies\TicketPolicy;
+use App\Policies\UserPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -24,7 +28,9 @@ class AuthServiceProvider extends ServiceProvider
         Team::class => TeamPolicy::class,
         Organization::class => OrganizationPolicy::class,
         Company::class => CompanyPolicy::class,
-        Note::class => NotePolicy::class
+        Note::class => NotePolicy::class,
+        Ticket::class => TicketPolicy::class,
+        User::class => UserPolicy::class
     ];
 
     /**
@@ -37,9 +43,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::before(function($user, $ability) {
-            if ($user->hasRole('super-admin')) {
+            if ($user->hasRole('super-admin'))
                 return true;
-            }
         });
     }
 }

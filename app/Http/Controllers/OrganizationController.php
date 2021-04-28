@@ -6,6 +6,7 @@ use App\Actions\Organizations\CreateOrganization;
 use App\Actions\Organizations\DeleteOrganization;
 use App\Actions\Organizations\UpdateOrganization;
 use App\Models\Company;
+use App\Models\Note;
 use App\Models\Organization;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -59,7 +60,10 @@ class OrganizationController extends Controller
      */
     public function index(Request $request): InertiaResponse
     {
-        $organizations = Organization::paginate(15);
+        if ($request->has('q'))
+            $organizations = Organization::search($request->q)->paginate(15);
+        else
+            $organizations = Organization::paginate(15);
 
         return Inertia::render('Organizations/Index', compact('organizations'));
     }
@@ -72,7 +76,16 @@ class OrganizationController extends Controller
      */
     public function show(Request $request, Organization $organization): InertiaResponse
     {
-        $notes = $organization->notes()->paginate(15);
+        if ($request->has('q')) {
+            // Pluck ID's of notes using search terms
+            $ids = Note::search($request->q)->where('noteable_id', $organization->id)->get()->pluck('id');
+
+            // Query relation filtering by ID's
+            $notes = $organization->notes()->whereIn('id', $ids)->with('user')->paginate(15);
+        }
+        else
+            $notes = $organization->notes()->paginate(15);
+
         return Inertia::render('Organizations/Show', compact('organization', 'notes'));
     }
 

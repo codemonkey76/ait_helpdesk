@@ -5,15 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6f6d0bc-ad43-488c-86b8-0813f7b93565" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/Jetstream/TextArea.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Notes/CreateNoteForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/NoteCreateModal.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/ShowOrganizationForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Actions/Notes/CreateNote.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Actions/Notes/DeleteNote.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Jetstream/Avatar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Jetstream/Bubble.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/CompanyList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/OrganizationList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Users/Edit.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Users/EditUserForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Users/Index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Users/Show.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Users/ShowUserForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Users/UserList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Users/UserRow.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CompanyNoteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CompanyNoteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Actions/Companies/DeleteCompany.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/Companies/DeleteCompany.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Actions/Fortify/CreateNewUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/Fortify/CreateNewUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CompanyNoteSearchController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CompanySearchController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NoteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NoteController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrganizationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrganizationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrganizationNoteSearchController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrganizationSearchController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Note.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Policies/NotePolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/NotePolicy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/NoteSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/NoteSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/PermissionSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/PermissionSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Notes/Create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Notes/Create.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Jetstream/Search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Jetstream/Search.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Companies/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/Edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Companies/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Companies/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/Show.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Notes/NoteCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Notes/NoteCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Organizations/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/Edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Organizations/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Organizations/NoteCreateModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Notes/NoteCreateModal.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/Organizations/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/Show.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -191,6 +225,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="\\wsl$\Ubuntu-20.04\home\shane\ait_helpdesk\resources\js\Pages\Notes" />
       <recent name="$PROJECT_DIR$/app/Actions/Notes" />
     </key>
   </component>
@@ -216,6 +251,7 @@
       <workItem from="1619479285919" duration="67000" />
       <workItem from="1619479381268" duration="20748000" />
       <workItem from="1619516513782" duration="3925000" />
+      <workItem from="1619560720790" duration="19058000" />
     </task>
     <servers />
   </component>

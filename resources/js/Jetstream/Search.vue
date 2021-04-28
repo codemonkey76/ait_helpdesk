@@ -11,7 +11,7 @@
             type="text"
             autocomplete="search"
             class="pl-10 w-full block border-gray-300 focus:border-brand-300 focus:ring focus:ring-brand-200 focus:ring-opacity-50 rounded-md shadow-sm"
-            v-model="form.search"
+            v-model="form.q"
             ref="input"
             placeholder="Search">
     </div>
@@ -24,7 +24,7 @@ export default {
 
     methods: {
         searchModel() {
-            this.form.post(this.searchRoute, {
+            this.form.get(this.searchRoute, {
                 preserveScroll: true
             });
         }
@@ -32,7 +32,7 @@ export default {
     data() {
         return {
             form: this.$inertia.form({
-                search: '',
+                q: '',
             }),
 
         }
