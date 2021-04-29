@@ -56,12 +56,12 @@
                                         <div class="w-60">
                                             <!-- Team Management -->
                                             <template v-if="$page.props.jetstream.hasTeamFeatures">
-                                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                                <div v-if="$page.props.jetstream.canCreateTeams || $page.props.canViewTeamSettings" class="block px-4 py-2 text-xs text-gray-400">
                                                     Manage Team
                                                 </div>
 
                                                 <!-- Team Settings -->
-                                                <jet-dropdown-link :href="route('teams.show', $page.props.user.current_team)">
+                                                <jet-dropdown-link :href="route('teams.show', $page.props.user.current_team)" v-if="$page.props.permissions.canViewTeamSettings">
                                                     Team Settings
                                                 </jet-dropdown-link>
 

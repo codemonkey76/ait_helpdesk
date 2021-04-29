@@ -50,6 +50,9 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'delete users']);
         Permission::create(['name' => 'edit users']);
 
+        Permission::create(['name' => 'view team settings']);
+        Permission::create(['name' => 'create teams']);
+
         $superAdminRole = Role::create(['name' => 'super-admin']);
 
         $adminRole = Role::create(['name' => 'admin']);
@@ -74,6 +77,8 @@ class PermissionSeeder extends Seeder
         $agentRole->givePermissionTo('list users');
         $agentRole->givePermissionTo('show users');
         $agentRole->givePermissionTo('edit users');
+        $agentRole->givePermissionTo('view team settings');
+        $agentRole->givePermissionTo('create teams');
 
         $userRole = Role::create(['name' => 'user']);
         $userRole->givePermissionTo('create tickets');

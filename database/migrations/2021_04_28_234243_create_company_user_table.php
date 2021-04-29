@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTicketsTable extends Migration
+class CreateCompanyUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateTicketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('company_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->nullable();
-            $table->string('company_name')->nullable();
+            $table->foreignId('company_id');
             $table->foreignId('user_id');
-            $table->foreignId('current_team_id')->nullable();
-            $table->string('subject');
-            $table->longText('content');
             $table->timestamps();
+
+            $table->unique(['company_id', 'user_id']);
         });
     }
 
@@ -32,6 +30,6 @@ class CreateTicketsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('company_user');
     }
 }
