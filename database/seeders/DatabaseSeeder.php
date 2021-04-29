@@ -45,6 +45,8 @@ class DatabaseSeeder extends Seeder
         //Create some tickets
         $this->call(TicketSeeder::class);
 
+        //Respond to some tickets
+        $this->call(TicketResponseSeeder::class);
 
     }
 }

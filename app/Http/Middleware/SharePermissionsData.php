@@ -31,7 +31,7 @@ class SharePermissionsData
                     'canListCompanies' => $request->user()?->hasPermissionTo('list companies'),
                     'canEditCompanies' => $request->user()?->hasPermissionTo('edit companies'),
                     'canDeleteCompanies' => $request->user()?->hasPermissionTo('delete companies'),
-                    'canListTickets' => $request->user()?->hasPermissionTo('list tickets'),
+                    'canListOwnTickets' => $request->user()?->hasPermissionTo('list own tickets'),
 
                     'canListUsers' => $request->user()?->hasPermissionTo('list users'),
                     'canEditUsers' => $request->user()?->hasPermissionTo('edit users'),

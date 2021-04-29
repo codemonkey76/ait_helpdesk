@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Actions\Fortify\CreateNewUser;
 use App\Models\Company;
 use App\Models\Team;
+use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
@@ -22,6 +23,30 @@ class UserSeeder extends Seeder
         $supportTeam = Team::whereName('support')->first();
         $salesTeam = Team::whereName('sales')->first();
         $accountsTeam = Team::whereName('accounts')->first();
+
+
+        $shane = app(CreatesNewUsers::class)
+            ->create([
+                'name'                  => 'Shane Poppleton',
+                'email'                 => 'shane@alphasg.com.au',
+                'password'              => 'secret123',
+                'password_confirmation' => 'secret123'
+            ])
+            ->assignRole(['admin', 'agent', 'user', 'restricted user']);
+        $shane->update(['email_verified_at' => now()]);
+        $shane->teams()->attach([$supportTeam->id, $salesTeam->id, $accountsTeam->id]);
+
+        $len= app(CreatesNewUsers::class)
+            ->create([
+                'name'                  => 'Len Groves',
+                'email'                 => 'len@alphasg.com.au',
+                'password'              => 'secret123',
+                'password_confirmation' => 'secret123'
+            ])
+            ->assignRole(['agent', 'user', 'restricted user']);
+        $len->update(['email_verified_at' => now()]);
+        $len->teams()->attach([$supportTeam->id, $salesTeam->id, $accountsTeam->id]);
+
 
         // Create 1-3 users per company
         Company::each(fn($company) => User::factory()
@@ -60,8 +85,17 @@ class UserSeeder extends Seeder
             'current_team_id' => $supportTeam->id
         ]);
 
+        $testUser->assignRole('user', 'restricted user');
+
         $supportTeam->users()->attach($testUser, ['role' => 'editor']);
         $accountsTeam->users()->attach($testUser, ['role' => 'editor']);
         $salesTeam->users()->attach($testUser, ['role' => 'editor']);
+
+        Ticket::factory()
+            ->count(5)
+            ->create([
+                'user_id' => $testUser->id,
+                'current_team_id' => $testUser->current_team_id
+            ]);
     }
 }

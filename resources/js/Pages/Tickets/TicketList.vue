@@ -36,27 +36,12 @@
                         <tr v-if="!tickets.data.length" class="odd:bg-white even:bg-gray-50">
                             <td colspan="6" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500 text-center italic">Nothing to show</td>
                         </tr>
-                        <tr v-for="ticket in tickets.data"
-                            class="odd:bg-white even:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                <a class="text-blue-500 hover:underline" :href="route('tickets.show', ticket.id)" v-text="ticket.id"/>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                v-text="ticket.user.name"/>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                v-text="ticket.subject"/>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                v-text="ticket.excerpt"/>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                v-text="ago(ticket.created_at)"/>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                v-text="ticket.companyAssigned"/>
-                        </tr>
+                        <ticket-row v-for="(ticket,key) in tickets.data" :key="key" :ticket="ticket" />
                         </tbody>
                         <tfoot>
                         <tr>
                             <th scope="col" colspan="6">
-                                <jet-paginator :data="companies"></jet-paginator>
+                                <jet-paginator :data="tickets"></jet-paginator>
                             </th>
                         </tr>
                         </tfoot>
@@ -68,8 +53,10 @@
 </template>
 <script>
 import JetPaginator from '@/Jetstream/Paginator'
+import TicketRow from "@/Pages/Tickets/TicketRow";
+
 export default {
-    components: {JetPaginator},
-    props: ['companies']
+    components: {TicketRow, JetPaginator},
+    props: ['tickets'],
 }
 </script>

@@ -1,11 +1,7 @@
 <template>
     <tr class="odd:bg-white even:bg-gray-50">
         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            <div class="flex items-center">
-                <jet-avatar :src="user.profile_photo_url" :alt="user.name"/>
-                <a class="ml-2 text-blue-500 hover:underline" :href="route('users.show', user.id)"
-                   v-text="user.name"/>
-            </div>
+            <user-tag :user="user" :href="route('users.show', user.id)" />
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
             v-text="user.email"/>
@@ -57,9 +53,11 @@ import JetBubble from '@/Jetstream/Bubble'
 import JetConfirmationModal from '@/Jetstream/ConfirmationModal'
 import JetDangerButton from '@/Jetstream/DangerButton'
 import JetSecondaryButton from '@/Jetstream/SecondaryButton'
+import UserTag from "@/Pages/Users/UserTag";
 
 export default {
     components: {
+        UserTag,
         JetBubble,
         JetAvatar,
         JetConfirmationModal,

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Team;
 use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
@@ -23,6 +24,7 @@ class TicketSeeder extends Seeder
                     ['company_id' => $user->company?->id],
                     ['company_id' => null]
                 ))
+                ->state(new Sequence(fn() => ['current_team_id' => Team::inRandomOrder()->first()->id]))
                 ->create([
                     'user_id' => $user->id,
                 ])

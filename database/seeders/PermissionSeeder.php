@@ -43,7 +43,9 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'create notes']);
 
         Permission::create(['name' => 'list tickets']);
+        Permission::create(['name' => 'list own tickets']);
         Permission::create(['name' => 'create tickets']);
+        Permission::create(['name' => 'view tickets']);
 
         Permission::create(['name' => 'list users']);
         Permission::create(['name' => 'show users']);
@@ -52,6 +54,7 @@ class PermissionSeeder extends Seeder
 
         Permission::create(['name' => 'view team settings']);
         Permission::create(['name' => 'create teams']);
+        Permission::create(['name' => 'switch teams']);
 
         $superAdminRole = Role::create(['name' => 'super-admin']);
 
@@ -79,22 +82,25 @@ class PermissionSeeder extends Seeder
         $agentRole->givePermissionTo('edit users');
         $agentRole->givePermissionTo('view team settings');
         $agentRole->givePermissionTo('create teams');
+        $agentRole->givePermissionTo('list tickets');
+        $agentRole->givePermissionTo('view tickets');
 
         $userRole = Role::create(['name' => 'user']);
         $userRole->givePermissionTo('create tickets');
+        $userRole->givePermissionTo('switch teams');
 
         $restrictedRole = Role::create(['name' => 'restricted user']);
-        $restrictedRole->givePermissionTo('list tickets');
+        $restrictedRole->givePermissionTo('list own tickets');
 
-
-        app(CreatesNewUsers::class)
+        $admin = app(CreatesNewUsers::class)
             ->create([
-                'name'                  => 'Shane Poppleton',
-                'email'                 => 'shane@alphasg.com.au',
+                'name'                  => 'Master Admin',
+                'email'                 => 'admin@alphasg.com.au',
                 'password'              => 'secret123',
                 'password_confirmation' => 'secret123'
             ])
-            ->assignRole(['admin', 'agent', 'user', 'restricted user'])
-            ->update(['email_verified_at' => now()]);
+            ->assignRole(['admin', 'agent', 'user', 'restricted user']);
+        $admin->update(['email_verified_at' => now()]);
+
     }
 }
