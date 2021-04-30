@@ -39,7 +39,9 @@ class SharePermissionsData
 
                     'canDeleteNotes' => $request->user()?->hasPermissionTo('delete notes'),
                     'canViewTeamSettings' => $request->user()?->hasPermissionTo('view team settings'),
-                    'canSwitchTeams' => $request->user()?->hasPermissionTo('switch teams')
+                    'canSwitchTeams' => $request->user()?->hasPermissionTo('switch teams'),
+                    'canChangeTicketStatus' => $request->user()?->hasPermissionTo('change ticket status'),
+                    'isAgent' => $request->user()->hasRole('agent')
                 ];
             },
         ]));

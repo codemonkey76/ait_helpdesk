@@ -18,7 +18,7 @@ class CreateCompanyUserTable extends Migration
             $table->foreignId('company_id');
             $table->foreignId('user_id');
             $table->timestamps();
-
+            $table->softDeletes();
             $table->unique(['company_id', 'user_id']);
         });
     }

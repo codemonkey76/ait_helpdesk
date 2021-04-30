@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
 use Laravel\Scout\Searchable;
@@ -13,11 +14,13 @@ class Ticket extends Model
 {
     use HasFactory;
     use Searchable;
+    use SoftDeletes;
 
     const EXCERPT_LENGTH = 50;
 
     protected $with = ['user', 'company'];
     protected $appends = ['excerpt'];
+    protected $fillable = ['subject', 'content', 'company_id', 'user_id', 'current_team_id', 'agent_read_at', 'user_read_at'];
 
     protected static function booted()
     {

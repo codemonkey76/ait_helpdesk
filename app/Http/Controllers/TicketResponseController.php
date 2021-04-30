@@ -2,84 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
 use App\Models\TicketResponse;
+use App\Models\TicketStatus;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 
 class TicketResponseController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
-    public function index()
+    public function create(Request $request, Ticket $ticket): InertiaResponse
     {
-        //
+        Gate::forUser($request->user())->authorize('create', TicketResponse::class);
+
+        $statusOptions = TicketStatus::select(['id', 'name', 'description'])
+            ->limit(500)
+            ->get();
+        return Inertia::render('Responses/Create', compact('statusOptions', 'ticket'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(Request $request, Ticket $ticket): RedirectResponse
     {
-        //
-    }
+        Gate::forUser($request->user())->authorize('create', TicketResponse::class);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $validated = $request->validate([
+            'content' => 'required'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\TicketResponse  $ticketResponse
-     * @return \Illuminate\Http\Response
-     */
-    public function show(TicketResponse $ticketResponse)
-    {
-        //
-    }
+        $validated['user_id'] = $request->user()->id;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\TicketResponse  $ticketResponse
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(TicketResponse $ticketResponse)
-    {
-        //
-    }
+        if ($request->user()->hasPermissionTo('change ticket status'))
+        {
+            $validated['status_id'] = $request->status_id;
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TicketResponse  $ticketResponse
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, TicketResponse $ticketResponse)
-    {
-        //
-    }
+        $ticket->responses()->create($validated);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\TicketResponse  $ticketResponse
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(TicketResponse $ticketResponse)
-    {
-        //
+        return redirect()->route('tickets.show', $ticket->id);
     }
 }

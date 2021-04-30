@@ -24,6 +24,7 @@ class CreateCompaniesTable extends Migration
             $table->string('postcode')->nullable();
             $table->foreignId('organization_id');
             $table->string('organizationName')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

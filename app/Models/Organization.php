@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasNotes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
 class Organization extends Model
@@ -12,6 +13,7 @@ class Organization extends Model
     use HasFactory;
     use HasNotes;
     use Searchable;
+    use SoftDeletes;
 
     protected $fillable = ['name', 'head_office_id'];
 

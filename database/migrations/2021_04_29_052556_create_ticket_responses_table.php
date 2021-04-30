@@ -18,6 +18,10 @@ class CreateTicketResponsesTable extends Migration
             $table->foreignId('ticket_id');
             $table->foreignId('user_id');
             $table->longText('content');
+            $table->timestamp('user_read_at')->nullable();
+            $table->timestamp('agent_read_at')->nullable();
+            $table->foreignId('status_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

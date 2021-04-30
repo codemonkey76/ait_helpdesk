@@ -24,15 +24,9 @@
                         <div class="ml-3">
                             <p class="text-sm font-medium text-gray-900" v-text="response.user?.name" />
                             <div class="flex space-x-1 text-sm text-gray-500">
-                                <time datetime="2020-03-16">
-                                    Mar 16, 2020
-                                </time>
-                                <span aria-hidden="true">
-                &middot;
-              </span>
-                                <span>
-                6 min read
-              </span>
+                                <span v-text="ago(response.created_at)" />
+                                <span aria-hidden="true">&middot;</span>
+                                <span v-text="readText" />
                             </div>
                         </div>
                     </div>
@@ -42,7 +36,18 @@
     </div>
 </template>
 <script>
+import moment from 'moment'
 export default {
-    props: ['response']
+    props: ['response'],
+    methods: {
+        ago(date) {
+            return moment(date).fromNow()
+        }
+    },
+    computed: {
+        readText() {
+            return (this.response.agent_read_at) ? moment(this.response.agent_read_at).fromNow() : 'unread'
+        }
+    }
 }
 </script>

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasNotes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
 class Company extends Model
@@ -15,6 +16,8 @@ class Company extends Model
     use HasFactory;
     use HasNotes;
     use Searchable;
+    use SoftDeletes;
+
 
     protected $fillable = ['name', 'phone', 'address', 'address2', 'suburb', 'state', 'postcode', 'organization_id'];
 

@@ -1,6 +1,9 @@
 <template>
 <div>
-    <div v-for="response in ticket.responses">
+    <div v-if="!responses || !responses.length" class="text-center text-gray-500 italic">
+        No responses at this time
+    </div>
+    <div v-else v-for="response in responses">
         <ticket-response-card  class="my-2" :response="response" />
     </div>
 </div>
@@ -9,6 +12,6 @@
 import TicketResponseCard from "@/Pages/Tickets/TicketResponseCard";
 export default {
     components: {TicketResponseCard},
-    props: ['ticket']
+    props: ['ticket', 'responses']
 }
 </script>

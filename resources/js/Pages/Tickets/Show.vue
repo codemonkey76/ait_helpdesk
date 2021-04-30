@@ -15,9 +15,15 @@
                 </div>
 
                 <div>
-                    <ticket-response-list :ticket="$page.props.ticket"/>
+                    <ticket-response-list :ticket="$page.props.ticket" :responses="$page.props.responses.data"/>
 
                     <jet-section-border />
+                </div>
+                <div>
+                    <jet-button-link :href="route('tickets.responses.create', $page.props.ticket.id)">
+                        Respond
+                    </jet-button-link>
+
                 </div>
             </div>
         </div>
@@ -27,7 +33,8 @@
 import AppLayout from "@/Layouts/AppLayout"
 import ShowTicketForm from '@/Pages/Tickets/ShowTicketForm'
 import JetSectionBorder from '@/Jetstream/SectionBorder'
-import TicketResponseList from "@/Pages/Tickets/TicketResponseList";
+import TicketResponseList from "@/Pages/Tickets/TicketResponseList"
+import JetButtonLink from '@/Jetstream/ButtonLink'
 
 export default {
     components: {
@@ -35,6 +42,7 @@ export default {
         AppLayout,
         ShowTicketForm,
         JetSectionBorder,
+        JetButtonLink
     },
 }
 </script>
