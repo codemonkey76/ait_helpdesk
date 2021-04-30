@@ -5,27 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6f6d0bc-ad43-488c-86b8-0813f7b93565" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Tickets/Show.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Tickets/ShowTicketForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Tickets/TicketResponseCard.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Tickets/TicketResponseList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Tickets/TicketRow.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Users/UserTag.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Tickets/Create.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Tickets/CreateTicketForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/SharePermissionsData.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/SharePermissionsData.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Ticket.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Ticket.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Policies/TicketPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/TicketPolicy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/PermissionSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/PermissionSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/TicketSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/TicketSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Tickets/TicketList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Tickets/TicketList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Users/UserRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Users/UserRow.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/jetstream.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/jetstream.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Jetstream/TextArea.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Jetstream/TextArea.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +215,7 @@
       <workItem from="1619516513782" duration="3925000" />
       <workItem from="1619560720790" duration="21097000" />
       <workItem from="1619650021973" duration="320000" />
-      <workItem from="1619650619902" duration="8514000" />
+      <workItem from="1619650619902" duration="10250000" />
     </task>
     <servers />
   </component>

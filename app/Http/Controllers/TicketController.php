@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Organization;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -14,7 +15,8 @@ class TicketController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return InertiaResponse
      */
     public function index(Request $request): InertiaResponse
     {
@@ -43,5 +45,32 @@ class TicketController extends Controller
         $ticket->load('responses.user');
 
         return Inertia::render('Tickets/Show', compact('ticket'));
+    }
+
+    public function create(Request $request):InertiaResponse
+    {
+        Gate::forUser($request->user())->authorize('create', Ticket::class);
+
+        $companyOptions = $request->user()->companies()
+            ->select('companies.id', 'companies.name')
+            ->limit(500)
+            ->get();
+        return Inertia::render('Tickets/Create', compact('companyOptions'));
+    }
+
+    public function store(Request $request)
+    {
+        Gate::forUser($request->user())->authorize('create', Ticket::class);
+
+        $validated = $request->validate([
+            'subject' => 'required|string',
+            'content' => 'required|string',
+            'company_id' => 'nullable|exists:'
+        ]);
+
+        Ticket::create($validated);
+
+        return redirect()->route('tickets.index');
+
     }
 }

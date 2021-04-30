@@ -17,11 +17,11 @@ class TicketPolicy
 
     public function create(User $user): bool
     {
-        $user->hasPermissionTo('create tickets');
+        return $user->hasPermissionTo('create tickets');
     }
 
     public function show(User $user, Ticket $ticket): bool
     {
-        return $user->hasPermissionTo('view tickets') || $ticket->ownsTicket($ticket);
+        return $user->hasPermissionTo('view tickets') || $user->ownsTicket($ticket);
     }
 }
