@@ -36,6 +36,7 @@ class TicketController extends Controller
 
         $tickets = $builder->paginate(15);
 
+
         return Inertia::render('Tickets/Index', compact('tickets'));
     }
 
@@ -43,16 +44,10 @@ class TicketController extends Controller
     {
         Gate::forUser($request->user())->authorize('show', $ticket);
 
-        $ticket->load('responses.user');
         $responses = $ticket->responses()->with('user')->paginate(15);
-        if ($request->user()->hasRole('agent')) {
-            $ticket->update(['agent_read_at' => now()]);
-            $responses->each(fn($response) => $response->update(['agent_read_at' => now()]));
-        }
-        else {
-            $ticket->update(['user_read_at' => now()]);
-            $responses->each(fn($response) => $response->update(['user_read_at' => now()]));
-        }
+
+        $ticket->readers()->syncWithoutDetaching($request->user()->id);
+        $responses->each(fn($response) => $response->readers()->syncWithoutDetaching($request->user()->id));
 
         return Inertia::render('Tickets/Show', compact('ticket', 'responses'));
     }
@@ -84,6 +79,7 @@ class TicketController extends Controller
         ]);
         $validated['user_id'] = $request->user()->id;
         $validated['current_team_id'] = $request->user()->current_team_id;
+        $validated['status_id'] = config('app.default_status');
 
         Ticket::create($validated);
 

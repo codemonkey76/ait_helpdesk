@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
         Artisan::call('scout:flush', ['model' => Note::class]);
         Artisan::call('scout:flush', ['model' => Ticket::class]);
 
-
         //Create permissions and roles and admin user
         $this->call(PermissionSeeder::class);
 
@@ -34,19 +33,19 @@ class DatabaseSeeder extends Seeder
 
         //Create orgs and companies
         $this->call(OrganizationSeeder::class);
-        $this->call(CompanySeeder::class);
+        //$this->call(CompanySeeder::class);
 
         //Create some standard users
         $this->call(UserSeeder::class);
 
         //Create some notes
-        $this->call(NoteSeeder::class);
+        //$this->call(NoteSeeder::class);
 
         //Create some tickets
-        $this->call(TicketSeeder::class);
+        //$this->call(TicketSeeder::class);
 
         //Respond to some tickets
-        $this->call(TicketResponseSeeder::class);
+        //$this->call(TicketResponseSeeder::class);
 
         // Setup ticket statuses
         $this->call(TicketStatusSeeder::class);

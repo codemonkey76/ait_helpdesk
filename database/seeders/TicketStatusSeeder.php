@@ -18,6 +18,6 @@ class TicketStatusSeeder extends Seeder
         TicketStatus::create(['name' => 'Open', 'description' => 'Currently being worked on']);
         TicketStatus::create(['name' => 'Waiting', 'description' => 'Waiting on customer']);
         TicketStatus::create(['name' => 'Billing', 'description' => 'Awaiting billing']);
-        TicketStatus::create(['name' => 'Closed', 'description' => 'Completed or cancelled']);
+        TicketStatus::create(['name' => 'Closed', 'description' => 'Completed or cancelled', 'final' => true]);
     }
 }

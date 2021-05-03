@@ -27,7 +27,7 @@
                 <jet-select
                     :options="$page.props.companyOptions"
                     v-model="form.company_id">
-                    <template #none-selected>
+                    <template v-if="!default_company" #none-selected>
                         <option :value="null">None selected</option>
                     </template>
                 </jet-select>
@@ -70,8 +70,13 @@ export default {
             form: this.$inertia.form({
                 subject: '',
                 content: '',
-                company_id: null
+                company_id: this.default_company
             })
+        }
+    },
+    computed: {
+        default_company() {
+            return (this.$page.props.companyOptions?.length)? this.$page.props.companyOptions[0].id : null;
         }
     },
     methods: {

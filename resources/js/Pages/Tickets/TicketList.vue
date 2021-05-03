@@ -24,23 +24,30 @@
                             </th>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Age
+                                Last Activity
                             </th>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Company
                             </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Subscribe
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-if="!tickets.data.length" class="odd:bg-white even:bg-gray-50">
-                            <td colspan="6" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500 text-center italic">Nothing to show</td>
+                            <td colspan="7"
+                                class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500 text-center italic">
+                                Nothing to show
+                            </td>
                         </tr>
-                        <ticket-row v-for="(ticket,key) in tickets.data" :key="key" :ticket="ticket" />
+                        <ticket-row v-for="(ticket,key) in tickets.data" :key="key" :ticket="ticket"/>
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th scope="col" colspan="6">
+                            <th scope="col" colspan="7">
                                 <jet-paginator :data="tickets"></jet-paginator>
                             </th>
                         </tr>

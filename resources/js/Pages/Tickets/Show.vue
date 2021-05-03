@@ -20,8 +20,11 @@
                     <jet-section-border />
                 </div>
                 <div>
-                    <jet-button-link :href="route('tickets.responses.create', $page.props.ticket.id)">
+                    <jet-button-link v-if="! $page.props.ticket.status.final" :href="route('tickets.responses.create', $page.props.ticket.id)">
                         Respond
+                    </jet-button-link>
+                    <jet-button-link class="ml-2" v-else v-if="$page.props.permissions.canChangeTicketStatus" href="#">
+                        Reopen Ticket
                     </jet-button-link>
 
                 </div>

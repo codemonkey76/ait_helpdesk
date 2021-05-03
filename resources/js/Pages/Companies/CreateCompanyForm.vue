@@ -58,6 +58,7 @@
             <div class="col-span-6 sm:col-span-4">
                 <jet-label for="organization_id" value="Organization" />
                 <jet-select
+                    name="organization_id"
                     :options="$page.props.organizationOptions"
                     v-model="form.organization_id">
                     <template #none-selected>
@@ -107,7 +108,7 @@ export default {
                 suburb: '',
                 state: '',
                 postcode: '',
-                organization_id: null
+                organization_id: this.default_org
             })
         }
     },
@@ -120,5 +121,10 @@ export default {
             });
         },
     },
+    computed: {
+        default_org() {
+            return (this.$page.props.organizationOptions?.length)? this.$page.props.organizationOptions[0].id : null;
+        }
+    }
 }
 </script>

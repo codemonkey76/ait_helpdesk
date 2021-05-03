@@ -25,6 +25,7 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'string'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();
@@ -33,9 +34,14 @@ class CreateNewUser implements CreatesNewUsers
             return tap(User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'phone' => $input['phone'],
                 'password' => Hash::make($input['password']),
             ]), function (User $user) {
-                $this->createTeam($user);
+                $supportTeam = Team::whereName('support')->first();
+                $salesTeam = Team::whereName('sales')->first();
+                $accountsTeam = Team::whereName('accounts')->first();
+                if (!is_null($supportTeam) && !is_null($salesTeam) && !is_null($accountsTeam))
+                    $user->teams()->attach([$supportTeam->id, $salesTeam->id, $accountsTeam->id]);
                 $user->assignRole('user', 'restricted user');
             });
         });

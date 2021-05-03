@@ -21,8 +21,7 @@ class CreateTicketsTable extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('subject');
             $table->longText('content');
-            $table->timestamp('user_read_at')->nullable();
-            $table->timestamp('agent_read_at')->nullable();
+            $table->foreignId('status_id');
             $table->softDeletes();
             $table->timestamps();
         });

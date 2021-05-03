@@ -49,6 +49,7 @@ class PermissionSeeder extends Seeder
 
         Permission::create(['name' => 'respond to tickets']);
         Permission::create(['name' => 'change ticket status']);
+        Permission::create(['name' => 'subscribe to tickets']);
 
         Permission::create(['name' => 'list users']);
         Permission::create(['name' => 'show users']);
@@ -96,13 +97,16 @@ class PermissionSeeder extends Seeder
         $restrictedRole = Role::create(['name' => 'restricted user']);
         $restrictedRole->givePermissionTo('list own tickets');
         $restrictedRole->givePermissionTo('respond to tickets');
+        $restrictedRole->givePermissionTo('subscribe to tickets');
 
         $admin = app(CreatesNewUsers::class)
             ->create([
                 'name'                  => 'Master Admin',
                 'email'                 => 'admin@alphasg.com.au',
+                'phone'                 => '0400 588 588',
                 'password'              => 'secret123',
-                'password_confirmation' => 'secret123'
+                'password_confirmation' => 'secret123',
+                'terms'                 => true
             ])
             ->assignRole(['admin', 'agent', 'user', 'restricted user']);
         $admin->update(['email_verified_at' => now()]);

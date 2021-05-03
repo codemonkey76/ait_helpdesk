@@ -10,6 +10,7 @@ use App\Http\Controllers\OrganizationNoteSearchController;
 use App\Http\Controllers\OrganizationSearchController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TicketResponseController;
+use App\Http\Controllers\TicketSubscriptionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('tickets.responses', TicketResponseController::class);
 
     Route::resource('users', UserController::class);
+
+    Route::post('/tickets/{ticket}/subscription', [TicketSubscriptionController::class, 'store'])->name('tickets.subscribe');
+    Route::delete('tickets/{ticket}/subscription', [TicketSubscriptionController::class, 'destroy'])->name('tickets.unsubscribe');
 });
 
 

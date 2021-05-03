@@ -48,7 +48,8 @@ export default {
     },
     computed: {
         readText() {
-            return (this.ticket.agent_read_at) ? moment(this.ticket.agent_read_at).fromNow() : 'unread'
+            let reader = this.ticket.readers.find(x => x.id === this.$page.props.user.id);
+            return (this.ticket.readersagent_read_at) ? moment(this.ticket.agent_read_at).fromNow() : 'unread'
         }
     }
 }

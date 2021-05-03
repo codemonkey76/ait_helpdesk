@@ -64,7 +64,8 @@ export default {
             form: this.$inertia.form({
                 subject: '',
                 content: '',
-                company_id: null
+                company_id: null,
+                status_id: 2
             })
         }
     },

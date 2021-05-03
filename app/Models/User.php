@@ -34,7 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'phone', 'terms'
     ];
     protected $with = ['roles'];
 
@@ -77,6 +77,21 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Company::class);
     }
+
+    public function ticketsRead(): BelongsToMany
+    {
+        return $this->belongsToMany(Ticket::class, 'ticket_user', 'user_id', 'ticket_id');
+    }
+    public function ticketsSubscribed(): BelongsToMany
+    {
+        return $this->belongsToMany(Ticket::class, 'subscriber_ticket', 'subscriber_id', 'ticket_id');
+    }
+
+    public function responsesRead(): BelongsToMany
+    {
+        return $this->belongsToMany(TicketResponse::class, 'response_user', 'user_id', 'ticket_response_id');
+    }
+
     public function tickets(): HasMany
     {
         return $this->hasMany(Ticket::class);

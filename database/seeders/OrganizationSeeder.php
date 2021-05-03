@@ -14,6 +14,16 @@ class OrganizationSeeder extends Seeder
      */
     public function run()
     {
-        Organization::factory()->count(10)->create();
+//        Organization::factory()->count(10)->create();
+
+        $org = Organization::create(['name' => 'Alpha Solutions Group']);
+        $org->companies()->create([
+            'name' => 'Alpha IT Centre',
+            'address' => '1/48 Lillian Ave',
+            'suburb' => 'Salisbury',
+            'state' => 'QLD',
+            'postcode' => '4107',
+            'phone' => '07 3277 3636'
+        ]);
     }
 }
