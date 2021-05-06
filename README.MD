@@ -18,3 +18,28 @@ git clone git@github.com/codemonkey76/ait_helpdesk.git
 ```shell script
 composer install
 ```
+
+3. Create .env file (using .env.example template)
+
+```shell script
+cp .env.example .env
+```
+
+4. Generate application key
+
+```shell script
+php artisan key:generate
+```
+
+5. Install and compile node dependencies
+
+```shell script
+npm install && npm run dev
+```
+
+6. Migrate database (optional seeding)
+
+```shell script
+php artisan migrate --seed
+```
+
