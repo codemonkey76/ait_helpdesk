@@ -1,4 +1,12 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/images/business-support.png": "/images/business-support.png",
+    "/images/business-support.png:Zone.Identifier": "/images/business-support.png:Zone.Identifier",
+    "/images/data-centre.png": "/images/data-centre.png",
+    "/images/data-centre.png:Zone.Identifier": "/images/data-centre.png:Zone.Identifier",
+    "/images/domain-services.png": "/images/domain-services.png",
+    "/images/domain-services.png:Zone.Identifier": "/images/domain-services.png:Zone.Identifier",
+    "/images/hosting-services.png": "/images/hosting-services.png",
+    "/images/hosting-services.png:Zone.Identifier": "/images/hosting-services.png:Zone.Identifier"
 }

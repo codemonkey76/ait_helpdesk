@@ -24,4 +24,14 @@ class TicketPolicy
     {
         return $user->hasPermissionTo('view tickets') || $user->ownsTicket($ticket);
     }
+
+    public function subscribe(User $user, Ticket $ticket):bool
+    {
+        return $user->hasPermissionTo('subscribe to tickets') || $user->ownsTicket($ticket);
+    }
+
+    public function unsubscribe(User $user, Ticket $ticket):bool
+    {
+        return $user->hasPermissionTo('subscribe to tickets') || $user->ownsTicket($ticket);
+    }
 }

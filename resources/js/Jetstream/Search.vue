@@ -10,7 +10,7 @@
             name="search"
             type="text"
             autocomplete="search"
-            class="pl-10 w-full block border-gray-300 focus:border-brand-300 focus:ring focus:ring-brand-200 focus:ring-opacity-50 rounded-md shadow-sm"
+            class="pl-10 w-full block dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-700 dark:border-gray-600 border-gray-300 focus:border-brand-300 focus:ring focus:ring-brand-200 focus:ring-opacity-50 rounded-md shadow-sm"
             v-model="form.q"
             ref="input"
             placeholder="Search">

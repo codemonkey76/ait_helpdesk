@@ -1,11 +1,11 @@
 <template>
-    <tr class="odd:bg-white even:bg-gray-50">
+    <tr class="dark:odd:bg-gray-700 dark:even:bg-gray-800 odd:bg-white even:bg-gray-50">
         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
             <user-tag :user="user" :href="route('users.show', user.id)" />
         </td>
-        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+        <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500"
             v-text="user.email"/>
-        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500">
             <div class="flex justify-center">
                 <jet-bubble v-show="user.email_verified_at">Verified</jet-bubble>
                 <jet-bubble type="danger" v-show="!user.email_verified_at">Not Verified</jet-bubble>
@@ -19,9 +19,9 @@
         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 
             <a v-show="$page.props.permissions.canEditUsers" :href="route('users.edit', user.id)"
-               class="text-blue-500 hover:underline">Edit</a>
+               class="dark:text-blue-400 dark:hover:text-blue-200 text-blue-500">Edit</a>
             <a v-show="$page.props.permissions.canDeleteUsers" href="#" @click="confirmUserDeletion"
-               class="ml-2 text-red-600 hover:underline">Delete</a>
+               class="ml-2 dark:text-red-500 dark:hover:text-red-300 text-red-600 hover:text-red-900">Delete</a>
 
             <jet-confirmation-modal :show="confirmingUserDeletion" @close="confirmingUserDeletion = false">
                 <template #title>

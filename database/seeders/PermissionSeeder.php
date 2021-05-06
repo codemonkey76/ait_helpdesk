@@ -27,13 +27,13 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'list organizations']);
         Permission::create(['name' => 'show organizations']);
         Permission::create(['name' => 'create organizations']);
-        Permission::create(['name' => 'edit organizations']);
+        Permission::create(['name' => 'update organizations']);
         Permission::create(['name' => 'delete organizations']);
 
         Permission::create(['name' => 'list companies']);
         Permission::create(['name' => 'show companies']);
         Permission::create(['name' => 'create companies']);
-        Permission::create(['name' => 'edit companies']);
+        Permission::create(['name' => 'update companies']);
         Permission::create(['name' => 'delete companies']);
 
         Permission::create(['name' => 'list notes']);
@@ -54,7 +54,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'list users']);
         Permission::create(['name' => 'show users']);
         Permission::create(['name' => 'delete users']);
-        Permission::create(['name' => 'edit users']);
+        Permission::create(['name' => 'update users']);
 
         Permission::create(['name' => 'view team settings']);
         Permission::create(['name' => 'create teams']);
@@ -64,10 +64,10 @@ class PermissionSeeder extends Seeder
 
         $adminRole = Role::create(['name' => 'admin']);
         $adminRole->givePermissionTo('create organizations');
-        $adminRole->givePermissionTo('edit organizations');
+        $adminRole->givePermissionTo('update organizations');
         $adminRole->givePermissionTo('delete organizations');
         $adminRole->givePermissionTo('create companies');
-        $adminRole->givePermissionTo('edit companies');
+        $adminRole->givePermissionTo('update companies');
         $adminRole->givePermissionTo('delete companies');
         $adminRole->givePermissionTo('delete notes');
         $adminRole->givePermissionTo('delete users');
@@ -83,7 +83,7 @@ class PermissionSeeder extends Seeder
         $agentRole->givePermissionTo('create notes');
         $agentRole->givePermissionTo('list users');
         $agentRole->givePermissionTo('show users');
-        $agentRole->givePermissionTo('edit users');
+        $agentRole->givePermissionTo('update users');
         $agentRole->givePermissionTo('view team settings');
         $agentRole->givePermissionTo('create teams');
         $agentRole->givePermissionTo('list tickets');

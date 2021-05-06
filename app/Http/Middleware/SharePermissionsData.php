@@ -25,16 +25,16 @@ class SharePermissionsData
             'permissions' => function () use ($request) {
                 return [
                     'canListOrganizations' => $request->user()?->hasPermissionTo('list organizations'),
-                    'canEditOrganizations' => $request->user()?->hasPermissionTo('edit organizations'),
+                    'canEditOrganizations' => $request->user()?->hasPermissionTo('update organizations'),
                     'canDeleteOrganizations' => $request->user()?->hasPermissionTo('delete organizations'),
 
                     'canListCompanies' => $request->user()?->hasPermissionTo('list companies'),
-                    'canEditCompanies' => $request->user()?->hasPermissionTo('edit companies'),
+                    'canEditCompanies' => $request->user()?->hasPermissionTo('update companies'),
                     'canDeleteCompanies' => $request->user()?->hasPermissionTo('delete companies'),
                     'canListOwnTickets' => $request->user()?->hasPermissionTo('list own tickets'),
 
                     'canListUsers' => $request->user()?->hasPermissionTo('list users'),
-                    'canEditUsers' => $request->user()?->hasPermissionTo('edit users'),
+                    'canEditUsers' => $request->user()?->hasPermissionTo('update users'),
                     'canDeleteUsers' => $request->user()?->hasPermissionto('delete users'),
 
                     'canDeleteNotes' => $request->user()?->hasPermissionTo('delete notes'),

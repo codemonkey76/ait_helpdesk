@@ -16,6 +16,7 @@ mix.js('resources/js/app.js', 'public/js').vue()
         require('postcss-import'),
         require('tailwindcss'),
     ])
+    .copyDirectory('resources/images', 'public/images')
     .webpackConfig(require('./webpack.config'));
 
 if (mix.inProduction()) {
