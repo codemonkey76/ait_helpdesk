@@ -13,7 +13,7 @@ This is a helpdesk system. Has Company / Organization management, user permissio
 git clone git@github.com/codemonkey76/ait_helpdesk.git
 ```
 
-1. Install composer dependencies
+2. Install composer dependencies
 
 ```shell script
 composer install
