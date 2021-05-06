@@ -24533,13 +24533,13 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
   "class": "px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider"
 }, " Phone "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   scope: "col",
-  "class": "px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider"
+  "class": "hidden sm:block px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider"
 }, " Suburb "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   scope: "col",
-  "class": "px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider"
+  "class": "hidden sm:block px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider"
 }, " State "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   scope: "col",
-  "class": "px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider"
+  "class": "hidden sm:block px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider"
 }, " Organization "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   scope: "col",
   "class": "relative px-6 py-3"
@@ -24590,17 +24590,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8
     /* PROPS */
     , ["textContent"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-      "class": "px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500",
+      "class": "hidden sm:block px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500",
       textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(company.suburb)
     }, null, 8
     /* PROPS */
     , ["textContent"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-      "class": "px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500",
+      "class": "hidden sm:block px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500",
       textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(company.state)
     }, null, 8
     /* PROPS */
     , ["textContent"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-      "class": "px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500",
+      "class": "hidden sm:block px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500",
       textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(company.organizationName)
     }, null, 8
     /* PROPS */

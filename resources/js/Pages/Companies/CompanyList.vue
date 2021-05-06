@@ -15,15 +15,15 @@
                                 Phone
                             </th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider">
+                                class="hidden sm:block px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider">
                                 Suburb
                             </th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider">
+                                class="hidden sm:block px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider">
                                 State
                             </th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider">
+                                class="hidden sm:block px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider">
                                 Organization
                             </th>
                             <th scope="col" class="relative px-6 py-3">
@@ -42,11 +42,11 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500"
                                 v-text="company.phone"/>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500"
+                            <td class="hidden sm:block px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500"
                                 v-text="company.suburb"/>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500"
+                            <td class="hidden sm:block px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500"
                                 v-text="company.state"/>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500"
+                            <td class="hidden sm:block px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500"
                                 v-text="company.organizationName"/>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <a v-show="$page.props.permissions.canEditCompanies" :href="route('companies.edit', company.id)"
