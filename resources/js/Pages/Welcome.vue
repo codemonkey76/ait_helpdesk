@@ -11,18 +11,38 @@
                     Log in
                 </inertia-link>
 
-                <inertia-link v-if="canRegister" :href="route('register')" class="ml-4 text-sm text-gray-700 dark:text-gray-500">
+                <inertia-link v-if="canRegister" :href="route('register')"
+                              class="ml-4 text-sm text-gray-700 dark:text-gray-500">
                     Register
                 </inertia-link>
             </template>
         </div>
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                <application-logo class="h-16"></application-logo>
+            <!--            <div class="flex justify-between">-->
+            <!--                <application-mark class="h-8"></application-mark>-->
+            <!--                <div class="flex">-->
+
+            <!--                </div>-->
+
+                            <application-logo class="hidden sm:block md:h-16"></application-logo>
+            <!--            </div>-->
+            <div class="flex sm:hidden justify-between p-4 items-center">
+                <div>
+                    <application-mark class="h-12"></application-mark>
+                </div>
+                <div>
+
+                    <jet-button-link v-if="$page.props.user" href="/dashboard">Dashboard</jet-button-link>
+                    <template v-else>
+                        <jet-button-link :href="route('login')">Login</jet-button-link>
+                        <jet-secondary-button-link v-if="canRegister" class="ml-2" :href="route('register')">Register
+                        </jet-secondary-button-link>
+                    </template>
+                </div>
             </div>
 
-            <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+            <div class="mt-0 md:mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <info-card class="bg-brand-600">
                         <template #image>
@@ -180,10 +200,23 @@
 
 <script>
 import ApplicationLogo from "@/Jetstream/ApplicationLogo";
+import ApplicationMark from "@/Jetstream/ApplicationMark"
 import InfoCard from "@/Jetstream/InfoCard";
+import JetButton from "@/Jetstream/Button";
+import JetSecondaryButton from "@/Jetstream/SecondaryButton";
+import JetButtonLink from '@/Jetstream/ButtonLink';
+import JetSecondaryButtonLink from '@/Jetstream/SecondaryButtonLink';
 
 export default {
-    components: {InfoCard, ApplicationLogo},
+    components: {
+        InfoCard,
+        ApplicationLogo,
+        ApplicationMark,
+        JetButton,
+        JetSecondaryButton,
+        JetButtonLink,
+        JetSecondaryButtonLink
+    },
     props: {
         canLogin: Boolean,
         canRegister: Boolean,

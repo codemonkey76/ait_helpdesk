@@ -156,6 +156,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-signal-aware-command" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-backup" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/db-dumper" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/albertcht/invisible-recaptcha" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/timehunter/laravel-google-recaptcha-v3" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

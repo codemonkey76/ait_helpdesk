@@ -151,6 +151,8 @@
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-signal-aware-command" />
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-backup" />
       <path value="$PROJECT_DIR$/vendor/spatie/db-dumper" />
+      <path value="$PROJECT_DIR$/vendor/albertcht/invisible-recaptcha" />
+      <path value="$PROJECT_DIR$/vendor/timehunter/laravel-google-recaptcha-v3" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
