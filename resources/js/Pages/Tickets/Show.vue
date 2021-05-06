@@ -1,7 +1,7 @@
 <template>
     <app-layout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-xl dark:text-gray-400 text-gray-800 leading-tight">
                 Show ticket
             </h2>
         </template>

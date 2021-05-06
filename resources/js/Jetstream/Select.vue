@@ -1,6 +1,6 @@
 <template>
     <select
-        class="dark:text-gray-200 text-gray-700 bg-white dark:bg-gray-900 dark:hover:bg-gray-800 dark:focus:bg-gray-800  border-gray-300 rounded-md focus:border-brand-300 focus:ring focus:ring-brand-200 focus:ring-opacity-50 shadow-md"
+        class="dark:text-gray-200 text-gray-700 bg-white dark:bg-gray-900 dark:hover:bg-gray-800 dark:focus:bg-gray-800 border-gray-300 rounded-md focus:border-brand-300 focus:ring focus:ring-brand-200 focus:ring-opacity-50 shadow-md"
         :name="name"
         :value="modelValue"
         @change="changed"

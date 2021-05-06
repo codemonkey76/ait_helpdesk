@@ -20838,7 +20838,7 @@ var _hoisted_2 = {
   "class": "mt-5 md:mt-0 md:col-span-2"
 };
 var _hoisted_3 = {
-  "class": "px-4 py-5 sm:p-6 bg-white shadow sm:rounded-lg"
+  "class": "px-4 py-5 sm:p-6 dark:bg-gray-800 bg-white shadow sm:rounded-lg"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_jet_section_title = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-section-title");
@@ -21569,13 +21569,13 @@ var _hoisted_1 = {
   "class": "px-6 py-4"
 };
 var _hoisted_2 = {
-  "class": "text-lg"
+  "class": "text-lg dark:text-gray-200"
 };
 var _hoisted_3 = {
-  "class": "mt-4"
+  "class": "mt-4 dark:text-gray-400"
 };
 var _hoisted_4 = {
-  "class": "px-6 py-4 bg-gray-100 text-right"
+  "class": "px-6 py-4 dark:bg-gray-800 bg-gray-100 text-right"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_modal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("modal");
@@ -21939,7 +21939,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-            "class": ["mb-6 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto", $options.maxWidthClass]
+            "class": ["mb-6 dark:bg-gray-700 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto", $options.maxWidthClass]
           }, [$props.show ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default", {
             key: 0
           }) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
@@ -22175,7 +22175,7 @@ __webpack_require__.r(__webpack_exports__);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("button", {
     type: $props.type,
-    "class": "inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition"
+    "class": "inline-flex items-center px-4 py-2 dark:bg-gray-900 bg-white border dark:border-gray-600 border-gray-300 rounded-md font-semibold text-xs dark:text-gray-400 text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-brand-300 focus:ring focus:ring-brand-200  dark:active:text-gray-200 dark:active:bg-gray-800 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition dark:hover:text-gray-400 dark:hover:bg-gray-800"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")], 8
   /* PROPS */
   , ["type"]);
@@ -22203,7 +22203,7 @@ var _hoisted_1 = {
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "py-8"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "border-t border-gray-200"
+  "class": "border-t dark:border-gray-600 border-gray-200"
 })], -1
 /* HOISTED */
 );
@@ -22263,7 +22263,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("select", {
-    "class": "dark:text-gray-200 text-gray-700 bg-white dark:bg-gray-900 dark:hover:bg-gray-800 dark:focus:bg-gray-800  border-gray-300 rounded-md focus:border-brand-300 focus:ring focus:ring-brand-200 focus:ring-opacity-50 shadow-md",
+    "class": "dark:text-gray-200 text-gray-700 bg-white dark:bg-gray-900 dark:hover:bg-gray-800 dark:focus:bg-gray-800 border-gray-300 rounded-md focus:border-brand-300 focus:ring focus:ring-brand-200 focus:ring-opacity-50 shadow-md",
     name: $props.name,
     value: $props.modelValue,
     onChange: _cache[1] || (_cache[1] = function () {
@@ -27075,7 +27075,7 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Permanently delete your account. ");
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "max-w-xl text-sm text-gray-600"
+  "class": "max-w-xl text-sm dark:text-gray-400 text-gray-600"
 }, " Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain. ", -1
 /* HOISTED */
 );
@@ -27220,7 +27220,7 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Manage and log out your active sessions on other browsers and devices. ");
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "max-w-xl text-sm text-gray-600"
+  "class": "max-w-xl text-sm dark:text-gray-400 text-gray-600"
 }, " If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password. ", -1
 /* HOISTED */
 );
@@ -27285,7 +27285,7 @@ var _hoisted_11 = {
   "class": "ml-3"
 };
 var _hoisted_12 = {
-  "class": "text-sm text-gray-600"
+  "class": "text-sm dark:text-gray-400 text-gray-600"
 };
 var _hoisted_13 = {
   "class": "text-xs text-gray-500"
@@ -27462,7 +27462,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
-  "class": "font-semibold text-xl text-gray-800 leading-tight"
+  "class": "font-semibold text-xl dark:text-gray-400 text-gray-800 leading-tight"
 }, " Profile ", -1
 /* HOISTED */
 );
@@ -27548,15 +27548,15 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 
 var _hoisted_3 = {
   key: 0,
-  "class": "text-lg font-medium text-gray-900"
+  "class": "text-lg font-medium dark:text-gray-200 text-gray-900"
 };
 var _hoisted_4 = {
   key: 1,
-  "class": "text-lg font-medium text-gray-900"
+  "class": "text-lg font-medium dark:text-gray-200 text-gray-900"
 };
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "mt-3 max-w-xl text-sm text-gray-600"
+  "class": "mt-3 max-w-xl text-sm dark:text-gray-400 text-gray-600"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, " When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone's Google Authenticator application. ")], -1
 /* HOISTED */
 );
@@ -27569,7 +27569,7 @@ var _hoisted_7 = {
 };
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "mt-4 max-w-xl text-sm text-gray-600"
+  "class": "mt-4 max-w-xl text-sm dark:text-gray-400 text-gray-600"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
   "class": "font-semibold"
 }, " Two factor authentication is now enabled. Scan the following QR code using your phone's authenticator application. ")], -1
@@ -27581,7 +27581,7 @@ var _hoisted_9 = {
 };
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "mt-4 max-w-xl text-sm text-gray-600"
+  "class": "mt-4 max-w-xl text-sm dark:text-gray-400 text-gray-600"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
   "class": "font-semibold"
 }, " Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost. ")], -1
@@ -29641,7 +29641,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
-  "class": "font-semibold text-xl text-gray-800 leading-tight"
+  "class": "font-semibold text-xl dark:text-gray-400 text-gray-800 leading-tight"
 }, " Show ticket ", -1
 /* HOISTED */
 );
@@ -29730,13 +29730,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "bg-white pt-16 pb-16 px-4 sm:px-6 lg:px-8 rounded-md shadow-lg"
+  "class": "dark:bg-gray-800 bg-white pt-16 pb-16 px-4 sm:px-6 lg:px-8 rounded-md shadow-lg"
 };
 var _hoisted_2 = {
-  "class": "relative max-w-lg mx-auto divide-y-2 divide-gray-200 lg:max-w-7xl"
+  "class": "relative max-w-lg mx-auto divide-y-2 dark:divide-gray-600 divide-gray-200 lg:max-w-7xl"
 };
 var _hoisted_3 = {
-  "class": "text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl"
+  "class": "text-3xl tracking-tight font-extrabold dark:text-gray-200 text-gray-900 sm:text-4xl"
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Ticket #");
@@ -29761,7 +29761,7 @@ var _hoisted_10 = {
   "class": "ml-3"
 };
 var _hoisted_11 = {
-  "class": "flex space-x-1 text-sm text-gray-500"
+  "class": "flex space-x-1 text-sm dark:text-gray-400 text-gray-500"
 };
 
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
@@ -29778,12 +29778,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8
   /* PROPS */
   , ["textContent"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
-    "class": "mt-3 text-xl text-gray-500 sm:mt-4",
+    "class": "mt-3 text-xl  dark:text-gray-400 text-gray-500 sm:mt-4",
     textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.ticket.subject)
   }, null, 8
   /* PROPS */
   , ["textContent"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
-    "class": "mt-3 text-base text-gray-500",
+    "class": "mt-3 text-base dark:text-gray-400 text-gray-500",
     textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.ticket.content)
   }, null, 8
   /* PROPS */
@@ -29799,7 +29799,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8
   /* PROPS */
   , ["src"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
-    "class": "text-sm font-medium text-gray-900",
+    "class": "text-sm font-medium dark:text-gray-200 text-gray-900",
     textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$ticket$user2 = $props.ticket.user) === null || _$props$ticket$user2 === void 0 ? void 0 : _$props$ticket$user2.name)
   }, null, 8
   /* PROPS */
@@ -29927,13 +29927,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "bg-white pt-10 pb-10 px-4 sm:px-6 lg:px-8 rounded-md shadow-lg"
+  "class": "dark:bg-gray-800 bg-white pt-10 pb-10 px-4 sm:px-6 lg:px-8 rounded-md shadow-lg"
 };
 var _hoisted_2 = {
-  "class": "relative max-w-lg mx-auto divide-y-2 divide-gray-200 lg:max-w-7xl"
+  "class": "relative max-w-lg mx-auto divide-y-2 dark:divide-gray-600 divide-gray-200 lg:max-w-7xl"
 };
 var _hoisted_3 = {
-  "class": "text-xl tracking-tight font-extrabold text-gray-900 sm:text-2xl"
+  "class": "text-xl tracking-tight font-extrabold dark:text-gray-200 text-gray-900 sm:text-2xl"
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Response #");
@@ -29958,7 +29958,7 @@ var _hoisted_10 = {
   "class": "ml-3"
 };
 var _hoisted_11 = {
-  "class": "flex space-x-1 text-sm text-gray-500"
+  "class": "flex space-x-1 text-sm dark:text-gray-400 text-gray-500"
 };
 
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
@@ -29975,12 +29975,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8
   /* PROPS */
   , ["textContent"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
-    "class": "mt-3 text-lg text-gray-500 sm:mt-4",
+    "class": "mt-3 text-lg dark:text-gray-400 text-gray-500 sm:mt-4",
     textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.response.subject)
   }, null, 8
   /* PROPS */
   , ["textContent"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
-    "class": "mt-3 text-base text-gray-500",
+    "class": "mt-3 text-base dark:text-gray-400 text-gray-500",
     textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.response.content)
   }, null, 8
   /* PROPS */
@@ -29996,7 +29996,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8
   /* PROPS */
   , ["src"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
-    "class": "text-sm font-medium text-gray-900",
+    "class": "text-sm font-medium dark:text-gray-200 text-gray-900",
     textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$response$user3 = $props.response.user) === null || _$props$response$user3 === void 0 ? void 0 : _$props$response$user3.name)
   }, null, 8
   /* PROPS */
@@ -30028,7 +30028,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = {
   key: 0,
-  "class": "text-center text-gray-500 italic"
+  "class": "text-center dark:text-gray-400 text-gray-500 italic"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ticket_response_card = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ticket-response-card");
