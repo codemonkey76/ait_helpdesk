@@ -44,3 +44,8 @@ npm install && npm run dev
 php artisan migrate --seed
 ```
 
+7. Give permission for app to write to storage
+
+```shell script
+chmod 777 -R storage
+```
