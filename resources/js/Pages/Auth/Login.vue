@@ -1,7 +1,7 @@
 <template>
     <jet-authentication-card>
         <template #logo>
-            <jet-authentication-card-logo />
+            <application-logo class="h-12 md:h-16 my-2"></application-logo>
         </template>
 
         <jet-validation-errors class="mb-4" />
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+    import ApplicationLogo from "@/Jetstream/ApplicationLogo";
     import JetAuthenticationCard from '@/Jetstream/AuthenticationCard'
     import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo'
     import JetButton from '@/Jetstream/Button'
@@ -55,6 +56,7 @@
 
     export default {
         components: {
+            ApplicationLogo,
             JetAuthenticationCard,
             JetAuthenticationCardLogo,
             JetButton,

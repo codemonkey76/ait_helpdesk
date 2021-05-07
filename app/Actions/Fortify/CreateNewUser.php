@@ -40,8 +40,12 @@ class CreateNewUser implements CreatesNewUsers
                 $supportTeam = Team::whereName('support')->first();
                 $salesTeam = Team::whereName('sales')->first();
                 $accountsTeam = Team::whereName('accounts')->first();
-                if (!is_null($supportTeam) && !is_null($salesTeam) && !is_null($accountsTeam))
-                    $user->teams()->attach([$supportTeam->id, $salesTeam->id, $accountsTeam->id]);
+                if (!is_null($supportTeam) && !is_null($salesTeam) && !is_null($accountsTeam)) {
+                    $supportTeam->users()->attach($user, ['role' => 'editor']);
+                    $salesTeam->users()->attach($user, ['role' => 'editor']);
+                    $accountsTeam->users()->attach($user, ['role' => 'editor']);
+                }
+
                 $user->assignRole('user', 'restricted user');
             });
         });

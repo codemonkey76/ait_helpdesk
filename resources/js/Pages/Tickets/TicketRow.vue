@@ -8,11 +8,11 @@
         </td>
         <td class="px-6 py-4 text-sm" :class="{'font-bold': unread, 'italic dark:text-gray-500 text-gray-300': closed}"
             v-text="ticket.subject"/>
-        <td class="px-6 py-4 text-sm" :class="{'font-bold': unread, 'italic dark:text-gray-500 text-gray-300': closed}"
+        <td class="hidden sm:block px-6 py-4 text-sm" :class="{'font-bold': unread, 'italic dark:text-gray-500 text-gray-300': closed}"
             v-text="ticket.excerpt"/>
-        <td class="px-6 py-4 whitespace-nowrap text-sm" :class="{'font-bold': unread, 'italic dark:text-gray-500 text-gray-300': closed}"
+        <td class="hidden sm:block px-6 py-4 whitespace-nowrap text-sm" :class="{'font-bold': unread, 'italic dark:text-gray-500 text-gray-300': closed}"
             v-text="ago(ticket.updated_at)"/>
-        <td class="px-6 py-4 whitespace-nowrap text-sm" :class="{'font-bold': unread, 'italic dark:text-gray-500 text-gray-300': closed}"
+        <td class="hidden sm:block px-6 py-4 whitespace-nowrap text-sm" :class="{'font-bold': unread, 'italic dark:text-gray-500 text-gray-300': closed}"
             v-text="ticket.company_name"/>
         <td class="px-6 py-4 whitespace-nowrap text-sm">
             <jet-toggle @click="toggleSubscribe" :active="ticket.isSubscribed">

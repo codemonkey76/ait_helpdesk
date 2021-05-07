@@ -125,7 +125,7 @@
                                             API Tokens
                                         </jet-dropdown-link>
 
-                                        <div class="border-t border-gray-100"></div>
+                                        <div class="border-t dark:border-gray-600 border-gray-100"></div>
 
                                         <!-- Authentication -->
                                         <form @submit.prevent="logout">
@@ -156,12 +156,21 @@
                         <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </jet-responsive-nav-link>
-                        <jet-responsive-nav-link :href="route('organizations.index')" :active="route().current('organizations.*')">
+                        <jet-responsive-nav-link v-show="$page.props.permissions.canListOrganizations" :href="route('organizations.index')" :active="route().current('organizations.*')">
                             Organizations
                         </jet-responsive-nav-link>
-                        <jet-responsive-nav-link :href="route('companies.index')" :active="route().current('companies.*')">
+                        <jet-responsive-nav-link v-show="$page.props.permissions.canListCompanies" :href="route('companies.index')" :active="route().current('companies.*')">
                             Companies
                         </jet-responsive-nav-link>
+                        <jet-responsive-nav-link v-show="$page.props.permissions.canListOwnTickets" :href="route('tickets.index')" :active="route().current('tickets.*')">
+                            Tickets
+                        </jet-responsive-nav-link>
+                        <jet-responsive-nav-link v-show="$page.props.permissions.canListUsers" :href="route('users.index')" :active="route().current('users.*')">
+                            Users
+                        </jet-responsive-nav-link>
+
+
+
                     </div>
 
                     <!-- Responsive Settings Options -->

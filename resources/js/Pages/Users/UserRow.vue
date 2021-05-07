@@ -3,7 +3,7 @@
         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
             <user-tag :user="user" :href="route('users.show', user.id)" />
         </td>
-        <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500"
+        <td class="hidden sm:block px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500"
             v-text="user.email"/>
         <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-500">
             <div class="flex justify-center">
@@ -11,7 +11,7 @@
                 <jet-bubble type="danger" v-show="!user.email_verified_at">Not Verified</jet-bubble>
             </div>
         </td>
-        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+        <td class="hidden sm:block px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
             <div class="flex justify-center">
                 <jet-bubble v-for="(role,key) in user.roles" :key="key" v-text="role.name"/>
             </div>

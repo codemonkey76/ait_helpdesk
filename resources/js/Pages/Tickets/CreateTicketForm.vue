@@ -39,7 +39,8 @@
         </template>
 
         <template #actions>
-            <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            <jet-secondary-button-link :href="route('tickets.index')">Cancel</jet-secondary-button-link>
+            <jet-button class="ml-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Create
             </jet-button>
         </template>
@@ -48,6 +49,7 @@
 
 <script>
 import JetButton from '@/Jetstream/Button'
+import JetSecondaryButtonLink from '@/Jetstream/SecondaryButtonLink'
 import JetFormSection from '@/Jetstream/FormSection'
 import JetInput from '@/Jetstream/Input'
 import JetInputError from '@/Jetstream/InputError'
@@ -58,6 +60,7 @@ import JetText from '@/Jetstream/TextArea'
 export default {
     components: {
         JetButton,
+        JetSecondaryButtonLink,
         JetFormSection,
         JetInput,
         JetInputError,

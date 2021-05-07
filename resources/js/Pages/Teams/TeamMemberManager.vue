@@ -122,7 +122,7 @@
                         <div class="flex items-center justify-between" v-for="user in team.users" :key="user.id">
                             <div class="flex items-center">
                                 <img class="w-8 h-8 rounded-full" :src="user.profile_photo_url" :alt="user.name">
-                                <div class="ml-4">{{ user.name }}</div>
+                                <div class="ml-4 dark:text-gray-200">{{ user.name }}</div>
                             </div>
 
                             <div class="flex items-center">

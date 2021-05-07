@@ -17,11 +17,9 @@
     <!-- Scripts -->
     @routes
     <script src="{{ mix('js/app.js') }}" defer></script>
-    {!! app('captcha')->renderPolyfill() !!}
 </head>
 
 <body class="font-sans antialiased">
     @inertia
 </body>
-
 </html>

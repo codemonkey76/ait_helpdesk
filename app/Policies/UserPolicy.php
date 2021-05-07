@@ -27,6 +27,6 @@ class UserPolicy
 
     public function edit(User $user, User $user2): bool
     {
-        return $user->hasPermissionTo('edit users');
+        return $user->hasPermissionTo('update users');
     }
 }

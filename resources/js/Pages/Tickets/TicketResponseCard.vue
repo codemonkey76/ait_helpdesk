@@ -1,5 +1,5 @@
 <template>
-    <div class="dark:bg-gray-800 bg-white pt-10 pb-10 px-4 sm:px-6 lg:px-8 rounded-md shadow-lg">
+<!--    <div class="dark:bg-gray-800 bg-white pt-10 pb-10 px-4 sm:px-6 lg:px-8 rounded-md shadow-lg">-->
         <div class="relative max-w-lg mx-auto divide-y-2 dark:divide-gray-600 divide-gray-200 lg:max-w-7xl">
             <div>
                 <h2 class="text-xl tracking-tight font-extrabold dark:text-gray-200 text-gray-900 sm:text-2xl">
@@ -33,7 +33,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </template>
 <script>
 import moment from 'moment'

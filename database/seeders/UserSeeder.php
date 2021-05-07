@@ -65,35 +65,6 @@ class UserSeeder extends Seeder
         $theresa->update(['email_verified_at' => now()]);
         $theresa->companies()->attach($ait);
 
-        // Create 1-3 users per company
-//        Company::each(fn($company) => User::factory()
-//            ->count(mt_rand(1, 3))
-//            ->state(new Sequence(fn() => [['email_verified_at' => now()], ['email_verified_at' => null]][mt_rand(0, 1)]
-//            ))
-//            ->create(['current_team_id' => $supportTeam->id])
-//            ->each(function ($user) use ($company, $supportTeam, $accountsTeam, $salesTeam) {
-//                $user->companies()->attach($company->id);
-//                $supportTeam->users()->attach($user, ['role' => 'editor']);
-//                $accountsTeam->users()->attach($user, ['role' => 'editor']);
-//                $salesTeam->users()->attach($user, ['role' => 'editor']);
-//            })
-//        );
-
-
-        // Create some users with no company assigned
-//        User::factory()
-//            ->count(30)
-//            ->state(new Sequence(
-//                ['email_verified_at' => now()],
-//                ['email_verified_at' => null]
-//            ))
-//            ->create(['current_team_id' => $supportTeam->id])
-//            ->each(function ($user) use ($supportTeam, $accountsTeam, $salesTeam) {
-//                $supportTeam->users()->attach($user, ['role' => 'editor']);
-//                $accountsTeam->users()->attach($user, ['role' => 'editor']);
-//                $salesTeam->users()->attach($user, ['role' => 'editor']);
-//            });
-
         $theresa = app(CreatesNewUsers::class)
             ->create([
                 'name'                  => 'Test User',
@@ -104,12 +75,5 @@ class UserSeeder extends Seeder
                 'terms'                 => true
             ])
             ->assignRole(['user', 'restricted user']);
-
-//        Ticket::factory()
-//            ->count(5)
-//            ->create([
-//                'user_id' => $testUser->id,
-//                'current_team_id' => $testUser->current_team_id
-//            ]);
     }
 }

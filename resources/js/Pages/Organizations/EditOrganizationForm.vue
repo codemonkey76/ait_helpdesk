@@ -34,17 +34,17 @@
         </template>
 
         <template #actions>
-                <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <jet-secondary-button-link :href="route('organizations.index')">Cancel</jet-secondary-button-link>
+                <jet-button class="ml-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Save
                 </jet-button>
         </template>
-
-
     </jet-form-section>
 </template>
 
 <script>
 import JetButton from '@/Jetstream/Button'
+import JetSecondaryButtonLink from '@/Jetstream/SecondaryButtonLink'
 import JetCombo from '@/Jetstream/Combo'
 import JetFormSection from '@/Jetstream/FormSection'
 import JetInput from '@/Jetstream/Input'
@@ -55,6 +55,7 @@ import JetSelect from '@/Jetstream/Select'
 export default {
     components: {
         JetButton,
+        JetSecondaryButtonLink,
         JetFormSection,
         JetInput,
         JetInputError,

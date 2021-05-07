@@ -16,8 +16,8 @@
                     <img class="w-12 h-12 rounded-full object-cover" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name">
 
                     <div class="ml-4 leading-tight">
-                        <div>{{ $page.props.user.name }}</div>
-                        <div class="text-gray-700 text-sm">{{ $page.props.user.email }}</div>
+                        <div class="dark:text-gray-200">{{ $page.props.user.name }}</div>
+                        <div class="dark:text-gray-400 text-gray-700 text-sm">{{ $page.props.user.email }}</div>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,8 @@
         </template>
 
         <template #actions>
-            <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            <jet-secondary-button-link :href="route('dashboard')">Cancel</jet-secondary-button-link>
+            <jet-button class="ml-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Create
             </jet-button>
         </template>
@@ -39,6 +40,7 @@
 
 <script>
     import JetButton from '@/Jetstream/Button'
+    import JetSecondaryButtonLink from '@/Jetstream/SecondaryButtonLink'
     import JetFormSection from '@/Jetstream/FormSection'
     import JetInput from '@/Jetstream/Input'
     import JetInputError from '@/Jetstream/InputError'
@@ -47,6 +49,7 @@
     export default {
         components: {
             JetButton,
+            JetSecondaryButtonLink,
             JetFormSection,
             JetInput,
             JetInputError,

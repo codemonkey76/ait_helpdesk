@@ -1,7 +1,7 @@
 <template>
     <jet-authentication-card>
         <template #logo>
-            <jet-authentication-card-logo />
+            <application-logo class="h-12 md:h-16 my-2"></application-logo>
         </template>
 
         <jet-validation-errors class="mb-4" />
@@ -45,6 +45,10 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
+                <div class="g-recaptcha"
+                     :data-sitekey="$page.props.recaptcha.site_key"
+                     data-callback="onSubmit"
+                     data-size="invisible"></div>
                 <inertia-link :href="route('login')" class="underline text-sm dark:text-gray-400 dark:hover:text-gray-200 text-gray-600 hover:text-gray-900">
                     Already registered?
                 </inertia-link>
@@ -58,6 +62,7 @@
 </template>
 
 <script>
+    import ApplicationLogo from "@/Jetstream/ApplicationLogo";
     import JetAuthenticationCard from '@/Jetstream/AuthenticationCard'
     import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo'
     import JetButton from '@/Jetstream/Button'
@@ -68,6 +73,7 @@
 
     export default {
         components: {
+            ApplicationLogo,
             JetAuthenticationCard,
             JetAuthenticationCardLogo,
             JetButton,

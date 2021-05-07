@@ -11,7 +11,7 @@
                                 Name
                             </th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider">
+                                class="hidden sm:block px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider">
                                 Email
                             </th>
                             <th scope="col"
@@ -19,7 +19,7 @@
                                 Verified
                             </th>
                             <th scope="col"
-                                class="px-6 py-3 text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider text-center">
+                                class="hidden sm:block px-6 py-3 text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider text-center">
                                 Roles
                             </th>
                             <th scope="col" class="relative px-6 py-3">

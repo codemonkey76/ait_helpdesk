@@ -38,15 +38,6 @@ class DatabaseSeeder extends Seeder
         //Create some standard users
         $this->call(UserSeeder::class);
 
-        //Create some notes
-        //$this->call(NoteSeeder::class);
-
-        //Create some tickets
-        //$this->call(TicketSeeder::class);
-
-        //Respond to some tickets
-        //$this->call(TicketResponseSeeder::class);
-
         // Setup ticket statuses
         $this->call(TicketStatusSeeder::class);
     }
