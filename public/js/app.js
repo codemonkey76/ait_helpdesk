@@ -20365,10 +20365,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Jetstream_Paginator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/Paginator */ "./resources/js/Jetstream/Paginator.vue");
 /* harmony import */ var _Pages_Tickets_TicketRow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Tickets/TicketRow */ "./resources/js/Pages/Tickets/TicketRow.vue");
+/* harmony import */ var _Pages_Users_UserTag__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Users/UserTag */ "./resources/js/Pages/Users/UserTag.vue");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
+    UserTag: _Pages_Users_UserTag__WEBPACK_IMPORTED_MODULE_2__.default,
     TicketRow: _Pages_Tickets_TicketRow__WEBPACK_IMPORTED_MODULE_1__.default,
     JetPaginator: _Jetstream_Paginator__WEBPACK_IMPORTED_MODULE_0__.default
   },
@@ -30055,10 +30058,10 @@ var _hoisted_3 = {
   "class": "py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
 };
 var _hoisted_4 = {
-  "class": "shadow overflow-hidden sm:rounded-lg"
+  "class": "overflow-hidden sm:rounded-lg"
 };
 var _hoisted_5 = {
-  "class": "min-w-full divide-y dark:divide-gray-600 divide-gray-200"
+  "class": "sm:block hidden min-w-full divide-y dark:divide-gray-600 divide-gray-200"
 };
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("thead", {
@@ -30076,13 +30079,13 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
   "class": "px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider"
 }, " Subject "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   scope: "col",
-  "class": "hidden sm:block px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider"
+  "class": "px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider"
 }, " Excerpt "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   scope: "col",
-  "class": "hidden sm:block px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider"
+  "class": "px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider"
 }, " Last Activity "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   scope: "col",
-  "class": "hidden sm:block px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider"
+  "class": "px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider"
 }, " Company "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   scope: "col",
   "class": "px-6 py-3 text-left text-xs font-medium dark:text-gray-400 text-gray-500 uppercase tracking-wider"
@@ -30106,10 +30109,44 @@ var _hoisted_9 = {
   scope: "col",
   colspan: "7"
 };
+var _hoisted_10 = {
+  "class": "flex justify-between items-center border-b border-gray-300 pb-2 mb-4"
+};
+var _hoisted_11 = {
+  "class": "leading-tight text-xl py-1"
+};
+var _hoisted_12 = {
+  "class": "text-gray-700"
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("strong", null, "Subject:", -1
+/* HOISTED */
+);
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+
+var _hoisted_15 = {
+  "class": "text-gray-500"
+};
+var _hoisted_16 = {
+  "class": "mb-2 text-gray-700"
+};
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("strong", null, "Excerpt:", -1
+/* HOISTED */
+);
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+
+var _hoisted_19 = {
+  "class": "text-gray-500"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ticket_row = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ticket-row");
 
   var _component_jet_paginator = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-paginator");
+
+  var _component_user_tag = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("user-tag");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", null, [!$props.tickets.data.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", _hoisted_7, [_hoisted_8])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.tickets.data, function (ticket, key) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ticket_row, {
@@ -30124,7 +30161,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     data: $props.tickets
   }, null, 8
   /* PROPS */
-  , ["data"])])])])])])])])]);
+  , ["data"])])])])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.tickets.data, function (ticket, key) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", {
+      href: _ctx.route('tickets.show', ticket.id),
+      "class": "block my-2 px-2 py-2 bg-white border-gray-300 border rounded shadow sm:hidden"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_11, "#" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ticket.id), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_user_tag, {
+      user: ticket.user
+    }, null, 8
+    /* PROPS */
+    , ["user"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", _hoisted_12, [_hoisted_13, _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ticket.subject), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h4", _hoisted_16, [_hoisted_17, _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ticket.excerpt), 1
+    /* TEXT */
+    )])], 8
+    /* PROPS */
+    , ["href"]);
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))])])])]);
 }
 
 /***/ }),
@@ -30332,7 +30388,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 10
   /* CLASS, PROPS */
   , ["textContent"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-    "class": ["hidden sm:block px-6 py-4 text-sm", {
+    "class": ["px-6 py-4 text-sm", {
       'font-bold': $options.unread,
       'italic dark:text-gray-500 text-gray-300': $options.closed
     }],
@@ -30340,7 +30396,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 10
   /* CLASS, PROPS */
   , ["textContent"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-    "class": ["hidden sm:block px-6 py-4 whitespace-nowrap text-sm", {
+    "class": ["px-6 py-4 whitespace-nowrap text-sm", {
       'font-bold': $options.unread,
       'italic dark:text-gray-500 text-gray-300': $options.closed
     }],
@@ -30348,7 +30404,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 10
   /* CLASS, PROPS */
   , ["textContent"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-    "class": ["hidden sm:block px-6 py-4 whitespace-nowrap text-sm", {
+    "class": ["px-6 py-4 whitespace-nowrap text-sm", {
       'font-bold': $options.unread,
       'italic dark:text-gray-500 text-gray-300': $options.closed
     }],
