@@ -38,13 +38,20 @@ php artisan key:generate
 npm install && npm run dev
 ```
 
-6. Migrate database (optional seeding)
+6. Add algolia keys to .env
+```shell script
+SCOUT_DRIVER=algolia
+ALGOLIA_APP_ID=<insert your application id here>
+ALGOLIA_SECRET=<insert your admin api key>
+```
+
+7. Migrate database (optional seeding)
 
 ```shell script
 php artisan migrate --seed
 ```
 
-7. Give permission for app to write to storage
+8. Give permission for app to write to storage
 
 ```shell script
 chmod 777 -R storage
