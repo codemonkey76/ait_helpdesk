@@ -41,8 +41,8 @@ npm install && npm run dev
 6. Add algolia keys to .env
 ```shell script
 SCOUT_DRIVER=algolia
-ALGOLIA_APP_ID=<insert your application id here>
-ALGOLIA_SECRET=<insert your admin api key>
+ALGOLIA_APP_ID=insert your application id here
+ALGOLIA_SECRET=insert your admin api key
 ```
 
 7. Migrate database (optional seeding)
