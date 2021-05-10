@@ -2,6 +2,9 @@
     <div class="dark:bg-gray-800 bg-white pt-16 pb-16 px-4 sm:px-6 lg:px-8 rounded-md shadow-lg">
         <div class="relative max-w-lg mx-auto divide-y-2 dark:divide-gray-600 divide-gray-200 lg:max-w-7xl">
             <div>
+                <div class="absolute -mt-12 right-0">
+                    <status-indicator :status_id="ticket.status_id" :options="$page.props.statusOptions" />
+                </div>
                 <h2 class="text-3xl tracking-tight font-extrabold dark:text-gray-200 text-gray-900 sm:text-4xl">
                     Ticket #<span v-text="ticket.id"></span>
                 </h2>
@@ -37,9 +40,11 @@
 
 </template>
 <script>
+import StatusIndicator from "@/Jetstream/StatusIndicator";
 import moment from "moment";
 
 export default {
+    components: {StatusIndicator},
     props: ['ticket'],
     methods: {
         ago(date) {

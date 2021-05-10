@@ -16,7 +16,7 @@
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex flex-wrap">
                                 <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </jet-nav-link>
@@ -33,6 +33,7 @@
                                 <jet-nav-link v-show="$page.props.permissions.canListUsers" :href="route('users.index')" :active="route().current('users.*')">
                                     Users
                                 </jet-nav-link>
+
                             </div>
                         </div>
 
@@ -93,7 +94,7 @@
                             </div>
 
                             <!-- Settings Dropdown -->
-                            <div class="ml-3 relative">
+                            <div class="ml-3 relative flex-shrink-0">
                                 <jet-dropdown align="right" width="48">
                                     <template #trigger>
                                         <button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none dark:focus:border-gray-600 focus:border-gray-300 transition">

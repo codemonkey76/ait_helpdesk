@@ -37,9 +37,12 @@ class TicketResponseController extends Controller
 
         $validated['user_id'] = $request->user()->id;
 
+
         if ($request->user()->hasPermissionTo('change ticket status'))
         {
+            info('User has the permission to change the ticket status');
             $ticket->update(['status_id' => $request->status_id]);
+            info('Ticket status should now be updated to ' . $request->status_id);
         }
 
         $ticket->responses()->create($validated);

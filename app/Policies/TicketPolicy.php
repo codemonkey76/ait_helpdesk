@@ -34,4 +34,9 @@ class TicketPolicy
     {
         return $user->hasPermissionTo('subscribe to tickets') || $user->ownsTicket($ticket);
     }
+
+    public function reopen(User $user, Ticket $ticket):bool
+    {
+        return $user->hasPermissionTo('change ticket status') || $user->ownsTicket($ticket);
+    }
 }

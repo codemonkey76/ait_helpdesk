@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Models\TicketStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
@@ -33,7 +34,6 @@ class TicketController extends Controller
             $builder->where('user_id', $request->user()->id);
         }
 
-
         $tickets = $builder->paginate(15);
 
 
@@ -48,8 +48,10 @@ class TicketController extends Controller
 
         $ticket->readers()->syncWithoutDetaching($request->user()->id);
         $responses->each(fn($response) => $response->readers()->syncWithoutDetaching($request->user()->id));
-
-        return Inertia::render('Tickets/Show', compact('ticket', 'responses'));
+        $statusOptions = TicketStatus::select(['id', 'name', 'description'])
+            ->limit(500)
+            ->get();
+        return Inertia::render('Tickets/Show', compact('ticket', 'responses', 'statusOptions'));
     }
 
     public function create(Request $request): InertiaResponse

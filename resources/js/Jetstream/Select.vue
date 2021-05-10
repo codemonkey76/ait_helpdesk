@@ -1,8 +1,9 @@
 <template>
     <select
+        :id="id"
         class="dark:text-gray-200 text-gray-700 bg-white dark:bg-gray-900 dark:hover:bg-gray-800 dark:focus:bg-gray-800 border-gray-300 rounded-md focus:border-brand-300 focus:ring focus:ring-brand-200 focus:ring-opacity-50 shadow-md"
         :name="name"
-        :value="modelValue"
+        v-model="selected"
         @change="changed"
         ref="select">
         <slot name="none-selected">
@@ -13,24 +14,22 @@
 <script>
 export default {
     props: {
+        id: String,
         name: String,
         modelValue: Number,
         options: Array,
     },
     data() {
         return {
-            selected: this.default ? this.default : this.options.length > 0 ? this.options[0].id : null
+            selected: this.modelValue
         }
-    },
-    mounted() {
-        this.$emit("onUpdate:modelValue", this.selected);
     },
     methods: {
         focus() {
             this.$refs.select.focus()
         },
         changed(e) {
-            this.$emit('onUpdate:modelValue', e.target.value)
+            this['onUpdate:modelValue'](e.target.value)
         }
     },
 }

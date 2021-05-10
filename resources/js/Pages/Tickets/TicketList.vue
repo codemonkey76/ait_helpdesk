@@ -3,7 +3,7 @@
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="overflow-hidden sm:rounded-lg">
-                    <table class="sm:block hidden min-w-full divide-y dark:divide-gray-600 divide-gray-200">
+                    <table class="lg:table hidden min-w-full divide-y dark:divide-gray-600 divide-gray-200">
                         <thead class="dark:bg-gray-800 bg-gray-50">
                         <tr>
                             <th scope="col"
@@ -55,30 +55,49 @@
                         </tr>
                         </tfoot>
                     </table>
-                    <template v-for="(ticket,key) in tickets.data">
-                        <a :href="route('tickets.show', ticket.id)" class="block my-2 px-2 py-2 bg-white border-gray-300 border rounded shadow sm:hidden">
-                            <div class="flex justify-between items-center border-b border-gray-300 pb-2 mb-4">
-                                <h2 class="leading-tight text-xl py-1">#{{ ticket.id }}</h2>
-                                <user-tag :user="ticket.user"/>
-                            </div>
-                            <h3 class="text-gray-700"><strong>Subject:</strong> <span
-                                class="text-gray-500">{{ ticket.subject }}</span></h3>
-                            <h4 class="mb-2 text-gray-700"><strong>Excerpt:</strong> <span
-                                class="text-gray-500">{{ ticket.excerpt }}</span></h4>
-                        </a>
-                    </template>
+
+                    <card @click.native="location.href=route('tickets.show', ticket.id)" v-for="(ticket,key) in tickets.data"
+                          class="block lg:hidden my-2 cursor-pointer" :key="key">
+                        <template #header>
+                            <h2 class="leading-tight text-xl py-1">#{{ ticket.id }}</h2>
+                            <div>{{ago(ticket.updated_at)}}</div>
+                        </template>
+                        <table>
+                            <tr>
+                                <th scope="row" class="pr-2">Subject:</th>
+                                <td>{{ ticket.subject }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="align-top pr-2">Content:</th>
+                                <td>
+                                    {{ ticket.content }}
+                                </td>
+                            </tr>
+                        </table>
+                        <template #footer>
+                            <user-tag :user="ticket.user"/>
+                            <div>{{ticket.company_name}}</div>
+                        </template>
+
+                    </card>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
+import Card from "@/Jetstream/Card";
 import JetPaginator from '@/Jetstream/Paginator'
 import TicketRow from "@/Pages/Tickets/TicketRow";
 import UserTag from "@/Pages/Users/UserTag";
-
+import moment from 'moment';
 export default {
-    components: {UserTag, TicketRow, JetPaginator},
+    components: {Card, UserTag, TicketRow, JetPaginator},
     props: ['tickets'],
+    methods: {
+        ago(date){
+            return moment(date).fromNow();
+        }
+    }
 }
 </script>

@@ -2,84 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
 use App\Models\TicketStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rule;
 
 class TicketStatusController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function update(Request $request, Ticket $ticket)
     {
-        //
-    }
+        Gate::forUser($request->user())->authorize('reopen', $ticket);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        $validated = $request->validate([
+            'status_id' => [
+                'required',
+                Rule::in(['1', '2', '3', '4', '5'])
+            ]
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\TicketStatus  $ticketStatus
-     * @return \Illuminate\Http\Response
-     */
-    public function show(TicketStatus $ticketStatus)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\TicketStatus  $ticketStatus
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(TicketStatus $ticketStatus)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TicketStatus  $ticketStatus
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, TicketStatus $ticketStatus)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\TicketStatus  $ticketStatus
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(TicketStatus $ticketStatus)
-    {
-        //
+        $ticket->update($validated);
     }
 }

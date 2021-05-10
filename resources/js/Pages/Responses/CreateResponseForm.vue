@@ -19,11 +19,9 @@
             <div v-if="$page.props.permissions.canChangeTicketStatus" class="col-span-6">
                 <jet-label for="status_id" value="Status" />
                 <jet-select
+                    id="status_id"
                     :options="$page.props.statusOptions"
                     v-model="form.status_id">
-                    <template #none-selected>
-                        <option :value="null">None selected</option>
-                    </template>
                 </jet-select>
                 <span class="text-gray-500 ml-2" v-text="statusDescription(form.status_id)" />
                 <jet-input-error :message="form.errors.status_id" class="mt-2" />
@@ -41,6 +39,7 @@
 
 <script>
 import JetButton from '@/Jetstream/Button'
+import CustomSelect from "@/Jetstream/CustomSelect";
 import JetFormSection from '@/Jetstream/FormSection'
 import JetInput from '@/Jetstream/Input'
 import JetInputError from '@/Jetstream/InputError'
@@ -50,6 +49,7 @@ import JetText from '@/Jetstream/TextArea'
 
 export default {
     components: {
+        CustomSelect,
         JetButton,
         JetFormSection,
         JetInput,
@@ -62,10 +62,8 @@ export default {
     data() {
         return {
             form: this.$inertia.form({
-                subject: '',
                 content: '',
-                company_id: null,
-                status_id: 2
+                status_id: this.ticket.status_id
             })
         }
     },
