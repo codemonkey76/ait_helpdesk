@@ -101,8 +101,8 @@ class PermissionSeeder extends Seeder
 
         $admin = app(CreatesNewUsers::class)
             ->create([
-                'name'                  => 'Master Admin',
-                'email'                 => 'admin@alphasg.com.au',
+                'name'                  => 'Shane Poppleton',
+                'email'                 => 'shane@alphasg.com.au',
                 'phone'                 => '0400 588 588',
                 'password'              => 'secret123',
                 'password_confirmation' => 'secret123',
