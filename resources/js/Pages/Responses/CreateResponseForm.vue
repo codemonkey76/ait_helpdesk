@@ -9,7 +9,6 @@
         </template>
 
         <template #form>
-
             <div class="col-span-6">
                 <jet-label for="content" value="Content" />
                 <jet-text id="content" tclass="mt-1 block w-full" v-model="form.content" autofocus />

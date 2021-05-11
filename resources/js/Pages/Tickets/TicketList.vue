@@ -56,7 +56,7 @@
                         </tfoot>
                     </table>
 
-                    <card @click.native="location.href=route('tickets.show', ticket.id)" v-for="(ticket,key) in tickets.data"
+                    <card @click.native="openLink(route('tickets.show', ticket.id))" v-for="(ticket,key) in tickets.data"
                           class="block lg:hidden my-2 cursor-pointer" :key="key">
                         <template #header>
                             <h2 class="leading-tight text-xl py-1">#{{ ticket.id }}</h2>
@@ -97,6 +97,9 @@ export default {
     methods: {
         ago(date){
             return moment(date).fromNow();
+        },
+        openLink(route) {
+            window.location.href = route
         }
     }
 }

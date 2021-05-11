@@ -15,7 +15,7 @@
         <td class="px-6 py-4 whitespace-nowrap text-sm" :class="{'font-bold': unread, 'italic dark:text-gray-500 text-gray-300': closed}"
             v-text="ticket.company_name"/>
         <td class="px-6 py-4 whitespace-nowrap text-sm">
-            <jet-toggle @click="toggleSubscribe" :active="ticket.isSubscribed">
+            <jet-toggle class="rounded-md" @click="toggleSubscribe" :active="ticket.isSubscribed">
             <svg aria-hidden="true" data-prefix="fas" data-icon="bell"
                  class="h-4 w-5" xmlns="http://www.w3.org/2000/svg"
                  viewBox="0 0 448 512">

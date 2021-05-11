@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use App\Models\TicketStatus;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
@@ -33,6 +34,13 @@ class TicketController extends Controller
         if (!$request->user()->hasPermissionTo('list tickets')) {
             $builder->where('user_id', $request->user()->id);
         }
+
+        $filters = (array)$request->user()->filters;
+        $selected = array_filter(array_keys($filters), fn($v, $k) => array_values($filters)[$k], ARRAY_FILTER_USE_BOTH);
+        $statuses = TicketStatus::whereIn(DB::raw('lower(name)'), $selected)->pluck('id')->toArray();
+
+        $builder->whereIn('status_id', $statuses);
+
 
         $tickets = $builder->paginate(15);
 

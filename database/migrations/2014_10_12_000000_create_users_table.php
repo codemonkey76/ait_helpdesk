@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('current_team_id')->nullable()->default(1);
             $table->text('profile_photo_path')->nullable();
             $table->boolean('terms')->default(false);
+            $table->json('filters')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

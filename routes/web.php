@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\UserDefaultFilterController;
 use App\Http\Controllers\CompanyNoteController;
 use App\Http\Controllers\CompanyNoteSearchController;
 use App\Http\Controllers\CompanySearchController;
@@ -58,6 +59,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::delete('tickets/{ticket}/subscription', [TicketSubscriptionController::class, 'destroy'])->name('tickets.unsubscribe');
 
     Route::patch('tickets/{ticket}/status', [TicketStatusController::class, 'update'])->name('tickets.status.update');
+    Route::patch('/user/filters', [UserDefaultFilterController::class, 'update'])->name('api.user.filters');
 });
 
 

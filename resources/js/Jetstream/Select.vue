@@ -18,6 +18,7 @@ export default {
         name: String,
         modelValue: Number,
         options: Array,
+        'onUpdate:modelValue': Function
     },
     data() {
         return {
@@ -29,7 +30,12 @@ export default {
             this.$refs.select.focus()
         },
         changed(e) {
-            this['onUpdate:modelValue'](e.target.value)
+            if (Object.prototype.hasOwnProperty.call(this, 'onUpdate:modelValue') && this['onUpdate:modelValue'] !== undefined){
+                this['onUpdate:modelValue'](parseInt(e.target.value))
+                return
+            }
+
+            this.$emit('input', e.target.value)
         }
     },
 }

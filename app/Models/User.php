@@ -34,7 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'terms'
+        'name', 'email', 'password', 'phone', 'terms', 'filters'
     ];
     protected $with = ['roles'];
 
@@ -57,6 +57,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'filters'           => 'object'
     ];
 
     /**
@@ -82,6 +83,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Ticket::class, 'ticket_user', 'user_id', 'ticket_id');
     }
+
     public function ticketsSubscribed(): BelongsToMany
     {
         return $this->belongsToMany(Ticket::class, 'subscriber_ticket', 'subscriber_id', 'ticket_id');
@@ -101,4 +103,20 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return ($this->id === $ticket->user_id);
     }
+
+    public function getFiltersAttribute(): object
+    {
+        if (is_null($this->attributes['filters'])) {
+            return (object)[
+                'pending' => true,
+                'open'    => true,
+                'waiting' => true,
+                'billing' => false,
+                'closed'  => false
+            ];
+        }
+
+        return json_decode($this->attributes['filters']);
+    }
+
 }
