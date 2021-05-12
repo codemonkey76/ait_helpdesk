@@ -153,6 +153,7 @@
       <path value="$PROJECT_DIR$/vendor/spatie/db-dumper" />
       <path value="$PROJECT_DIR$/vendor/albertcht/invisible-recaptcha" />
       <path value="$PROJECT_DIR$/vendor/timehunter/laravel-google-recaptcha-v3" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-web-tinker" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

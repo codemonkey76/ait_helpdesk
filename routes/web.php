@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\UserDefaultFilterController;
+use App\Http\Controllers\CompanyApiController;
 use App\Http\Controllers\CompanyNoteController;
 use App\Http\Controllers\CompanyNoteSearchController;
 use App\Http\Controllers\CompanySearchController;
@@ -60,6 +61,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::patch('tickets/{ticket}/status', [TicketStatusController::class, 'update'])->name('tickets.status.update');
     Route::patch('/user/filters', [UserDefaultFilterController::class, 'update'])->name('api.user.filters');
+    Route::get('/api/companies', [CompanyApiController::class, 'index'])->name('api.companies.index');
 });
 
 

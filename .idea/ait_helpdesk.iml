@@ -158,6 +158,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/db-dumper" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/albertcht/invisible-recaptcha" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/timehunter/laravel-google-recaptcha-v3" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-web-tinker" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

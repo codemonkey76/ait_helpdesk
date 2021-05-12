@@ -13,7 +13,14 @@
 
                     <jet-section-border />
                 </div>
-
+                <div>
+                    <assign-companies-form :user="$page.props.targetUser" />
+                    <jet-section-border />
+                </div>
+                <div>
+                    <assign-roles-form :user="$page.props.targetUser" />
+                    <jet-section-border />
+                </div>
             </div>
         </div>
     </app-layout>
@@ -22,11 +29,15 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout'
 import JetSectionBorder from '@/Jetstream/SectionBorder'
+import AssignCompaniesForm from "@/Pages/Users/AssignCompaniesForm";
+import AssignRolesForm from "@/Pages/Users/AssignRolesForm";
 import EditUserForm from '@/Pages/Users/EditUserForm'
 
 
 export default {
     components: {
+        AssignRolesForm,
+        AssignCompaniesForm,
         AppLayout,
         EditUserForm,
         JetSectionBorder,
