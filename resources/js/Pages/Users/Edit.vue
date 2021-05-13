@@ -13,11 +13,11 @@
 
                     <jet-section-border />
                 </div>
-                <div>
-                    <assign-companies-form :user="$page.props.targetUser" />
+                <div class="md:block hidden">
+                    <assign-companies-form :companies="$page.props.companies" :user="$page.props.targetUser" />
                     <jet-section-border />
                 </div>
-                <div>
+                <div class="md:block hidden">
                     <assign-roles-form :user="$page.props.targetUser" />
                     <jet-section-border />
                 </div>

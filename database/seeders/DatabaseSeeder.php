@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
 
         //Create orgs and companies
         $this->call(OrganizationSeeder::class);
-        //$this->call(CompanySeeder::class);
+        $this->call(CompanySeeder::class);
 
         //Create some standard users
         $this->call(UserSeeder::class);

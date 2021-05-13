@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Users\DeleteUser;
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 use Laravel\Jetstream\Contracts\DeletesUsers;
@@ -24,10 +26,11 @@ class UserController extends Controller
     {
         Gate::forUser($request->user())->authorize('viewAny', User::class);
 
-        if ($request->has('q'))
+        if ($request->has('q')) {
             $users = User::search($request->q)->paginate(15);
-        else
+        } else {
             $users = User::paginate(15);
+        }
 
         return Inertia::render('Users/Index', compact('users'));
     }
@@ -46,8 +49,14 @@ class UserController extends Controller
     {
         Gate::forUser($request->user())->authorize('edit', $user);
 
+        $companies = Company::all()->groupBy(fn($company) =>
+            (string) Str::of($company->name)
+                ->limit(1, '')
+                ->ucfirst()
+            );
         return Inertia::render('Users/Edit', [
-            'targetUser' => $user
+            'targetUser' => $user->load('companies'),
+            'companies' => $companies
         ]);
     }
 

@@ -59,7 +59,7 @@ export default {
     },
 
     methods: {
-        updateOrganization() {
+        updateUser() {
             this.form.post(route('users.update', this.user.id), {
                 errorBag: 'updateUser',
                 preserveScroll: true

@@ -17529,21 +17529,83 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    grouped: {
+      type: Boolean,
+      "default": false
+    },
+    data: {
+      type: Object,
+      "default": []
+    },
+    titleField: {
+      type: String,
+      "default": 'name'
+    },
+    subtitleField: {
+      type: String,
+      "default": 'description'
+    },
+    groupStyles: {
+      type: String,
+      "default": 'bg-gray-50 border-gray-200 text-gray-500'
+    },
+    itemStyles: {
+      type: String,
+      "default": 'bg-white hover:bg-gray-50 focus-within:ring-brand-500'
+    },
+    selectedItemStyles: {
+      type: String,
+      "default": 'bg-brand-800 hover:bg-brand-700 focus-within:ring-brand-500'
+    },
+    titleStyles: {
+      type: String,
+      "default": 'text-gray-900'
+    },
+    subtitleStyles: {
+      type: String,
+      "default": 'text-gray-500'
+    },
+    selectedTitleStyles: {
+      type: String,
+      "default": 'text-gray-200'
+    },
+    selectedSubtitleStyles: {
+      type: String,
+      "default": 'text-gray-400'
+    },
+    selectedItem: {
+      type: Object,
+      "default": null
+    }
+  },
   data: function data() {
     return {
-      companies: []
+      selected: this.selectedItem
     };
   },
-  mounted: function mounted() {
-    this.fetch();
-  },
   methods: {
-    fetch: function fetch() {
-      var _this = this;
+    itemStyle: function itemStyle(item) {
+      if (item === this.selected) return this.selectedItemStyles;
+      return this.itemStyles;
+    },
+    titleStyle: function titleStyle(item) {
+      if (item === this.selected) return this.selectedTitleStyles;
+      return this.titleStyles;
+    },
+    subtitleStyle: function subtitleStyle(item) {
+      if (item === this.selected) return this.selectedSubtitleStyles;
+      return this.subtitleStyles;
+    },
+    selectItem: function selectItem(item) {
+      if (item === this.selected) {
+        this.selected = null;
+        this.$emit('selected', null);
+        return;
+      }
 
-      axios.get(route('api.companies.index')).then(function (response) {
-        _this.companies = response.data;
-      });
+      this.selected = item;
+      this.$emit('selected', item);
     }
   }
 });
@@ -20766,14 +20828,56 @@ __webpack_require__.r(__webpack_exports__);
     JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_0__.default,
     JetSecondaryButtonLink: _Jetstream_SecondaryButtonLink__WEBPACK_IMPORTED_MODULE_3__.default
   },
-  props: ['user'],
+  props: ['user', 'companies'],
   data: function data() {
+    var _this$addItem, _this$removeItem;
+
     return {
-      form: this.$inertia.form({
-        _method: 'PUT',
-        name: this.user.name
-      })
+      addCompanyToUserForm: this.$inertia.form({
+        _method: 'POST',
+        company_id: (_this$addItem = this.addItem) === null || _this$addItem === void 0 ? void 0 : _this$addItem.id
+      }),
+      removeCompanyFromUserForm: this.$inertia.form({
+        _method: 'DELETE',
+        company_id: (_this$removeItem = this.removeItem) === null || _this$removeItem === void 0 ? void 0 : _this$removeItem.id
+      }),
+      addItem: null,
+      removeItem: null
     };
+  },
+  methods: {
+    addItemSelected: function addItemSelected(item) {
+      this.addItem = item;
+      this.addCompanyToUserForm.company_id = item.id;
+    },
+    removeItemSelected: function removeItemSelected(item) {
+      this.removeItem = item;
+      this.removeCompanyFromUserForm.company_id = item.id;
+    },
+    addCompanyToUser: function addCompanyToUser() {
+      var _this = this;
+
+      this.addCompanyToUserForm.post(route('users.companies.store', this.user.id), {
+        errorBag: 'addCompanyToUser',
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          return _this.addItem = null;
+        }
+      });
+    },
+    removeCompanyFromUser: function removeCompanyFromUser() {
+      var _this$removeItem2,
+          _this2 = this;
+
+      console.log('calling removeCompanyFromUserForm.delete, with company_id: ' + ((_this$removeItem2 = this.removeItem) === null || _this$removeItem2 === void 0 ? void 0 : _this$removeItem2.id));
+      this.removeCompanyFromUserForm["delete"](route('users.companies.destroy', this.user.id), {
+        errorBag: 'removeCompanyFromUser',
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          return _this2.removeItem = null;
+        }
+      });
+    }
   }
 });
 
@@ -20893,7 +20997,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    updateOrganization: function updateOrganization() {
+    updateUser: function updateUser() {
       this.form.post(route('users.update', this.user.id), {
         errorBag: 'updateUser',
         preserveScroll: true
@@ -22812,13 +22916,114 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "h-full overflow-y-auto rounded"
+  "class": "h-full border overflow-y-auto rounded"
+};
+var _hoisted_2 = {
+  key: 0
+};
+var _hoisted_3 = {
+  "class": "relative"
+};
+var _hoisted_4 = {
+  "class": "relative z-0 divide-y divide-gray-200"
+};
+var _hoisted_5 = {
+  "class": "flex-1 min-w-0"
 };
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"relative\"><div class=\"z-10 sticky top-0 border-t border-b border-gray-200 bg-gray-50 px-6 py-1 text-sm font-medium text-gray-500\"><h3>A</h3></div><ul class=\"relative z-0 divide-y divide-gray-200\"><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Leslie Abbott </p><p class=\"text-sm text-gray-500 truncate\"> Co-Founder / CEO </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Hector Adams </p><p class=\"text-sm text-gray-500 truncate\"> VP, Marketing </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1520785643438-5bf77931f493?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Blake Alexander </p><p class=\"text-sm text-gray-500 truncate\"> Account Coordinator </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Fabricio Andrews </p><p class=\"text-sm text-gray-500 truncate\"> Senior Art Director </p></a></div></div></li></ul></div><div class=\"relative\"><div class=\"z-10 sticky top-0 border-t border-b border-gray-200 bg-gray-50 px-6 py-1 text-sm font-medium text-gray-500\"><h3>B</h3></div><ul class=\"relative z-0 divide-y divide-gray-200\"><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1501031170107-cfd33f0cbdcc?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Angela Beaver </p><p class=\"text-sm text-gray-500 truncate\"> Chief Strategy Officer </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1506980595904-70325b7fdd90?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Yvette Blanchard </p><p class=\"text-sm text-gray-500 truncate\"> Studio Artist </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1513910367299-bce8d8a0ebf6?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Lawrence Brooks </p><p class=\"text-sm text-gray-500 truncate\"> Content Specialist </p></a></div></div></li></ul></div><div class=\"relative\"><div class=\"z-10 sticky top-0 border-t border-b border-gray-200 bg-gray-50 px-6 py-1 text-sm font-medium text-gray-500\"><h3>C</h3></div><ul class=\"relative z-0 divide-y divide-gray-200\"><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1517070208541-6ddc4d3efbcb?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Jeffrey Clark </p><p class=\"text-sm text-gray-500 truncate\"> Senior Art Director </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Kathryn Cooper </p><p class=\"text-sm text-gray-500 truncate\"> Associate Creative Director </p></a></div></div></li></ul></div><div class=\"relative\"><div class=\"z-10 sticky top-0 border-t border-b border-gray-200 bg-gray-50 px-6 py-1 text-sm font-medium text-gray-500\"><h3>E</h3></div><ul class=\"relative z-0 divide-y divide-gray-200\"><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1509783236416-c9ad59bae472?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Alicia Edwards </p><p class=\"text-sm text-gray-500 truncate\"> Junior Copywriter </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Benjamin Emerson </p><p class=\"text-sm text-gray-500 truncate\"> Director, Print Operations </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1504703395950-b89145a5425b?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Jillian Erics </p><p class=\"text-sm text-gray-500 truncate\"> Designer </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Chelsea Evans </p><p class=\"text-sm text-gray-500 truncate\"> Human Resources Manager </p></a></div></div></li></ul></div><div class=\"relative\"><div class=\"z-10 sticky top-0 border-t border-b border-gray-200 bg-gray-50 px-6 py-1 text-sm font-medium text-gray-500\"><h3>G</h3></div><ul class=\"relative z-0 divide-y divide-gray-200\"><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Michael Gillard </p><p class=\"text-sm text-gray-500 truncate\"> Co-Founder / CTO </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Dries Giuessepe </p><p class=\"text-sm text-gray-500 truncate\"> Manager, Business Relations </p></a></div></div></li></ul></div><div class=\"relative\"><div class=\"z-10 sticky top-0 border-t border-b border-gray-200 bg-gray-50 px-6 py-1 text-sm font-medium text-gray-500\"><h3>M</h3></div><ul class=\"relative z-0 divide-y divide-gray-200\"><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1507101105822-7472b28e22ac?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Jenny Harrison </p><p class=\"text-sm text-gray-500 truncate\"> Studio Artist </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Lindsay Hatley </p><p class=\"text-sm text-gray-500 truncate\"> Front-end Developer </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Anna Hill </p><p class=\"text-sm text-gray-500 truncate\"> Partner, Creative </p></a></div></div></li></ul></div><div class=\"relative\"><div class=\"z-10 sticky top-0 border-t border-b border-gray-200 bg-gray-50 px-6 py-1 text-sm font-medium text-gray-500\"><h3>S</h3></div><ul class=\"relative z-0 divide-y divide-gray-200\"><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Courtney Samuels </p><p class=\"text-sm text-gray-500 truncate\"> Designer </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Tom Simpson </p><p class=\"text-sm text-gray-500 truncate\"> Director, Product Development </p></a></div></div></li></ul></div><div class=\"relative\"><div class=\"z-10 sticky top-0 border-t border-b border-gray-200 bg-gray-50 px-6 py-1 text-sm font-medium text-gray-500\"><h3>T</h3></div><ul class=\"relative z-0 divide-y divide-gray-200\"><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Floyd Thompson </p><p class=\"text-sm text-gray-500 truncate\"> Principal Designer </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Leonard Timmons </p><p class=\"text-sm text-gray-500 truncate\"> Senior Designer </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Whitney Trudeau </p><p class=\"text-sm text-gray-500 truncate\"> Copywriter </p></a></div></div></li></ul></div><div class=\"relative\"><div class=\"z-10 sticky top-0 border-t border-b border-gray-200 bg-gray-50 px-6 py-1 text-sm font-medium text-gray-500\"><h3>W</h3></div><ul class=\"relative z-0 divide-y divide-gray-200\"><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Kristin Watson </p><p class=\"text-sm text-gray-500 truncate\"> VP, Human Resources </p></a></div></div></li><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Emily Wilson </p><p class=\"text-sm text-gray-500 truncate\"> VP, User Experience </p></a></div></div></li></ul></div><div class=\"relative\"><div class=\"z-10 sticky top-0 border-t border-b border-gray-200 bg-gray-50 px-6 py-1 text-sm font-medium text-gray-500\"><h3>Y</h3></div><ul class=\"relative z-0 divide-y divide-gray-200\"><li class=\"bg-white\"><div class=\"relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500\"><div class=\"flex-shrink-0\"><img class=\"h-10 w-10 rounded-full\" src=\"https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&amp;ixqx=W3BfItDIjq&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80\" alt=\"\"></div><div class=\"flex-1 min-w-0\"><a href=\"#\" class=\"focus:outline-none\"><!-- Extend touch target to entire panel --><span class=\"absolute inset-0\" aria-hidden=\"true\"></span><p class=\"text-sm font-medium text-gray-900\"> Emma Young </p><p class=\"text-sm text-gray-500 truncate\"> Senior Front-end Developer </p></a></div></div></li></ul></div>", 10);
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "absolute inset-0",
+  "aria-hidden": "true"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_7 = {
+  key: 1
+};
+var _hoisted_8 = {
+  "class": "relative"
+};
+var _hoisted_9 = {
+  "class": "relative z-0 divide-y divide-gray-200"
+};
+var _hoisted_10 = {
+  "class": "flex-1 min-w-0"
+};
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "absolute inset-0",
+  "aria-hidden": "true"
+}, null, -1
+/* HOISTED */
+);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("nav", _hoisted_1, [_hoisted_2]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("nav", _hoisted_1, [$props.grouped ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.data, function (group, key) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+      "class": ["z-10 sticky top-0 border-t border-b px-6 py-1 text-sm font-medium ", $props.groupStyles]
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", {
+      textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(key)
+    }, null, 8
+    /* PROPS */
+    , ["textContent"])], 2
+    /* CLASS */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(group, function (item) {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+        "class": ["relative px-6 py-5 flex items-center space-x-3 focus-within:ring-2 focus-within:ring-inset", $options.itemStyle(item)]
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+        href: "#",
+        onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+          return $options.selectItem(item);
+        }, ["prevent"]),
+        "class": "focus:outline-none"
+      }, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+        "class": ["text-sm font-medium", $options.titleStyle(item)],
+        textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item[$props.titleField])
+      }, null, 10
+      /* CLASS, PROPS */
+      , ["textContent"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+        "class": ["text-sm truncate", $options.subtitleStyle(item)],
+        textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item[$props.subtitleField])
+      }, null, 10
+      /* CLASS, PROPS */
+      , ["textContent"])], 8
+      /* PROPS */
+      , ["onClick"])])], 2
+      /* CLASS */
+      )]);
+    }), 256
+    /* UNKEYED_FRAGMENT */
+    ))])]);
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.data, function (item) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+      "class": ["relative px-6 py-5 flex items-center space-x-3 focus-within:ring-2 focus-within:ring-inset", $options.itemStyle(item)]
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+      href: "#",
+      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+        return $options.selectItem(item);
+      }, ["prevent"]),
+      "class": "focus:outline-none"
+    }, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+      "class": ["text-sm font-medium", $options.titleStyle(item)],
+      textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item[$props.titleField])
+    }, null, 10
+    /* CLASS, PROPS */
+    , ["textContent"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+      "class": ["text-sm truncate", $options.subtitleStyle(item)],
+      textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item[$props.subtitleField])
+    }, null, 10
+    /* CLASS, PROPS */
+    , ["textContent"])], 8
+    /* PROPS */
+    , ["onClick"])])], 2
+    /* CLASS */
+    )]);
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))])])]))]);
 }
 
 /***/ }),
@@ -31079,31 +31284,36 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Assign all companies that this user will be able to create tickets on behalf of ");
 
 var _hoisted_3 = {
-  "class": "flex justify-between col-span-6 h-72"
+  "class": "flex flex-col md:flex-row justify-between col-span-6 h-72"
+};
+var _hoisted_4 = {
+  "class": "w-60"
 };
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Company List");
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Company List");
 
-var _hoisted_5 = {
-  "class": "flex flex-col"
+var _hoisted_6 = {
+  "class": "flex flex-col justify-center"
 };
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Add");
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Add >");
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Assigned companies");
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("< Remove");
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Cancel");
+var _hoisted_9 = {
+  "class": "w-60"
+};
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Save ");
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Assigned companies");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _this = this;
+
   var _component_jet_label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-label");
 
   var _component_stacked_list = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("stacked-list");
 
   var _component_jet_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-button");
-
-  var _component_jet_secondary_button_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-secondary-button-link");
 
   var _component_jet_form_section = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-form-section");
 
@@ -31115,32 +31325,44 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [_hoisted_2];
     }),
     form: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, null, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, null, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_4];
+          return [_hoisted_5];
         }),
         _: 1
         /* STABLE */
 
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_stacked_list)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button, null, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_6];
-        }),
-        _: 1
-        /* STABLE */
-
-      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, null, {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_stacked_list, {
+        ref: "list",
+        data: $props.companies,
+        grouped: true,
+        "title-field": "name",
+        "subtitle-field": "suburb",
+        onSelected: $options.addItemSelected,
+        "selected-item": $data.addItem
+      }, null, 8
+      /* PROPS */
+      , ["data", "onSelected", "selected-item"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button, {
+        onClick: $options.addCompanyToUser,
+        "class": ["justify-center my-1", {
+          'opacity-25': !_this.addItem
+        }],
+        disabled: !_this.addItem
+      }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_7];
         }),
         _: 1
         /* STABLE */
 
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_stacked_list)])])];
-    }),
-    actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_secondary_button_link, {
-        href: _ctx.route('users.index')
+      }, 8
+      /* PROPS */
+      , ["onClick", "class", "disabled"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button, {
+        onClick: $options.removeCompanyFromUser,
+        "class": ["justify-center my-1", {
+          'opacity-25': !_this.removeItem
+        }],
+        disabled: !_this.removeItem
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_8];
@@ -31150,21 +31372,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }, 8
       /* PROPS */
-      , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button, {
-        "class": ["ml-2", {
-          'opacity-25': $data.form.processing
-        }],
-        disabled: $data.form.processing
-      }, {
+      , ["onClick", "class", "disabled"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, null, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_9];
+          return [_hoisted_10];
         }),
         _: 1
         /* STABLE */
 
-      }, 8
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_stacked_list, {
+        ref: "assigned",
+        grouped: false,
+        data: $props.user.companies,
+        "title-field": "name",
+        "subtitle-field": "suburb",
+        onSelected: $options.removeItemSelected,
+        "selected-item": $data.removeItem
+      }, null, 8
       /* PROPS */
-      , ["class", "disabled"])];
+      , ["data", "onSelected", "selected-item"])])])];
     }),
     _: 1
     /* STABLE */
@@ -31272,6 +31497,12 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 var _hoisted_2 = {
   "class": "max-w-7xl mx-auto py-10 sm:px-6 lg:px-8"
 };
+var _hoisted_3 = {
+  "class": "md:block hidden"
+};
+var _hoisted_4 = {
+  "class": "md:block hidden"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_edit_user_form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("edit-user-form");
 
@@ -31292,11 +31523,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         user: _ctx.$page.props.targetUser
       }, null, 8
       /* PROPS */
-      , ["user"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_section_border)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_assign_companies_form, {
+      , ["user"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_section_border)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_assign_companies_form, {
+        companies: _ctx.$page.props.companies,
         user: _ctx.$page.props.targetUser
       }, null, 8
       /* PROPS */
-      , ["user"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_section_border)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_assign_roles_form, {
+      , ["companies", "user"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_section_border)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_assign_roles_form, {
         user: _ctx.$page.props.targetUser
       }, null, 8
       /* PROPS */
@@ -31350,7 +31582,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_jet_form_section = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-form-section");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_jet_form_section, {
-    onSubmitted: _ctx.updateUser
+    onSubmitted: $options.updateUser
   }, {
     title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_1];

@@ -14,7 +14,7 @@ class OrganizationSeeder extends Seeder
      */
     public function run()
     {
-//        Organization::factory()->count(10)->create();
+        Organization::factory()->count(10)->create();
 
         $org = Organization::create(['name' => 'Alpha Solutions Group']);
         $org->companies()->create([

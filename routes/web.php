@@ -14,6 +14,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TicketResponseController;
 use App\Http\Controllers\TicketStatusController;
 use App\Http\Controllers\TicketSubscriptionController;
+use App\Http\Controllers\UserCompanyController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -62,6 +63,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::patch('tickets/{ticket}/status', [TicketStatusController::class, 'update'])->name('tickets.status.update');
     Route::patch('/user/filters', [UserDefaultFilterController::class, 'update'])->name('api.user.filters');
     Route::get('/api/companies', [CompanyApiController::class, 'index'])->name('api.companies.index');
+    Route::post('/users/{user}/companies', [UserCompanyController::class, 'store'])->name('users.companies.store');
+    Route::delete('/users/{user}/companies', [UserCompanyController::class, 'destroy'])->name('users.companies.destroy');
 });
 
 
