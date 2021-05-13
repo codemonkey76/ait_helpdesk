@@ -8,7 +8,7 @@
         </template>
         <template #form>
             <div class="flex flex-col md:flex-row justify-between col-span-6 h-72">
-                <div class="w-60">
+                <div class="w-60 flex flex-col">
                     <jet-label>Company List</jet-label>
                     <stacked-list ref="list"
                                   :data="companies"
@@ -23,7 +23,7 @@
                     <jet-button @click="addCompanyToUser" class="justify-center my-1" :class="{ 'opacity-25': !this.addItem }" :disabled="!this.addItem">Add &gt;</jet-button>
                     <jet-button @click="removeCompanyFromUser" class="justify-center my-1" :class="{ 'opacity-25': !this.removeItem }" :disabled="!this.removeItem">&lt; Remove</jet-button>
                 </div>
-                <div class="w-60">
+                <div class="w-60 flex flex-col">
                     <jet-label>Assigned companies</jet-label>
                     <stacked-list
                         ref="assigned"
@@ -88,7 +88,6 @@ export default {
             })
         },
         removeCompanyFromUser() {
-            console.log('calling removeCompanyFromUserForm.delete, with company_id: ' + this.removeItem?.id)
             this.removeCompanyFromUserForm.delete(route('users.companies.destroy', this.user.id),{
                 errorBag: 'removeCompanyFromUser',
                 preserveScroll: true,

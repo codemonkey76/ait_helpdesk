@@ -18,7 +18,7 @@
                     <jet-section-border />
                 </div>
                 <div class="md:block hidden">
-                    <assign-roles-form :user="$page.props.targetUser" />
+                    <assign-roles-form :user="$page.props.targetUser" :roles="$page.props.availableRoles"/>
                     <jet-section-border />
                 </div>
             </div>

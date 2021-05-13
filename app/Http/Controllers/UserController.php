@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Users\DeleteUser;
+
 use App\Models\Company;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 use Laravel\Jetstream\Contracts\DeletesUsers;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -54,9 +55,13 @@ class UserController extends Controller
                 ->limit(1, '')
                 ->ucfirst()
             );
+
+        $availableRoles = Role::all();
+
         return Inertia::render('Users/Edit', [
             'targetUser' => $user->load('companies'),
-            'companies' => $companies
+            'companies' => $companies,
+            'availableRoles' => $availableRoles
         ]);
     }
 

@@ -16,6 +16,7 @@ use App\Http\Controllers\TicketStatusController;
 use App\Http\Controllers\TicketSubscriptionController;
 use App\Http\Controllers\UserCompanyController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserRoleController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -65,6 +66,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/api/companies', [CompanyApiController::class, 'index'])->name('api.companies.index');
     Route::post('/users/{user}/companies', [UserCompanyController::class, 'store'])->name('users.companies.store');
     Route::delete('/users/{user}/companies', [UserCompanyController::class, 'destroy'])->name('users.companies.destroy');
+
+    Route::post('/users/{user}/roles', [UserRoleController::class, 'store'])->name('users.roles.store');
+    Route::delete('/users/{user}/roles', [UserRoleController::class, 'destroy'])->name('users.roles.destroy');
 });
 
 

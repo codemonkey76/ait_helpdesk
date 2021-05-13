@@ -1,5 +1,5 @@
 <template>
-    <nav class="h-full border overflow-y-auto rounded">
+    <nav class="border overflow-y-auto rounded flex-1">
         <div v-if="grouped">
             <div v-for="(group,key) in data" class="relative">
                 <div

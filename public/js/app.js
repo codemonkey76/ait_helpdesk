@@ -20866,10 +20866,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     removeCompanyFromUser: function removeCompanyFromUser() {
-      var _this$removeItem2,
-          _this2 = this;
+      var _this2 = this;
 
-      console.log('calling removeCompanyFromUserForm.delete, with company_id: ' + ((_this$removeItem2 = this.removeItem) === null || _this$removeItem2 === void 0 ? void 0 : _this$removeItem2.id));
       this.removeCompanyFromUserForm["delete"](route('users.companies.destroy', this.user.id), {
         errorBag: 'removeCompanyFromUser',
         preserveScroll: true,
@@ -20894,26 +20892,80 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
-/* harmony import */ var _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/FormSection */ "./resources/js/Jetstream/FormSection.vue");
-/* harmony import */ var _Jetstream_SecondaryButtonLink__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/SecondaryButtonLink */ "./resources/js/Jetstream/SecondaryButtonLink.vue");
+/* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+/* harmony import */ var _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/FormSection */ "./resources/js/Jetstream/FormSection.vue");
+/* harmony import */ var _Jetstream_SecondaryButtonLink__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/SecondaryButtonLink */ "./resources/js/Jetstream/SecondaryButtonLink.vue");
+/* harmony import */ var _Jetstream_StackedList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/StackedList */ "./resources/js/Jetstream/StackedList.vue");
+
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    JetFormSection: _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_1__.default,
-    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_0__.default,
-    JetSecondaryButtonLink: _Jetstream_SecondaryButtonLink__WEBPACK_IMPORTED_MODULE_2__.default
+    StackedList: _Jetstream_StackedList__WEBPACK_IMPORTED_MODULE_4__.default,
+    JetFormSection: _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_2__.default,
+    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_0__.default,
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__.default,
+    JetSecondaryButtonLink: _Jetstream_SecondaryButtonLink__WEBPACK_IMPORTED_MODULE_3__.default
   },
-  props: ['user'],
+  props: ['user', 'roles'],
   data: function data() {
+    var _this$addItem, _this$removeItem;
+
     return {
-      form: this.$inertia.form({
-        _method: 'PUT',
-        name: this.user.name
-      })
+      addRoleToUserForm: this.$inertia.form({
+        _method: 'POST',
+        role_id: (_this$addItem = this.addItem) === null || _this$addItem === void 0 ? void 0 : _this$addItem.id
+      }),
+      removeRoleFromUserForm: this.$inertia.form({
+        _method: 'DELETE',
+        role_id: (_this$removeItem = this.removeItem) === null || _this$removeItem === void 0 ? void 0 : _this$removeItem.id
+      }),
+      addItem: null,
+      removeItem: null
     };
+  },
+  methods: {
+    addRoleSelected: function addRoleSelected(role) {
+      if (this.addItem === role) {
+        this.addItem = null;
+        return;
+      }
+
+      this.addItem = role;
+    },
+    removeRoleSelected: function removeRoleSelected(role) {
+      if (this.removeItem === role) {
+        this.removeItem = null;
+        return;
+      }
+
+      this.removeItem = role;
+    },
+    addRoleToUser: function addRoleToUser() {
+      var _this = this;
+
+      this.addRoleToUserForm.post(route('users.roles.store', this.user.id), {
+        errorBag: 'addRoleToUser',
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          return _this.addItem = null;
+        }
+      });
+    },
+    removeRoleFromUser: function removeRoleFromUser() {
+      var _this2 = this;
+
+      this.removeRoleFromUserForm["delete"](route('users.roles.destroy', this.user.id), {
+        errorBag: 'removeRoleFromUser',
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          return _this2.removeItem = null;
+        }
+      });
+    }
   }
 });
 
@@ -22916,7 +22968,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "h-full border overflow-y-auto rounded"
+  "class": "border overflow-y-auto rounded flex-1"
 };
 var _hoisted_2 = {
   key: 0
@@ -31287,7 +31339,7 @@ var _hoisted_3 = {
   "class": "flex flex-col md:flex-row justify-between col-span-6 h-72"
 };
 var _hoisted_4 = {
-  "class": "w-60"
+  "class": "w-60 flex flex-col"
 };
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Company List");
@@ -31301,7 +31353,7 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("< Remove");
 
 var _hoisted_9 = {
-  "class": "w-60"
+  "class": "w-60 flex flex-col"
 };
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Assigned companies");
@@ -31417,12 +31469,35 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Assign roles that user needs permissions for ");
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Cancel");
+var _hoisted_3 = {
+  "class": "flex flex-col md:flex-row justify-between col-span-6 h-72"
+};
+var _hoisted_4 = {
+  "class": "w-60 flex flex-col"
+};
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Save ");
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Role List");
+
+var _hoisted_6 = {
+  "class": "flex flex-col justify-center"
+};
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Add >");
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("< Remove");
+
+var _hoisted_9 = {
+  "class": "w-60 flex flex-col"
+};
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Assigned roles");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_jet_secondary_button_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-secondary-button-link");
+  var _this = this;
+
+  var _component_jet_label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-label");
+
+  var _component_stacked_list = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("stacked-list");
 
   var _component_jet_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-button");
 
@@ -31436,35 +31511,69 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [_hoisted_2];
     }),
     form: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [];
-    }),
-    actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_secondary_button_link, {
-        href: _ctx.route('users.index')
-      }, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, null, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_3];
+          return [_hoisted_5];
         }),
         _: 1
         /* STABLE */
 
-      }, 8
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_stacked_list, {
+        ref: "list",
+        data: $props.roles,
+        grouped: false,
+        "title-field": "name",
+        onSelected: $options.addRoleSelected,
+        "selected-item": $data.addItem
+      }, null, 8
       /* PROPS */
-      , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button, {
-        "class": ["ml-2", {
-          'opacity-25': $data.form.processing
+      , ["data", "onSelected", "selected-item"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button, {
+        onClick: $options.addRoleToUser,
+        "class": ["justify-center my-1", {
+          'opacity-25': !_this.addItem
         }],
-        disabled: $data.form.processing
+        disabled: !_this.addItem
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_4];
+          return [_hoisted_7];
         }),
         _: 1
         /* STABLE */
 
       }, 8
       /* PROPS */
-      , ["class", "disabled"])];
+      , ["onClick", "class", "disabled"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button, {
+        onClick: $options.removeRoleFromUser,
+        "class": ["justify-center my-1", {
+          'opacity-25': !_this.removeItem
+        }],
+        disabled: !_this.removeItem
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_8];
+        }),
+        _: 1
+        /* STABLE */
+
+      }, 8
+      /* PROPS */
+      , ["onClick", "class", "disabled"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, null, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_10];
+        }),
+        _: 1
+        /* STABLE */
+
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_stacked_list, {
+        ref: "assigned",
+        grouped: false,
+        data: $props.user.roles,
+        "title-field": "name",
+        onSelected: $options.removeRoleSelected,
+        "selected-item": $data.removeItem
+      }, null, 8
+      /* PROPS */
+      , ["data", "onSelected", "selected-item"])])])];
     }),
     _: 1
     /* STABLE */
@@ -31529,10 +31638,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8
       /* PROPS */
       , ["companies", "user"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_section_border)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_assign_roles_form, {
-        user: _ctx.$page.props.targetUser
+        user: _ctx.$page.props.targetUser,
+        roles: _ctx.$page.props.availableRoles
       }, null, 8
       /* PROPS */
-      , ["user"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_section_border)])])])];
+      , ["user", "roles"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_section_border)])])])];
     }),
     _: 1
     /* STABLE */
