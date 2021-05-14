@@ -32,6 +32,7 @@ class TicketResponse extends Model
             $ticket->readers()->sync([$response->user_id]);
 
             $response->readers()->sync([$response->user_id]);
+
         });
     }
 
