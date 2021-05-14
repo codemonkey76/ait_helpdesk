@@ -11,7 +11,7 @@
                 <div class="w-60 flex flex-col">
                     <jet-label>Role List</jet-label>
                     <stacked-list ref="list"
-                                  :data="roles"
+                                  :data="filteredRoles"
                                   :grouped="false"
                                   title-field="name"
                                   @selected="addRoleSelected"
@@ -69,20 +69,12 @@ export default {
     },
     methods: {
         addRoleSelected(role) {
-            if (this.addItem === role) {
-                this.addItem = null
-                return
-            }
-
             this.addItem = role
+            this.addRoleToUserForm.role_id = role?.id
         },
         removeRoleSelected(role) {
-            if (this.removeItem === role) {
-                this.removeItem = null
-                return
-            }
-
             this.removeItem = role
+            this.removeRoleFromUserForm.role_id = role?.id
         },
         addRoleToUser() {
             this.addRoleToUserForm.post(route('users.roles.store', this.user.id),{
@@ -96,6 +88,14 @@ export default {
                 errorBag: 'removeRoleFromUser',
                 preserveScroll: true,
                 onSuccess: () => this.removeItem = null
+            })
+        }
+    },
+    computed: {
+        filteredRoles() {
+            // filter out roles already assigned to the user
+            return this.roles.filter((element) => {
+                return !this.user.roles.find(role => role.id === element.id)
             })
         }
     }

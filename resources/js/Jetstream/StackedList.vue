@@ -1,13 +1,13 @@
 <template>
-    <nav class="border overflow-y-auto rounded flex-1">
+    <nav class="border dark:border-gray-600 overflow-y-auto rounded flex-1">
         <div v-if="grouped">
             <div v-for="(group,key) in data" class="relative">
-                <div
+                <div v-if="group.length"
                     class="z-10 sticky top-0 border-t border-b px-6 py-1 text-sm font-medium "
                     :class="groupStyles">
                     <h3 v-text="key"/>
                 </div>
-                <ul class="relative z-0 divide-y divide-gray-200">
+                <ul class="relative z-0 divide-y dark:divide-gray-600 divide-gray-200">
                     <li v-for="item in group">
                         <div
                             class="relative px-6 py-5 flex items-center space-x-3 focus-within:ring-2 focus-within:ring-inset"
@@ -78,11 +78,11 @@ export default {
         },
         groupStyles: {
             type: String,
-            default: 'bg-gray-50 border-gray-200 text-gray-500'
+            default: ' dark:bg-gray-800 bg-gray-50 dark:border-gray-600 dark:text-gray-400 border-gray-200 text-gray-500'
         },
         itemStyles: {
             type: String,
-            default: 'bg-white hover:bg-gray-50 focus-within:ring-brand-500'
+            default: 'dark:bg-gray-900 dark:hover:bg-gray-800 bg-white hover:bg-gray-50 focus-within:ring-brand-500'
         },
         selectedItemStyles: {
             type: String,
@@ -90,11 +90,11 @@ export default {
         },
         titleStyles: {
             type: String,
-            default: 'text-gray-900'
+            default: 'text-gray-900 dark:text-gray-200'
         },
         subtitleStyles: {
             type: String,
-            default: 'text-gray-500'
+            default: 'text-gray-500 dark:text-gray-400'
         },
         selectedTitleStyles: {
             type: String,

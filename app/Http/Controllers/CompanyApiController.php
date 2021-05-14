@@ -13,11 +13,10 @@ class CompanyApiController extends Controller
         return response()
             ->json(
                 Company::all()
-//                Company::all()
-//                    ->groupBy(fn($company) => (string) Str::of($company->name)
-//                        ->limit(1, '')
-//                        ->ucfirst()
-//                    )
+                    ->groupBy(fn($company) => (string) Str::of($company->name)
+                        ->limit(1, '')
+                        ->ucfirst()
+                    )
             );
     }
 }
