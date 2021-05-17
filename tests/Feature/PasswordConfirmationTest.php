@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use Database\Seeders\PermissionSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Jetstream\Features;
 use Tests\TestCase;
@@ -13,6 +14,7 @@ class PasswordConfirmationTest extends TestCase
 
     public function test_confirm_password_screen_can_be_rendered()
     {
+        $this->seed(PermissionSeeder::class);
         $user = Features::hasTeamFeatures()
                         ? User::factory()->withPersonalTeam()->create()
                         : User::factory()->create();

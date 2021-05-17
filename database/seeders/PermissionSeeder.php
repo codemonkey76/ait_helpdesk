@@ -72,6 +72,8 @@ class PermissionSeeder extends Seeder
         $adminRole->givePermissionTo('delete notes');
         $adminRole->givePermissionTo('delete users');
 
+        $managerRole = Role::create(['name' => 'manager']);
+
         $agentRole = Role::create(['name' => 'agent']);
         $agentRole->givePermissionTo('list organizations');
         $agentRole->givePermissionTo('show organizations');

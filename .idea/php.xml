@@ -10,7 +10,6 @@
       <path value="$PROJECT_DIR$/vendor/laravel/tinker" />
       <path value="$PROJECT_DIR$/vendor/laravel/sanctum" />
       <path value="$PROJECT_DIR$/vendor/laravel/jetstream" />
-      <path value="$PROJECT_DIR$/vendor/laravel/telescope" />
       <path value="$PROJECT_DIR$/vendor/inertiajs/inertia-laravel" />
       <path value="$PROJECT_DIR$/vendor/laravel/fortify" />
       <path value="$PROJECT_DIR$/vendor/laravel/framework" />

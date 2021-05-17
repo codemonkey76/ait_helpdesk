@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Database\Seeders\PermissionSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -20,6 +21,7 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_authenticate_using_the_login_screen()
     {
+        $this->seed(PermissionSeeder::class);
         $user = User::factory()->create();
 
         $response = $this->post('/login', [

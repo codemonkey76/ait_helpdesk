@@ -21,7 +21,7 @@
                         </thead>
                         <tbody>
                         <tr v-if="!organizations.data.length" class="dark:odd:bg-gray-900 dark:even:bg-gray-800 odd:bg-white even:bg-gray-50">
-                            <td colspan="3" class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-gray-400 text-gray-500 text-center italic">Nothing to show</td>
+                            <td colspan="3" class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-gray-400 text-gray-500 text-center italic">No organizations found</td>
                         </tr>
                         <tr v-for="organization in organizations.data"
                             class="dark:odd:bg-gray-700 dark:even:bg-gray-800 odd:bg-white even:bg-gray-50">
