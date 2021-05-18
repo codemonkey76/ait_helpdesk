@@ -10,6 +10,9 @@ use App\Http\Controllers\NoteFavoriteController;
 use App\Http\Controllers\OrganizationNoteController;
 use App\Http\Controllers\OrganizationNoteSearchController;
 use App\Http\Controllers\OrganizationSearchController;
+use App\Http\Controllers\PhoneVerificationController;
+use App\Http\Controllers\PhoneVerificationNotificationController;
+use App\Http\Controllers\PhoneVerificationPromptController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TicketResponseController;
 use App\Http\Controllers\TicketStatusController;
@@ -69,6 +72,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::post('/users/{user}/roles', [UserRoleController::class, 'store'])->name('users.roles.store');
     Route::delete('/users/{user}/roles', [UserRoleController::class, 'destroy'])->name('users.roles.destroy');
+
+    Route::get('/phone/verify', PhoneVerificationPromptController::class)->name('phone.verification.notice');
+    Route::post('/phone/verification-notification', PhoneVerificationNotificationController::class)->name('phone.verification.send');
+    Route::post('/phone/verify', PhoneVerificationController::class)->name('phone.verification');
 });
 
 

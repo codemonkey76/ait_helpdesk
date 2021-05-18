@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Telescope\TelescopeServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -29,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
             'organization' => 'App\Models\Organization',
             'note' => 'App\Models\Note'
         ]);
+
     }
 }

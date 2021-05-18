@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasMustVerifyPhone;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -19,6 +20,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
+    use HasMustVerifyPhone;
     use HasFactory;
     use HasProfilePhoto;
     use HasTeams;
@@ -27,6 +29,15 @@ class User extends Authenticatable implements MustVerifyEmail
     use Searchable;
     use TwoFactorAuthenticatable;
     use SoftDeletes;
+
+    protected static function booted()
+    {
+        static::saving(function($user) {
+           if ($user->isDirty('phone')) {
+               $user->clearPhoneVerificationStatus();
+           }
+        });
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -123,5 +134,27 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->companies()->find($company->id) !== null;
     }
+    public function routeNotificationForNexmo($notification)
+    {
+        return $this->internationalFormatPhoneNumber;
+    }
+    public function getInternationalFormatPhoneNumberAttribute(): array|string|null
+    {
+        return preg_replace('/^0/','61',preg_replace('/\s+/','',$this->phone));
+    }
 
+    public function clearEmailVerificationStatus(): User
+    {
+        return $this->forceFill([
+            'email_verified_at' => null,
+        ]);
+    }
+    public function updatePhone($phone)
+    {
+        if ($this->phone !== $phone) {
+            $this->forceFill([
+                'phone' => $phone]);
+            $this->clearPhoneVerificationStatus();
+        }
+    }
 }

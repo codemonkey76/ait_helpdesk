@@ -56,6 +56,7 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
     'default_status' => 1,
+    'default_sms_expiry' => 180, // seconds
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
