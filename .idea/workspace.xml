@@ -5,33 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6f6d0bc-ad43-488c-86b8-0813f7b93565" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/Feature/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/ait_helpdesk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ait_helpdesk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Policies/TicketPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/TicketPolicy.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/TicketFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/TicketFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/TicketStatusFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/TicketStatusFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeders/PermissionSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/PermissionSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/phpunit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Organizations/OrganizationList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/OrganizationList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ApiTokenPermissionsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ApiTokenPermissionsTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/AuthenticationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/AuthenticationTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/CreateApiTokenTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/CreateTeamTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/DeleteAccountTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/DeleteAccountTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/DeleteApiTokenTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/DeleteTeamTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/EmailVerificationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EmailVerificationTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ExampleTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/InviteTeamMemberTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/LeaveTeamTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/PasswordConfirmationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/PasswordConfirmationTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/RegistrationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/RegistrationTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/RemoveTeamMemberTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/ExampleTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/OrganizationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/OrganizationsTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,6 +195,8 @@
       <path value="$PROJECT_DIR$/vendor/albertcht/invisible-recaptcha" />
       <path value="$PROJECT_DIR$/vendor/timehunter/laravel-google-recaptcha-v3" />
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-web-tinker" />
+      <path value="$PROJECT_DIR$/vendor/laravel/dusk" />
+      <path value="$PROJECT_DIR$/vendor/php-webdriver/webdriver" />
     </include_path>
   </component>
   <component name="ProjectId" id="1rVJnp6mALaNBh8dOD9bsTFcyby" />

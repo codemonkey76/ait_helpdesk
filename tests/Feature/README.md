@@ -1,22 +1,23 @@
 # Tests to write:
 
 ### Roles
-1. A user can be assigned to the "restricted user" role
-2. A user can be assigned to the "user" role
-3. A user can be assigned to the "manager" role
-4. A user can be assigned to the "agent" role
-5. A user can be assigned to the "admin" role
-6. A user can be assigned to the "super-admin" role
+1. ~~A user can be assigned to the "restricted user" role~~
+2. ~~A user can be assigned to the "user" role~~
+3. ~~A user can be assigned to the "manager" role~~
+4. ~~A user can be assigned to the "agent" role~~
+5. ~~A user can be assigned to the "admin" role~~
+6. ~~A user can be assigned to the "super-admin" role~~
 
 ### Tickets
-1. A user can create a ticket
-2. A user cannot view a ticket created by another user
-3. A user can view their own tickets
-4. A manager user can see all tickets for companies that they are assigned
-5. A user can respond to their own ticket
-6. A manager can respond to all tickets for companies that they are assigned
-7. An agent can change the status of a ticket
-8. An admin can delete a ticket
+1. ~~A user can create a ticket~~
+2. ~~A user cannot view a ticket created by another user~~
+3. ~~A user can view their own tickets~~ 
+4. ~~A user cannot create tickets for a company they are not assigned to~~
+5. ~~A manager user can see all tickets for companies that they are assigned~~
+6. A user can respond to their own ticket
+7. A manager can respond to all tickets for companies that they are assigned
+8. An agent can change the status of a ticket
+9. An admin can delete a ticket
 
 
 ### Registration
@@ -58,3 +59,6 @@
 8. An agent can search organization notes
 9. An admin can assign edit a company
 
+### Job Entries
+1. An agent can add a job entry to a ticket
+2. A job entry must contain valid allocatedTime and description

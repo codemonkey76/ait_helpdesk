@@ -101,7 +101,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function ownsTicket(Ticket $ticket): bool
     {
-        return ($this->id === $ticket->user_id);
+        return ($this->id == $ticket->user_id);
     }
 
     public function getFiltersAttribute(): object
@@ -117,6 +117,11 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return json_decode($this->attributes['filters']);
+    }
+
+    public function hasCompany(Company $company): bool
+    {
+        return $this->companies()->find($company->id) !== null;
     }
 
 }

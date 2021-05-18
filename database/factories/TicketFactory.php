@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Ticket;
+use App\Models\TicketStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TicketFactory extends Factory
@@ -23,7 +24,8 @@ class TicketFactory extends Factory
     {
         return [
             'subject' => $this->faker->sentence,
-            'content' => $this->faker->paragraph
+            'content' => $this->faker->paragraph,
+            'status_id' => TicketStatus::factory()->create()->id
         ];
     }
 }

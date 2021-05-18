@@ -22,7 +22,28 @@ class TicketPolicy
 
     public function show(User $user, Ticket $ticket): bool
     {
-        return $user->hasPermissionTo('view tickets') || $user->ownsTicket($ticket);
+        // Allow agents to view all tickets
+        if ($user->hasPermissionTo('view all tickets')) {
+            return true;
+        }
+
+        // Allow unassigned tickets to be viewed by owners
+        if ($ticket->company_id === null && $user->ownsTicket($ticket)) {
+            return true;
+        }
+
+        // Allow assigned tickets to be viewed by managers that are assigned to the same company as the ticket
+        if ($ticket->company_id !== null && $user->hasPermissionTo('view own company tickets') && $user->hasCompany($ticket->company)) {
+            return true;
+        }
+
+        // Allow assigned tickets to be viewed by ticket owners only if they are also assigned to that company
+        if ($ticket->company_id !== null && $user->ownsTicket($ticket) && $user->hasCompany($ticket->company)) {
+            return true;
+        }
+
+        // Deny everyone else
+        return false;
     }
 
     public function subscribe(User $user, Ticket $ticket):bool
