@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Traits\HasPinnable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Log;
+
 use Laravel\Scout\Searchable;
 
 class Note extends Model
@@ -13,11 +14,12 @@ class Note extends Model
     use HasFactory;
     use Searchable;
     use SoftDeletes;
+    use HasPinnable;
 
-    protected $fillable = ['content', 'is_favorite', 'noteable_type', 'noteable_id', 'user_id'];
+    protected $fillable = ['content', 'is_pinned', 'noteable_type', 'noteable_id', 'user_id'];
     protected $with = ['user'];
     protected $casts = [
-        'is_favorite' => 'boolean'
+        'is_pinned' => 'boolean'
     ];
 
     public function noteable()
@@ -29,14 +31,4 @@ class Note extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function favorite()
-    {
-        $this->update(['is_favorite' => true]);
-    }
-    public function unfavorite()
-    {
-        $this->update(['is_favorite' => false]);
-    }
-
 }

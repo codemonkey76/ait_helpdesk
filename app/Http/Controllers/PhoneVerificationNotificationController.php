@@ -12,6 +12,6 @@ class PhoneVerificationNotificationController extends Controller
     {
         $request->user()->setPhoneVerificationCode();
         $request->user()->notify(new VerifyPhone);
-        return redirect()->route('phone.verification.notice');
+        return redirect()->route('phone.verify.notice');
     }
 }

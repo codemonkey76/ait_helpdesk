@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Note;
 use App\Models\Organization;
 use App\Models\User;
 use Database\Seeders\PermissionSeeder;
@@ -18,6 +19,8 @@ class OrganizationNoteTest extends TestCase
     private User $standardUser;
 
     private Organization $organization;
+    private Note $note;
+    private Note $pinnedNote;
 
     public function setUp(): void
     {
@@ -39,6 +42,16 @@ class OrganizationNoteTest extends TestCase
         ]);
 
         $this->organization = Organization::factory()->create();
+        $this->note = Note::factory()->create([
+            'noteable_type' => 'organization',
+            'noteable_id' => $this->organization->id,
+            'user_id' => $this->agentUser->id
+        ]);
+        $this->pinnedNote = Note::factory()->pinned()->create([
+            'noteable_type' => 'organization',
+            'noteable_id' => $this->organization->id,
+            'user_id' => $this->agentUser->id
+        ]);
     }
 
 
@@ -57,6 +70,61 @@ class OrganizationNoteTest extends TestCase
             'noteable_type' => 'organization',
             'noteable_id' => (string) $this->organization->id
         ]);
+    }
+
+    public function test_non_agent_cannot_create_organization_note()
+    {
+        $this->actingAs($this->standardUser);
+
+        $response = $this->post('/notes', [
+            'noteable_type' => 'organization',
+            'noteable_id'   => $this->organization->id,
+            'content'       => 'some content'
+        ]);
+
+        $response->assertStatus(403);
+
+        $this->assertDatabaseMissing('notes', [
+            'content' => 'some content',
+            'noteable_type' => 'organization',
+            'noteable_id' => (string) $this->organization->id
+        ]);
+    }
+
+    public function test_agent_can_pin_organization_notes()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->actingAs($this->agentUser)
+            ->post(route('notes.pin.store', $this->note));
+
+        $this->assertTrue($this->note->fresh()->is_pinned);
+    }
+
+    public function test_non_agent_cannot_pin_organization_notes()
+    {
+        $this->actingAs($this->standardUser)
+            ->post(route('notes.pin.store', $this->note))
+            ->assertStatus(403);
+
+        $this->assertFalse($this->note->fresh()->is_pinned);
+    }
+
+    public function test_agent_can_unpin_organization_notes()
+    {
+        $this->actingAs($this->agentUser)
+            ->delete(route('notes.pin.destroy', $this->pinnedNote));
+
+        $this->assertFalse($this->pinnedNote->fresh()->is_pinned);
+    }
+
+    public function test_non_agent_cannot_unpin_organization_notes()
+    {
+        $this->actingAs($this->standardUser)
+            ->delete(route('notes.pin.destroy', $this->pinnedNote))
+            ->assertStatus(403);
+
+        $this->assertTrue($this->pinnedNote->fresh()->is_pinned);
     }
 
 //    public function test_agent_can_favorite_an_organization_note()

@@ -63,10 +63,10 @@
                     <jet-input id="phone" type="text" class="mt-1 block w-full" v-model="form.phone"/>
                     <jet-input-error :message="form.errors.phone" class="mt-2"/>
                     <template v-if="!user.phone_verified_at">
-                        <jet-label value="Unverified" class="text-red-600 absolute top-0 right-0 mr-1 mt-1"/>
-                        <jet-button-link :href="route('phone.verification.notice')" class="mt-2">Verify</jet-button-link>
+                        <jet-label value="Unverified" class="text-red-600 dark:text-red-600 absolute top-0 right-0 mr-1 mt-1"/>
+                        <jet-button-link :href="route('phone.verify.notice')" class="mt-2">Verify</jet-button-link>
                     </template>
-                    <jet-label v-else value="Verified" class="text-green-600 absolute top-0 right-0 mr-1 mt-1"/>
+                    <jet-label v-else value="Verified" class="text-green-600 dark:text-green-600 absolute top-0 right-0 mr-1 mt-1"/>
                 </div>
             </div>
         </template>

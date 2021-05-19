@@ -72,13 +72,13 @@ export default {
 
     methods: {
         verify() {
-            this.form.post(route('phone.verification'),{
+            this.form.post(route('phone.verify'),{
                 preserveScroll:true
             })
 
         },
         sendCode() {
-            this.sendCodeForm.post(route('phone.verification.send'),{
+            this.sendCodeForm.post(route('phone.verify.send'),{
                 preserveScroll: true,
                 onSuccess: () => {
                     this.codeSent = true

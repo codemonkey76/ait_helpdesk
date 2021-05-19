@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use App\Models\TicketStatus;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -92,6 +93,15 @@ class TicketController extends Controller
         $validated['status_id'] = config('app.default_status');
 
         Ticket::create($validated);
+
+        return redirect()->route('tickets.index');
+    }
+
+    public function destroy(Request $request, Ticket $ticket): RedirectResponse
+    {
+        Gate::forUser($request->user())->authorize('destroy', $ticket);
+
+        $ticket->delete();
 
         return redirect()->route('tickets.index');
     }

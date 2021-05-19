@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Enums\TICKET_STATUS;
 use App\Models\Company;
 use App\Models\Organization;
 use App\Models\Ticket;
 use App\Models\User;
 use Database\Seeders\PermissionSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class TicketsTest extends TestCase
@@ -108,8 +108,9 @@ class TicketsTest extends TestCase
     public function test_user_cannot_view_ticket_they_created_if_they_are_no_longer_assigned_to_that_company()
     {
         // Given we have a ticket created by user, assigned to company 1
-        $ticket = Ticket::factory()->create(['user_id'    => $this->standardUser->id,
-                                             'company_id' => $this->company1->id
+        $ticket = Ticket::factory()->create([
+            'user_id'    => $this->standardUser->id,
+            'company_id' => $this->company1->id
         ]);
 
         // And user is not assigned to company 1, User should not be able to view the ticket
@@ -121,8 +122,9 @@ class TicketsTest extends TestCase
     public function test_manager_can_view_ticket_created_by_another_user_of_same_company()
     {
         // Given we have a ticket created by standard user, assigned to company 1
-        $ticket = Ticket::factory()->create(['user_id'    => $this->standardUser->id,
-                                             'company_id' => $this->company1->id
+        $ticket = Ticket::factory()->create([
+            'user_id'    => $this->standardUser->id,
+            'company_id' => $this->company1->id
         ]);
 
         // and manager is assigned to same company
@@ -136,8 +138,9 @@ class TicketsTest extends TestCase
     public function test_manager_cannot_view_ticket_created_by_user_of_different_company()
     {
         // Given we have a ticket created by standard user, assigned to company 1
-        $ticket = Ticket::factory()->create(['user_id'    => $this->standardUser->id,
-                                             'company_id' => $this->company1->id
+        $ticket = Ticket::factory()->create([
+            'user_id'    => $this->standardUser->id,
+            'company_id' => $this->company1->id
         ]);
 
         // and manager is assigned to a different company
@@ -150,31 +153,162 @@ class TicketsTest extends TestCase
 
     public function test_user_can_respond_to_their_own_ticket()
     {
-        $this->markTestSkipped('not yet implemented');
+        $ticket = Ticket::factory()->create([
+            'user_id'    => $this->standardUser->id,
+            'company_id' => $this->company1->id
+        ]);
+
+        $this->company1->users()->attach([$this->standardUser->id]);
+
+        $response = $this->actingAs($this->standardUser)->post(route('tickets.responses.store', $ticket->id), [
+            'content' => 'some content'
+        ]);
+
+        $response->assertRedirect(route('tickets.show', $ticket->id));
+
+        $this->assertDatabaseHas('ticket_responses', [
+            'ticket_id' => $ticket->id,
+            'user_id' => $this->standardUser->id,
+            'content' => 'some content'
+        ]);
+    }
+
+    public function test_user_cannot_respond_to_their_ticket_when_they_are_no_longer_assigned_to_that_company()
+    {
+        $ticket = Ticket::factory()->create([
+            'user_id'    => $this->standardUser->id,
+            'company_id' => $this->company1->id
+        ]);
+
+        $response = $this->actingAs($this->standardUser)->post(route('tickets.responses.store', $ticket->id), [
+            'content' => 'some content'
+        ]);
+
+        $response->assertStatus(403);
+
+        $this->assertDatabaseMissing('ticket_responses', [
+            'ticket_id' => $ticket->id,
+            'user_id' => $this->standardUser->id,
+            'content' => 'some content'
+        ]);
     }
 
     public function test_manager_can_respond_to_another_users_ticket_assigned_to_same_company()
     {
-        $this->markTestSkipped('not yet implemented');
+        $ticket = Ticket::factory()->create([
+            'user_id'    => $this->standardUser->id,
+            'company_id' => $this->company1->id
+        ]);
+
+        $this->company1->users()->attach([$this->managerUser->id]);
+
+        $response = $this->actingAs($this->managerUser)->post(route('tickets.responses.store', $ticket->id), [
+            'content' => 'some content'
+        ]);
+
+        $response->assertRedirect(route('tickets.show', $ticket->id));
+
+        $this->assertDatabaseHas('ticket_responses', [
+            'ticket_id' => $ticket->id,
+            'user_id' => $this->managerUser->id,
+            'content' => 'some content'
+        ]);
+    }
+
+    public function test_manager_cannot_respond_to_another_users_ticket_assigned_to_different_company()
+    {
+        $ticket = Ticket::factory()->create([
+            'user_id'    => $this->standardUser->id,
+            'company_id' => $this->company1->id
+        ]);
+
+        $this->company2->users()->attach([$this->managerUser->id]);
+
+        $response = $this->actingAs($this->managerUser)->post(route('tickets.responses.store', $ticket->id), [
+            'content' => 'some content'
+        ]);
+
+        $response->assertStatus(403);
+
+        $this->assertDatabaseMissing('ticket_responses', [
+            'ticket_id' => $ticket->id,
+            'user_id' => $this->managerUser->id,
+            'content' => 'some content'
+        ]);
     }
 
     public function test_agent_can_change_status_of_ticket()
     {
-        $this->markTestSkipped('not yet implemented');
+        $ticket = Ticket::factory()->create([
+            'user_id'    => $this->standardUser->id,
+            'company_id' => $this->company1->id
+        ]);
+
+        $response = $this->actingAs($this->agentUser)->patch(route('tickets.status.update', $ticket->id), [
+            'status_id' => TICKET_STATUS::BILLING
+        ]);
+
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect(route('tickets.show', $ticket->id));
+
+        $this->assertDatabaseHas('tickets', [
+            'id' => $ticket->id,
+            'user_id' => $this->standardUser->id,
+            'company_id' => $this->company1->id,
+            'status_id' => TICKET_STATUS::BILLING
+        ]);
     }
 
     public function test_nonagent_cannot_change_ticket_status()
     {
-        $this->markTestSkipped('not yet implemented');
+        $ticket = Ticket::factory()->create([
+            'user_id'    => $this->standardUser->id,
+            'company_id' => $this->company1->id
+        ]);
+
+        $response = $this->actingAs($this->standardUser)->patch(route('tickets.status.update', $ticket->id), [
+            'status_id' => TICKET_STATUS::BILLING
+        ]);
+
+        $response->assertStatus(403);
+
+        $this->assertDatabaseMissing('tickets', [
+            'id' => $ticket->id,
+            'user_id' => $this->standardUser->id,
+            'company_id' => $this->company1->id,
+            'status_id' => TICKET_STATUS::BILLING
+        ]);
     }
 
     public function test_non_admin_cannot_delete_ticket()
     {
-        $this->markTestSkipped('not yet implemented');
+        $ticket = Ticket::factory()->create([
+            'user_id'    => $this->standardUser->id,
+            'company_id' => $this->company1->id
+        ]);
+
+        $response = $this->actingAs($this->standardUser)->delete(route('tickets.destroy', $ticket->id));
+
+        $response->assertStatus(403);
+
+        $this->assertDatabaseHas('tickets', [
+            'id' => $ticket->id,
+            'user_id' => $this->standardUser->id,
+            'company_id' => $this->company1->id,
+        ]);
     }
 
     public function test_admin_can_delete_a_ticket()
     {
-        $this->markTestSkipped('not yet implemented');
+        $ticket = Ticket::factory()->create([
+            'user_id'    => $this->standardUser->id,
+            'company_id' => $this->company1->id
+        ]);
+
+        $response = $this->actingAs($this->adminUser)->delete(route('tickets.destroy', $ticket->id));
+
+        $response->assertRedirect(route('tickets.index'));
+
+        $this->assertNotNull($ticket->fresh()->deleted_at);
     }
 }

@@ -7,22 +7,22 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
-class NoteFavoriteController extends Controller
+class NotePinController extends Controller
 {
     public function store(Request $request, Note $note): RedirectResponse
     {
-        Gate::authorize('favorite', $note);
+        Gate::authorize('pin', $note);
 
-        $note->favorite();
+        $note->pin();
 
         return redirect()->back();
     }
 
     public function destroy(Request $request, Note $note): RedirectResponse
     {
-        Gate::authorize('unfavorite', $note);
+        Gate::authorize('unpin', $note);
 
-        $note->unfavorite();
+        $note->unpin();
 
         return redirect()->back();
     }

@@ -18,7 +18,7 @@ class CreateNotesTable extends Migration
             $table->longText('content');
             $table->morphs('noteable');
             $table->foreignId('user_id');
-            $table->boolean('is_favorite')->default(false);
+            $table->boolean('is_pinned')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

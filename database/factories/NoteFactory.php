@@ -25,4 +25,13 @@ class NoteFactory extends Factory
             'content' => $this->faker->paragraph
         ];
     }
+
+    public function pinned()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'is_pinned' => true,
+            ];
+        });
+    }
 }

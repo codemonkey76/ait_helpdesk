@@ -5,30 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6f6d0bc-ad43-488c-86b8-0813f7b93565" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Contracts/MustVerifyPhone.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Notifications/VerifyPhone.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Traits/HasMustVerifyPhone.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Phone/PhoneVerificationForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Phone/Verify.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ait_helpdesk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ait_helpdesk.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Enums/TICKET_STATUS.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Traits/HasPinnable.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/phpinfo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Actions/Fortify/UpdateUserProfileInformation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/Fortify/UpdateUserProfileInformation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/TelescopeServiceProvider.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NoteFavoriteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NotePinController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PhoneVerificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PhoneVerificationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PhoneVerificationNotificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PhoneVerificationNotificationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TicketResponseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TicketResponseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TicketStatusController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TicketStatusController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Note.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Notifications/VerifyPhone.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/VerifyPhone.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Policies/NotePolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/NotePolicy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Policies/TicketPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/TicketPolicy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Policies/TicketResponsePolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/TicketResponsePolicy.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/NoteFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/NoteFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_21_031403_create_notes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_21_031403_create_notes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_29_052556_create_ticket_responses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_29_052556_create_ticket_responses_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/PermissionSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/PermissionSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/TicketStatusSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/TicketStatusSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Jetstream/ActionMessage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Jetstream/ActionMessage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Phone/PhoneVerificationForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Phone/PhoneVerificationForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/Profile/UpdateProfileInformationForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Profile/UpdateProfileInformationForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/EmailVerificationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EmailVerificationTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/OrganizationNoteTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/OrganizationNoteTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/PhoneVerificationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/PhoneVerificationTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/ProfileInformationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ProfileInformationTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/TicketsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/TicketsTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +65,7 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="laravel.test">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
       <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
@@ -235,9 +245,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm" value="Docker Compose" />
+    <property name="credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm" value="Docker Compose" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -249,11 +261,47 @@
       <recent name="$PROJECT_DIR$/app/Actions/Notes" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHPUnit.Feature">
+    <configuration name="AuthenticationTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\AuthenticationTest" configuration_file="/var/www/html/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/AuthenticationTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Feature" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="laravel.test" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner configuration_file="/var/www/html/phpunit.xml" directory="$PROJECT_DIR$/tests/Feature" />
+      <method v="2" />
+    </configuration>
+    <configuration name="OrganizationNoteTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\OrganizationNoteTest" configuration_file="/var/www/html/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/OrganizationNoteTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <configuration name="tests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner configuration_file="/var/www/html/phpunit.xml" directory="$PROJECT_DIR$/tests" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="PHPUnit.phpunit.xml" />
+      <item itemvalue="PHPUnit.AuthenticationTest" />
+      <item itemvalue="PHPUnit.Feature" />
+      <item itemvalue="PHPUnit.tests" />
+      <item itemvalue="PHPUnit.OrganizationNoteTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.Feature" />
+        <item itemvalue="PHPUnit.OrganizationNoteTest" />
+        <item itemvalue="PHPUnit.tests" />
+        <item itemvalue="PHPUnit.AuthenticationTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -284,6 +332,8 @@
       <workItem from="1621205211786" duration="107000" />
       <workItem from="1621205334510" duration="13443000" />
       <workItem from="1621319780047" duration="558000" />
+      <workItem from="1621395576073" duration="5229000" />
+      <workItem from="1621401446119" duration="2828000" />
     </task>
     <servers />
   </component>
@@ -301,5 +351,15 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ait_helpdesk@Feature.xml" NAME="Feature Coverage Results" MODIFIED="1621399683741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ait_helpdesk@tests.xml" NAME="tests Coverage Results" MODIFIED="1621399472811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ait_helpdesk@OrganizationNoteTest.xml" NAME="OrganizationNoteTest Coverage Results" MODIFIED="1621399644127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ait_helpdesk@AuthenticationTest.xml" NAME="AuthenticationTest Coverage Results" MODIFIED="1621399427265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

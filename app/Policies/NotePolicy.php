@@ -10,13 +10,13 @@ class NotePolicy
 {
     use HandlesAuthorization;
 
-    public function favorite(User $user, Note $note): bool
+    public function pin(User $user, Note $note): bool
     {
-        return $user->hasPermissionTo('favorite notes');
+        return $user->hasPermissionTo('pin notes');
     }
-    public function unfavorite(User $user, Note $note): bool
+    public function unpin(User $user, Note $note): bool
     {
-        return $user->hasPermissionTo('unfavorite notes');
+        return $user->hasPermissionTo('unpin notes');
     }
     public function create(User $user): bool
     {

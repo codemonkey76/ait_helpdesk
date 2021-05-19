@@ -19,7 +19,7 @@ class TicketResponseController extends Controller
      */
     public function create(Request $request, Ticket $ticket): InertiaResponse
     {
-        Gate::forUser($request->user())->authorize('create', TicketResponse::class);
+        Gate::forUser($request->user())->authorize('create', [TicketResponse::class, $ticket]);
 
         $statusOptions = TicketStatus::select(['id', 'name', 'description'])
             ->limit(500)
@@ -29,7 +29,7 @@ class TicketResponseController extends Controller
 
     public function store(Request $request, Ticket $ticket): RedirectResponse
     {
-        Gate::forUser($request->user())->authorize('create', TicketResponse::class);
+        Gate::forUser($request->user())->authorize('create', [TicketResponse::class, $ticket]);
 
         $validated = $request->validate([
             'content' => 'required'

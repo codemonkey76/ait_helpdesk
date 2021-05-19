@@ -32,6 +32,12 @@ return [
 
     'nexmo' => [
         'sms_from' => env('NEXMO_SENDER_NUMBER')
+    ],
+
+    'plivo' => [
+        'auth_id' => env('PLIVO_AUTH_ID'),
+        'auth_token' => env('PLIVO_AUTH_TOKEN'),
+        'from_number' => env('PLIVO_FROM_NUMBER'),
     ]
 
 ];

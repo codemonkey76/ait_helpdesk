@@ -56,8 +56,20 @@ class TicketPolicy
         return $user->hasPermissionTo('subscribe to tickets') || $user->ownsTicket($ticket);
     }
 
-    public function reopen(User $user, Ticket $ticket):bool
+    public function update(User $user, Ticket $ticket):bool
     {
-        return $user->hasPermissionTo('change ticket status') || $user->ownsTicket($ticket);
+        if ($user->hasPermissionTo('change ticket status')) {
+            return true;
+        }
+
+        return false;
+    }
+    public function destroy(User $user, Ticket $ticket): bool
+    {
+        if ($user->hasPermissionTo('delete tickets')) {
+            return true;
+        }
+
+        return false;
     }
 }

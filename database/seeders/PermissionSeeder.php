@@ -37,8 +37,8 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'delete companies']);
 
         Permission::create(['name' => 'list notes']);
-        Permission::create(['name' => 'favorite notes']);
-        Permission::create(['name' => 'unfavorite notes']);
+        Permission::create(['name' => 'pin notes']);
+        Permission::create(['name' => 'unpin notes']);
         Permission::create(['name' => 'delete notes']);
         Permission::create(['name' => 'create notes']);
 
@@ -46,9 +46,11 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'list own tickets']);
         Permission::create(['name' => 'create tickets']);
         Permission::create(['name' => 'view all tickets']);
+        Permission::create(['name' => 'delete tickets']);
         Permission::create(['name' => 'view own company tickets']);
 
-        Permission::create(['name' => 'respond to tickets']);
+        Permission::create(['name' => 'respond to all tickets']);
+        Permission::create(['name' => 'respond to own company tickets']);
         Permission::create(['name' => 'change ticket status']);
         Permission::create(['name' => 'subscribe to tickets']);
 
@@ -72,9 +74,11 @@ class PermissionSeeder extends Seeder
         $adminRole->givePermissionTo('delete companies');
         $adminRole->givePermissionTo('delete notes');
         $adminRole->givePermissionTo('delete users');
+        $adminRole->givePermissionto('delete tickets');
 
         $managerRole = Role::create(['name' => 'manager']);
         $managerRole->givePermissionTo('view own company tickets');
+        $managerRole->givePermissionTo('respond to own company tickets');
 
         $agentRole = Role::create(['name' => 'agent']);
         $agentRole->givePermissionTo('list organizations');
@@ -82,8 +86,8 @@ class PermissionSeeder extends Seeder
         $agentRole->givePermissionTo('list companies');
         $agentRole->givePermissionTo('show companies');
         $agentRole->givePermissionTo('list notes');
-        $agentRole->givePermissionTo('favorite notes');
-        $agentRole->givePermissionTo('unfavorite notes');
+        $agentRole->givePermissionTo('pin notes');
+        $agentRole->givePermissionTo('unpin notes');
         $agentRole->givePermissionTo('create notes');
         $agentRole->givePermissionTo('list users');
         $agentRole->givePermissionTo('show users');
@@ -93,6 +97,7 @@ class PermissionSeeder extends Seeder
         $agentRole->givePermissionTo('list tickets');
         $agentRole->givePermissionTo('view all tickets');
         $agentRole->givePermissionTo('change ticket status');
+        $agentRole->givePermissionTo('respond to all tickets');
 
         $userRole = Role::create(['name' => 'user']);
         $userRole->givePermissionTo('create tickets');
@@ -100,7 +105,6 @@ class PermissionSeeder extends Seeder
 
         $restrictedRole = Role::create(['name' => 'restricted user']);
         $restrictedRole->givePermissionTo('list own tickets');
-        $restrictedRole->givePermissionTo('respond to tickets');
         $restrictedRole->givePermissionTo('subscribe to tickets');
 
         $admin = app(CreatesNewUsers::class)

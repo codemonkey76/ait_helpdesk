@@ -6,7 +6,7 @@ use App\Http\Controllers\CompanyNoteController;
 use App\Http\Controllers\CompanyNoteSearchController;
 use App\Http\Controllers\CompanySearchController;
 use App\Http\Controllers\NoteController;
-use App\Http\Controllers\NoteFavoriteController;
+use App\Http\Controllers\NotePinController;
 use App\Http\Controllers\OrganizationNoteController;
 use App\Http\Controllers\OrganizationNoteSearchController;
 use App\Http\Controllers\OrganizationSearchController;
@@ -51,8 +51,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('companies', CompanyController::class);
     Route::resource('companies/{company}/notes', CompanyNoteController::class, ['as'=> 'companies']);
 
-    Route::post('notes/{note}/favorite', [NoteFavoriteController::class, 'store'])->name('notes.favorite.store');
-    Route::delete('notes/{note}/favorite', [NoteFavoriteController::class, 'destroy'])->name('notes.favorite.destroy');
+    Route::post('notes/{note}/pin', [NotePinController::class, 'store'])->name('notes.pin.store');
+    Route::delete('notes/{note}/pin', [NotePinController::class, 'destroy'])->name('notes.pin.destroy');
 
     Route::resource('notes', NoteController::class);
 
@@ -73,9 +73,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/users/{user}/roles', [UserRoleController::class, 'store'])->name('users.roles.store');
     Route::delete('/users/{user}/roles', [UserRoleController::class, 'destroy'])->name('users.roles.destroy');
 
-    Route::get('/phone/verify', PhoneVerificationPromptController::class)->name('phone.verification.notice');
-    Route::post('/phone/verification-notification', PhoneVerificationNotificationController::class)->name('phone.verification.send');
-    Route::post('/phone/verify', PhoneVerificationController::class)->name('phone.verification');
+    Route::get('/phone/verify', PhoneVerificationPromptController::class)->name('phone.verify.notice');
+    Route::post('/phone/verification-notification', PhoneVerificationNotificationController::class)->name('phone.verify.send');
+    Route::post('/phone/verify', PhoneVerificationController::class)->name('phone.verify');
 });
 
 

@@ -19532,14 +19532,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     verify: function verify() {
-      this.form.post(route('phone.verification'), {
+      this.form.post(route('phone.verify'), {
         preserveScroll: true
       });
     },
     sendCode: function sendCode() {
       var _this = this;
 
-      this.sendCodeForm.post(route('phone.verification.send'), {
+      this.sendCodeForm.post(route('phone.verify.send'), {
         preserveScroll: true,
         onSuccess: function onSuccess() {
           _this.codeSent = true;
@@ -29358,9 +29358,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         key: 0
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
         value: "Unverified",
-        "class": "text-red-600 absolute top-0 right-0 mr-1 mt-1"
+        "class": "text-red-600 dark:text-red-600 absolute top-0 right-0 mr-1 mt-1"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button_link, {
-        href: _ctx.route('phone.verification.notice'),
+        href: _ctx.route('phone.verify.notice'),
         "class": "mt-2"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -29376,7 +29376,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_jet_label, {
         key: 1,
         value: "Verified",
-        "class": "text-green-600 absolute top-0 right-0 mr-1 mt-1"
+        "class": "text-green-600 dark:text-green-600 absolute top-0 right-0 mr-1 mt-1"
       }))])])];
     }),
     actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {

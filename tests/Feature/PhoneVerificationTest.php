@@ -22,12 +22,12 @@ class PhoneVerificationTest extends TestCase
     {
         parent::setUp();
         $this->seed(PermissionSeeder::class);
-        $this->unverifiedUser = User::factory()->withPersonalTeam()->unverified()->create();
+        $this->unverifiedUser = User::factory()->phoneUnverified()->withPersonalTeam()->create();
     }
 
     public function test_phone_verification_screen_can_be_rendered()
     {
-        $this->actingAs($this->unverifiedUser)->get(route('phone.verification.notice'));
+        $this->actingAs($this->unverifiedUser)->get(route('phone.verify.notice'));
         $response = $this->get('/');
 
         $response->assertStatus(200);
@@ -42,34 +42,28 @@ class PhoneVerificationTest extends TestCase
         $this->assertNull($this->unverifiedUser->phone_verification_expiry);
         $this->assertNull($this->unverifiedUser->phone_verified_at);
 
+        $this->unverifiedUser->markEmailAsVerified();
+
         // Request code
-        $response = $this->actingAs($this->unverifiedUser)->post(route('phone.verification.send'));
+        $response = $this->actingAs($this->unverifiedUser)->post(route('phone.verify.send'));
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect(route('phone.verify.notice'));
+
+        // Confirm that code and expiry were generated
+        $this->unverifiedUser->refresh();
+        $this->assertNotNull($this->unverifiedUser->phone_verification_code);
+        $this->assertNotNull($this->unverifiedUser->phone_verification_expiry);
+
+        // check user received the code
+        Notification::assertSentTo($this->unverifiedUser, VerifyPhone::class);
+
+        // Submit the code for verification
+        $response = $this->actingAs($this->unverifiedUser)->post(route('phone.verify'), [
+            'phone_verification_code' => $this->unverifiedUser->phone_verification_code
+        ]);
 
         $response->assertSessionHasNoErrors();
-
-        $response->assertRedirect(route('phone.verification.notice'));
+        $response->assertRedirect(route('profile.show'));
+        $this->assertNotNull($this->unverifiedUser->fresh()->phone_verified_at);
     }
-
-       // return;
-        // Confirm that code and expiry were generated
-//        dump($this->unverifiedUser->withoutRelations()->toArray());
-//        $this->unverifiedUser->refresh();
-//        dd($this->unverifiedUser->withoutRelations()->toArray());
-//
-//        $this->assertNotNull($this->unverifiedUser->phone_verification_code);
-//        $this->assertNotNull($this->unverifiedUser->phone_verification_expiry);
-//
-//        // check user received the code
-//        Notification::assertSentTo($this->unverifiedUser, VerifyPhone::class);
-//
-//        // Submit the code for verification
-//        $response = $this->actingAs($this->unverifiedUser)->post('phone.verification', [
-//            'phone_verification_code' => $this->unverifiedUser->phone_verification_code
-//        ]);
-//
-//        $response->assertSessionHasNoErrors();
-//        $response->assertRedirect(route('profile.show'));
-//        $this->assertNotNull($this->unverifiedUser->phone_verified_at);
-   // }
-
 }
