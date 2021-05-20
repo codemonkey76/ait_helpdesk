@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 module.exports = {
     darkMode: 'media',
@@ -27,7 +28,9 @@ module.exports = {
                     700: '#6E5192',
                     800: '#5E3B8A',
                     900: '#3B205B'
-                }
+                },
+                'litepie-primary': colors.lightBlue,
+                'litepie-secondary': colors.coolGray
             }
         },
 

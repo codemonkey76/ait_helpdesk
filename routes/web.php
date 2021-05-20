@@ -81,6 +81,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::post('/tickets/{ticket}/jobs', [TicketJobController::class, 'store'])->name('tickets.jobs.store');
     Route::post('/tickets/{ticket}/job-card', [TicketJobCardController::class, 'store'])->name('tickets.job-card.store');
+    Route::get('/tickets/{ticket}/jobs/create', [TicketJobController::class, 'create'])->name('tickets.jobs.create');
 });
 
 

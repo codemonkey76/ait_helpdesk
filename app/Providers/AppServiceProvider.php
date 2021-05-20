@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
             'company' => 'App\Models\Company',
             'organization' => 'App\Models\Organization',
             'note' => 'App\Models\Note',
-            'status_change', 'App\Models\TicketStatusChange',
+            'status-change', 'App\Models\TicketStatusChange',
             'activity', 'App\Models\Activity',
             'response' => 'App\Models\TicketResponse',
             'job' => 'App\Models\Job',

@@ -21,7 +21,7 @@ class JobCardTest extends TestCase
     private User $accountsUser;
     private User $standardUser;
     private Ticket $ticket;
-    private Carbon $workDate;
+    private string $workDate;
 
     public function setUp(): void
     {
@@ -30,7 +30,8 @@ class JobCardTest extends TestCase
         $this->seed(PermissionSeeder::class);
         $this->seed(TicketStatusSeeder::class);
 
-        $this->workDate = now();
+        $this->workDate = now()->format('Y-m-d');
+
         $this->adminUser = User::factory()->withPersonalTeam()->create()->assignRole([
             'admin', 'agent', 'user', 'restricted user'
         ]);
@@ -55,7 +56,7 @@ class JobCardTest extends TestCase
 
         $this->actingAs($this->accountsUser)
             ->post(route('tickets.job-card.store', $this->ticket->id), [
-                'content' => 'some content',
+                'content'    => 'some content',
                 'time_spent' => 30
             ])
             ->assertRedirect(route('tickets.show', $this->ticket->id));
@@ -83,7 +84,7 @@ class JobCardTest extends TestCase
 
         $this->actingAs($this->accountsUser)
             ->post(route('tickets.job-card.store', $this->ticket->id), [
-                'content' => 'some content',
+                'content'    => 'some content',
                 'time_spent' => 27
             ])
             ->assertSessionHasErrors('time_spent');
@@ -95,7 +96,7 @@ class JobCardTest extends TestCase
     {
         $this->actingAs($this->standardUser)
             ->post(route('tickets.job-card.store', $this->ticket->id), [
-                'content' => 'some content',
+                'content'    => 'some content',
                 'time_spent' => 30
             ])
             ->assertStatus(403);
@@ -105,7 +106,7 @@ class JobCardTest extends TestCase
 
     public function test_agent_can_add_job_to_ticket()
     {
-        $workDate = now();
+        $workDate = now()->format('Y-m-d');
 
         $response = $this->actingAs($this->agentUser)
             ->post(route('tickets.jobs.store', $this->ticket->id), [
@@ -182,7 +183,7 @@ class JobCardTest extends TestCase
         $testData = $this->getTestData();
         unset($testData['time_spent']);
         $this->post(route('tickets.jobs.store', $this->ticket->id), $testData)
-        ->assertSessionHasErrors('time_spent');
+            ->assertSessionHasErrors('time_spent');
         $this->assertDatabasemissing('jobs', $testData);
 
         // time_spent is required
@@ -215,5 +216,24 @@ class JobCardTest extends TestCase
         $this->post(route('tickets.jobs.store', $this->ticket->id), $testData)
             ->assertSessionHasErrors('time_spent');
         $this->assertDatabasemissing('jobs', $testData);
+    }
+
+    public function test_job_date_must_be_in_correct_format()
+    {
+        $this->actingAs($this->agentUser);
+
+        $testData = $this->getTestData();
+        $testData['date'] = now()->format('d/m/Y');
+
+        $this->post(route('tickets.jobs.store', $this->ticket->id), $testData)
+            ->assertSessionHasErrors('date');
+        $this->assertDatabasemissing('jobs', $testData);
+    }
+
+    public function test_job_create_can_be_rendered()
+    {
+        $this->actingAs($this->agentUser)
+            ->get(route('tickets.jobs.create', $this->ticket->id))
+            ->assertStatus(200);
     }
 }

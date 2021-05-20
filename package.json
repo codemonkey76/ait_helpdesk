@@ -26,6 +26,7 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
+        "litepie-datepicker": "^1.0.14",
         "moment": "^2.29.1",
         "vue-invisible-recaptcha": "^0.2.1"
     }

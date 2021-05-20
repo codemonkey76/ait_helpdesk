@@ -40,11 +40,6 @@ class Ticket extends Model
                         'old_status_id' => $ticket->getOriginal('status_id'),
                         'new_status_id' => $ticket->status_id
                     ]);
-
-                    $ticket->activity()->create([
-                        'activatable_type' => 'status_change',
-                        'activatable_id'   => $statusChange->id,
-                    ]);
                 }
             }
 

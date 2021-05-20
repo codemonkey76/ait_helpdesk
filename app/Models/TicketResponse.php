@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\RecordsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
@@ -14,6 +16,7 @@ class TicketResponse extends Model
     use HasFactory;
     use Searchable;
     use SoftDeletes;
+    use RecordsActivity;
 
     protected $fillable = ['content', 'status_id', 'user_id', 'user_read_at', 'agent_read_at'];
 
@@ -32,12 +35,6 @@ class TicketResponse extends Model
             $ticket->readers()->sync([$response->user_id]);
 
             $response->readers()->sync([$response->user_id]);
-
-            $ticket->activity()->create([
-                'activatable_type' => 'response',
-                'activatable_id'   => $response->id,
-            ]);
-
         });
     }
 
@@ -45,6 +42,7 @@ class TicketResponse extends Model
     {
         return $this->belongsTo(Ticket::class);
     }
+
 
     public function readers(): BelongsToMany
     {
