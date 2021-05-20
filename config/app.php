@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\TICKET_STATUS;
+
 return [
 
     /*
@@ -55,8 +57,12 @@ return [
     'url' => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL', null),
-    'default_status' => 1,
-    'default_sms_expiry' => 180, // seconds
+    'defaults' => [
+        'status' => TICKET_STATUS::PENDING,
+        'sms_expiry' => 180,
+        'min_job_time' => 15
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

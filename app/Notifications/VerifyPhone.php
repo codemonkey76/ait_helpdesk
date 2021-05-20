@@ -16,7 +16,7 @@ class VerifyPhone extends Notification
 
     public function toNexmo($notifiable)
     {
-        $validity = config('app.default_sms_expiry') / 60;
+        $validity = config('app.defaults.sms_expiry') / 60;
 
         return (new NexmoMessage)
             ->content("Alpha IT Centre Helpdesk Code: {$notifiable->phone_verification_code}. Valid for {$validity} minutes.");

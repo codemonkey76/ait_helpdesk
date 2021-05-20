@@ -8,6 +8,7 @@ use App\Models\Organization;
 use App\Models\Ticket;
 use App\Models\User;
 use Database\Seeders\PermissionSeeder;
+use Database\Seeders\TicketStatusSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -27,6 +28,7 @@ class TicketsTest extends TestCase
         parent::setUp();
 
         $this->seed(PermissionSeeder::class);
+        $this->seed(TicketStatusSeeder::class);
 
         $this->adminUser = User::factory()->withPersonalTeam()->create()->assignRole([
             'admin', 'agent', 'user', 'restricted user'
@@ -63,7 +65,6 @@ class TicketsTest extends TestCase
 
     public function test_user_can_view_their_own_tickets()
     {
-        $this->withoutExceptionHandling();
         $ticket = Ticket::factory()->create(['user_id' => $this->standardUser]);
 
         $response = $this->actingAs($this->standardUser)->get(route('tickets.show', $ticket->id));
@@ -151,94 +152,9 @@ class TicketsTest extends TestCase
         $response->assertStatus(403);
     }
 
-    public function test_user_can_respond_to_their_own_ticket()
-    {
-        $ticket = Ticket::factory()->create([
-            'user_id'    => $this->standardUser->id,
-            'company_id' => $this->company1->id
-        ]);
-
-        $this->company1->users()->attach([$this->standardUser->id]);
-
-        $response = $this->actingAs($this->standardUser)->post(route('tickets.responses.store', $ticket->id), [
-            'content' => 'some content'
-        ]);
-
-        $response->assertRedirect(route('tickets.show', $ticket->id));
-
-        $this->assertDatabaseHas('ticket_responses', [
-            'ticket_id' => $ticket->id,
-            'user_id' => $this->standardUser->id,
-            'content' => 'some content'
-        ]);
-    }
-
-    public function test_user_cannot_respond_to_their_ticket_when_they_are_no_longer_assigned_to_that_company()
-    {
-        $ticket = Ticket::factory()->create([
-            'user_id'    => $this->standardUser->id,
-            'company_id' => $this->company1->id
-        ]);
-
-        $response = $this->actingAs($this->standardUser)->post(route('tickets.responses.store', $ticket->id), [
-            'content' => 'some content'
-        ]);
-
-        $response->assertStatus(403);
-
-        $this->assertDatabaseMissing('ticket_responses', [
-            'ticket_id' => $ticket->id,
-            'user_id' => $this->standardUser->id,
-            'content' => 'some content'
-        ]);
-    }
-
-    public function test_manager_can_respond_to_another_users_ticket_assigned_to_same_company()
-    {
-        $ticket = Ticket::factory()->create([
-            'user_id'    => $this->standardUser->id,
-            'company_id' => $this->company1->id
-        ]);
-
-        $this->company1->users()->attach([$this->managerUser->id]);
-
-        $response = $this->actingAs($this->managerUser)->post(route('tickets.responses.store', $ticket->id), [
-            'content' => 'some content'
-        ]);
-
-        $response->assertRedirect(route('tickets.show', $ticket->id));
-
-        $this->assertDatabaseHas('ticket_responses', [
-            'ticket_id' => $ticket->id,
-            'user_id' => $this->managerUser->id,
-            'content' => 'some content'
-        ]);
-    }
-
-    public function test_manager_cannot_respond_to_another_users_ticket_assigned_to_different_company()
-    {
-        $ticket = Ticket::factory()->create([
-            'user_id'    => $this->standardUser->id,
-            'company_id' => $this->company1->id
-        ]);
-
-        $this->company2->users()->attach([$this->managerUser->id]);
-
-        $response = $this->actingAs($this->managerUser)->post(route('tickets.responses.store', $ticket->id), [
-            'content' => 'some content'
-        ]);
-
-        $response->assertStatus(403);
-
-        $this->assertDatabaseMissing('ticket_responses', [
-            'ticket_id' => $ticket->id,
-            'user_id' => $this->managerUser->id,
-            'content' => 'some content'
-        ]);
-    }
-
     public function test_agent_can_change_status_of_ticket()
     {
+        $this->withoutExceptionHandling();
         $ticket = Ticket::factory()->create([
             'user_id'    => $this->standardUser->id,
             'company_id' => $this->company1->id

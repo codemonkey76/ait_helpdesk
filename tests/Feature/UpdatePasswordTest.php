@@ -11,9 +11,18 @@ class UpdatePasswordTest extends TestCase
 {
     use RefreshDatabase;
 
+    private User $user;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = User::factory()->withPersonalTeam()->create();
+    }
+
     public function test_password_can_be_updated()
     {
-        $this->actingAs($user = User::factory()->create());
+        $this->actingAs($this->user);
 
         $response = $this->put('/user/password', [
             'current_password' => 'password',
@@ -21,12 +30,12 @@ class UpdatePasswordTest extends TestCase
             'password_confirmation' => 'new-password',
         ]);
 
-        $this->assertTrue(Hash::check('new-password', $user->fresh()->password));
+        $this->assertTrue(Hash::check('new-password', $this->user->fresh()->password));
     }
 
     public function test_current_password_must_be_correct()
     {
-        $this->actingAs($user = User::factory()->create());
+        $this->actingAs($this->user);
 
         $response = $this->put('/user/password', [
             'current_password' => 'wrong-password',
@@ -36,12 +45,12 @@ class UpdatePasswordTest extends TestCase
 
         $response->assertSessionHasErrors();
 
-        $this->assertTrue(Hash::check('password', $user->fresh()->password));
+        $this->assertTrue(Hash::check('password', $this->user->fresh()->password));
     }
 
     public function test_new_passwords_must_match()
     {
-        $this->actingAs($user = User::factory()->create());
+        $this->actingAs($this->user);
 
         $response = $this->put('/user/password', [
             'current_password' => 'password',
@@ -51,6 +60,6 @@ class UpdatePasswordTest extends TestCase
 
         $response->assertSessionHasErrors();
 
-        $this->assertTrue(Hash::check('password', $user->fresh()->password));
+        $this->assertTrue(Hash::check('password', $this->user->fresh()->password));
     }
 }

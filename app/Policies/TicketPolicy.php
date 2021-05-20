@@ -56,7 +56,7 @@ class TicketPolicy
         return $user->hasPermissionTo('subscribe to tickets') || $user->ownsTicket($ticket);
     }
 
-    public function update(User $user, Ticket $ticket):bool
+    public function changeTicketStatus(User $user, Ticket $ticket):bool
     {
         if ($user->hasPermissionTo('change ticket status')) {
             return true;

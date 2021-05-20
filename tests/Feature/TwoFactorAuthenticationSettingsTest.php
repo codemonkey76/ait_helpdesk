@@ -10,47 +10,56 @@ class TwoFactorAuthenticationSettingsTest extends TestCase
 {
     use RefreshDatabase;
 
+    private User $user;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = User::factory()->withPersonalTeam()->create();
+    }
+
     public function test_two_factor_authentication_can_be_enabled()
     {
-        $this->actingAs($user = User::factory()->create());
+        $this->actingAs($this->user);
 
         $this->withSession(['auth.password_confirmed_at' => time()]);
 
         $response = $this->post('/user/two-factor-authentication');
 
-        $this->assertNotNull($user->fresh()->two_factor_secret);
-        $this->assertCount(8, $user->fresh()->recoveryCodes());
+        $this->assertNotNull($this->user->fresh()->two_factor_secret);
+        $this->assertCount(8, $this->user->fresh()->recoveryCodes());
     }
 
     public function test_recovery_codes_can_be_regenerated()
     {
-        $this->actingAs($user = User::factory()->create());
+        $this->actingAs($this->user);
 
         $this->withSession(['auth.password_confirmed_at' => time()]);
 
         $this->post('/user/two-factor-authentication');
         $this->post('/user/two-factor-recovery-codes');
 
-        $user = $user->fresh();
+        $this->user = $this->user->fresh();
 
         $this->post('/user/two-factor-recovery-codes');
 
-        $this->assertCount(8, $user->recoveryCodes());
-        $this->assertCount(8, array_diff($user->recoveryCodes(), $user->fresh()->recoveryCodes()));
+        $this->assertCount(8, $this->user->recoveryCodes());
+        $this->assertCount(8, array_diff($this->user->recoveryCodes(), $this->user->fresh()->recoveryCodes()));
     }
 
     public function test_two_factor_authentication_can_be_disabled()
     {
-        $this->actingAs($user = User::factory()->create());
+        $this->actingAs($this->user);
 
         $this->withSession(['auth.password_confirmed_at' => time()]);
 
         $this->post('/user/two-factor-authentication');
 
-        $this->assertNotNull($user->fresh()->two_factor_secret);
+        $this->assertNotNull($this->user->fresh()->two_factor_secret);
 
         $this->delete('/user/two-factor-authentication');
 
-        $this->assertNull($user->fresh()->two_factor_secret);
+        $this->assertNull($this->user->fresh()->two_factor_secret);
     }
 }

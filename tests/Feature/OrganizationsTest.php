@@ -37,7 +37,6 @@ class OrganizationsTest extends TestCase
 
     public function test_agent_can_view_organizations_page()
     {
-        $this->withoutExceptionHandling();
         $this->actingAs($this->agentUser);
 
         $response = $this->get('/organizations');

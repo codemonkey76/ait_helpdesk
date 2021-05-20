@@ -13,7 +13,7 @@ class TicketStatusController extends Controller
 {
     public function update(Request $request, Ticket $ticket)
     {
-        Gate::forUser($request->user())->authorize('update', $ticket);
+        Gate::forUser($request->user())->authorize('changeTicketStatus', $ticket);
 
         $validated = $request->validate([
             'status_id' => [

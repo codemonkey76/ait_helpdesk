@@ -90,7 +90,7 @@ class TicketController extends Controller
         ]);
         $validated['user_id'] = $request->user()->id;
         $validated['current_team_id'] = $request->user()->current_team_id;
-        $validated['status_id'] = config('app.default_status');
+        $validated['status_id'] = config('app.defaults.status');
 
         Ticket::create($validated);
 

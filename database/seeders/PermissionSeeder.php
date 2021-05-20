@@ -48,6 +48,8 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'view all tickets']);
         Permission::create(['name' => 'delete tickets']);
         Permission::create(['name' => 'view own company tickets']);
+        Permission::create(['name' => 'create job card']);
+        Permission::create(['name' => 'create job']);
 
         Permission::create(['name' => 'respond to all tickets']);
         Permission::create(['name' => 'respond to own company tickets']);
@@ -80,6 +82,13 @@ class PermissionSeeder extends Seeder
         $managerRole->givePermissionTo('view own company tickets');
         $managerRole->givePermissionTo('respond to own company tickets');
 
+        $accountsRole = Role::create(['name' => 'accounts']);
+
+        $accountsRole->givePermissionTo('create job card');
+        $accountsRole->givePermissionTo('create job');
+        $accountsRole->givePermissionTo('change ticket status');
+
+
         $agentRole = Role::create(['name' => 'agent']);
         $agentRole->givePermissionTo('list organizations');
         $agentRole->givePermissionTo('show organizations');
@@ -98,6 +107,7 @@ class PermissionSeeder extends Seeder
         $agentRole->givePermissionTo('view all tickets');
         $agentRole->givePermissionTo('change ticket status');
         $agentRole->givePermissionTo('respond to all tickets');
+        $agentRole->givePermissionTo('create job');
 
         $userRole = Role::create(['name' => 'user']);
         $userRole->givePermissionTo('create tickets');

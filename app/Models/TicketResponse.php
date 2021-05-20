@@ -33,6 +33,11 @@ class TicketResponse extends Model
 
             $response->readers()->sync([$response->user_id]);
 
+            $ticket->activity()->create([
+                'activatable_type' => 'response',
+                'activatable_id'   => $response->id,
+            ]);
+
         });
     }
 

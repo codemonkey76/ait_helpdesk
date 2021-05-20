@@ -74,6 +74,15 @@ class RolesTest extends TestCase
         $this->assertTrue($user->hasRole('admin'));
     }
 
+    public function test_user_can_be_assigned_to_accounts_role(): void
+    {
+        $user = User::factory()
+            ->create()
+            ->assignRole('accounts');
+
+        $this->assertTrue($user->hasRole('accounts'));
+    }
+
     public function test_user_can_be_assigned_to_super_admin_role(): void
     {
         $user = User::factory()

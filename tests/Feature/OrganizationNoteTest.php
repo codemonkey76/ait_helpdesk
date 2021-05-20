@@ -93,8 +93,6 @@ class OrganizationNoteTest extends TestCase
 
     public function test_agent_can_pin_organization_notes()
     {
-        $this->withoutExceptionHandling();
-
         $this->actingAs($this->agentUser)
             ->post(route('notes.pin.store', $this->note));
 
@@ -126,9 +124,4 @@ class OrganizationNoteTest extends TestCase
 
         $this->assertTrue($this->pinnedNote->fresh()->is_pinned);
     }
-
-//    public function test_agent_can_favorite_an_organization_note()
-//    {
-//        $this->actingAs($this->agentUser);
-//    }
 }

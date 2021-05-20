@@ -14,6 +14,8 @@ use App\Http\Controllers\PhoneVerificationController;
 use App\Http\Controllers\PhoneVerificationNotificationController;
 use App\Http\Controllers\PhoneVerificationPromptController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\TicketJobCardController;
+use App\Http\Controllers\TicketJobController;
 use App\Http\Controllers\TicketResponseController;
 use App\Http\Controllers\TicketStatusController;
 use App\Http\Controllers\TicketSubscriptionController;
@@ -76,6 +78,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/phone/verify', PhoneVerificationPromptController::class)->name('phone.verify.notice');
     Route::post('/phone/verification-notification', PhoneVerificationNotificationController::class)->name('phone.verify.send');
     Route::post('/phone/verify', PhoneVerificationController::class)->name('phone.verify');
+
+    Route::post('/tickets/{ticket}/jobs', [TicketJobController::class, 'store'])->name('tickets.jobs.store');
+    Route::post('/tickets/{ticket}/job-card', [TicketJobCardController::class, 'store'])->name('tickets.job-card.store');
 });
 
 
