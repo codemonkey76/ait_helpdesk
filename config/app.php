@@ -60,7 +60,8 @@ return [
     'defaults' => [
         'status' => TICKET_STATUS::PENDING,
         'sms_expiry' => 180,
-        'min_job_time' => 15
+        'min_job_time' => 15,
+        'pagination' => 15
     ],
 
     /*

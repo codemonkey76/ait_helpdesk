@@ -11,6 +11,7 @@ class Activity extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'ticket_id', 'type', 'subject_type', 'subject_id'];
+    protected $with = ['subject'];
 
     public function subject(): MorphTo
     {

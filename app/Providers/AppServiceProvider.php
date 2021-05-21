@@ -29,11 +29,11 @@ class AppServiceProvider extends ServiceProvider
             'company' => 'App\Models\Company',
             'organization' => 'App\Models\Organization',
             'note' => 'App\Models\Note',
-            'status-change', 'App\Models\TicketStatusChange',
-            'activity', 'App\Models\Activity',
+            'status_change' => 'App\Models\TicketStatusChange',
+            'activity' => 'App\Models\Activity',
             'response' => 'App\Models\TicketResponse',
             'job' => 'App\Models\Job',
-            'job-card' => 'App\Models\JobCard'
+            'job_card' => 'App\Models\JobCard'
         ]);
 
     }

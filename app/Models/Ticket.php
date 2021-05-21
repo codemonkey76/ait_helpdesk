@@ -24,7 +24,6 @@ class Ticket extends Model
 
     const EXCERPT_LENGTH = 50;
 
-    protected $with = ['user', 'company', 'readers', 'status'];
     protected $appends = ['excerpt', 'isSubscribed'];
     protected $fillable = ['subject', 'content', 'company_id', 'user_id', 'current_team_id', 'status_id'];
 
@@ -121,5 +120,9 @@ class Ticket extends Model
     public function jobCard(): HasOne
     {
         return $this->hasOne(JobCard::class);
+    }
+    public function activities(): HasMany
+    {
+        return $this->hasMany(Activity::class);
     }
 }

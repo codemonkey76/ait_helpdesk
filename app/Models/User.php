@@ -59,6 +59,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+        'phone_verification_code',
+        'phone_verification_expiry'
     ];
 
     /**
@@ -78,6 +80,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $appends = [
         'profile_photo_url',
+        'userType'
     ];
 
     public function notes(): HasMany
@@ -156,5 +159,14 @@ class User extends Authenticatable implements MustVerifyEmail
                 'phone' => $phone]);
             $this->clearPhoneVerificationStatus();
         }
+    }
+
+    public function getUserTypeAttribute()
+    {
+        if ($this->hasRole('agent') || $this->hasRole('accounts')) {
+            return 'Agent';
+        }
+
+        return 'User';
     }
 }

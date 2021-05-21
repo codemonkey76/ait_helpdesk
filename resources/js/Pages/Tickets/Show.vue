@@ -10,13 +10,11 @@
             <div class="max-w-7xl mx-auto py-10 px-2 sm:px-6 lg:px-8">
                 <div>
                     <show-ticket-form :ticket="$page.props.ticket"/>
-
-                    <jet-section-border />
                 </div>
 
                 <div>
-
-                    <ticket-response-list :ticket="$page.props.ticket" :responses="$page.props.responses.data"/>
+                    <ticket-activity-list :activities="$page.props.activities" />
+<!--                    <ticket-response-list :ticket="$page.props.ticket" :responses="$page.props.responses.data"/>-->
 
                     <jet-section-border />
                 </div>
@@ -42,12 +40,14 @@
 import AppLayout from "@/Layouts/AppLayout"
 import ShowTicketForm from '@/Pages/Tickets/ShowTicketForm'
 import JetSectionBorder from '@/Jetstream/SectionBorder'
+import TicketActivityList from "@/Pages/Tickets/TicketActivityList";
 import TicketResponseList from "@/Pages/Tickets/TicketResponseList"
 import JetSecondaryButtonLink from '@/Jetstream/SecondaryButtonLink'
 import JetButtonLink from '@/Jetstream/ButtonLink'
 
 export default {
     components: {
+        TicketActivityList,
         TicketResponseList,
         AppLayout,
         ShowTicketForm,

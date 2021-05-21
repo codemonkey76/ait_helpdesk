@@ -19,6 +19,8 @@ class TicketResponse extends Model
     use RecordsActivity;
 
     protected $fillable = ['content', 'status_id', 'user_id', 'user_read_at', 'agent_read_at'];
+    protected $appends = ['userName'];
+    protected $with = ['user'];
 
     public function user(): BelongsTo
     {
@@ -47,5 +49,10 @@ class TicketResponse extends Model
     public function readers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'response_user', 'user_id', 'ticket_response_id')->withTimestamps();
+    }
+
+    public function getUserNameAttribute()
+    {
+        return $this->user->name;
     }
 }

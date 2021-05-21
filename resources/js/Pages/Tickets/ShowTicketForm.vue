@@ -13,7 +13,7 @@
             <div class="mt-4 pt-12">
                 <div>
                     <a href="#" class="block mt-4">
-                        <p class="mt-3 text-base dark:text-gray-400 text-gray-500" v-text="ticket.content"/>
+                        <div class="mt-2 dark:bg-gray-900 py-2 px-4 rounded-md dark:text-gray-400" v-text="ticket.content" />
                     </a>
                     <div class="mt-6 flex items-center">
                         <div class="flex-shrink-0">
@@ -53,8 +53,8 @@ export default {
     },
     computed: {
         readText() {
-            let reader = this.ticket.readers.find(x => x.id === this.$page.props.user.id);
-            return (this.ticket.readersagent_read_at) ? moment(this.ticket.agent_read_at).fromNow() : 'unread'
+            let reader = this.ticket.readers?.find(x => x.id === this.$page.props.user.id);
+            return (this.ticket.readers?.agent_read_at) ? moment(this.ticket.agent_read_at).fromNow() : 'unread'
         }
     }
 }

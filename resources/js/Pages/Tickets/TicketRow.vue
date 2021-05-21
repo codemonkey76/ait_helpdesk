@@ -67,10 +67,10 @@ export default {
     },
     computed: {
         unread() {
-            return !this.ticket.readers.find(x => x?.id === this.$page.props.user.id)
+            return !this.ticket.readers?.find(x => x?.id === this.$page.props.user.id)
         },
         closed() {
-            return this.ticket.status.final
+            return this.ticket.status?.final
         }
     }
 }

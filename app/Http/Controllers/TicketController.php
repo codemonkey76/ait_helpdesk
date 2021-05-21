@@ -43,7 +43,7 @@ class TicketController extends Controller
         $builder->whereIn('status_id', $statuses);
 
 
-        $tickets = $builder->paginate(15);
+        $tickets = $builder->with('user')->paginate(config('app.defaults.pagination'));
 
 
         return Inertia::render('Tickets/Index', compact('tickets'));
@@ -53,14 +53,16 @@ class TicketController extends Controller
     {
         Gate::forUser($request->user())->authorize('show', $ticket);
 
-        $responses = $ticket->responses()->with('user')->paginate(15);
+        //$responses = $ticket->responses()->with('user')->paginate(15);
 
+        $ticket->load('status', 'user');
         $ticket->readers()->syncWithoutDetaching($request->user()->id);
-        $responses->each(fn($response) => $response->readers()->syncWithoutDetaching($request->user()->id));
+        //$responses->each(fn($response) => $response->readers()->syncWithoutDetaching($request->user()->id));
         $statusOptions = TicketStatus::select(['id', 'name', 'description'])
             ->limit(500)
             ->get();
-        return Inertia::render('Tickets/Show', compact('ticket', 'responses', 'statusOptions'));
+        $activities = $ticket->activities()->latest()->with('subject')->paginate(config('app.defaults.pagination'));
+        return Inertia::render('Tickets/Show', compact('ticket', 'activities', 'statusOptions'));
     }
 
     public function create(Request $request): InertiaResponse
