@@ -15,10 +15,10 @@ class CompanySeeder extends Seeder
      */
     public function run()
     {
-        Organization::each(fn($org) =>
-            Company::factory()
-                ->count(mt_rand(1, 5))
-                ->create(['organization_id' => $org->id])
-        );
+//        Organization::each(fn($org) =>
+//            Company::factory()
+//                ->count(mt_rand(1, 5))
+//                ->create(['organization_id' => $org->id])
+//        );
     }
 }
