@@ -72,4 +72,13 @@ class TicketPolicy
 
         return false;
     }
+
+    public function edit(User $user, Ticket $ticket): bool
+    {
+        if ($user->hasPermissionTo('edit tickets')) {
+            return true;
+        }
+
+        return false;
+    }
 }

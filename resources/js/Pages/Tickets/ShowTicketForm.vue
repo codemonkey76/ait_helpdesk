@@ -3,7 +3,10 @@
         <div class="relative max-w-lg mx-auto divide-y-2 dark:divide-gray-600 divide-gray-200 lg:max-w-7xl">
             <div>
                 <div class="absolute -mt-12 right-0">
-                    <status-indicator :status_id="ticket.status_id" :options="$page.props.statusOptions" />
+                    <div class="flex">
+                        <jet-button-link v-if="$page.props.permissions.canEditTicket" class="mr-2" :href="route('tickets.edit', ticket.id)">Edit Ticket</jet-button-link>
+                        <status-indicator :status_id="ticket.status_id" :options="$page.props.statusOptions" />
+                    </div>
                 </div>
                 <h2 class="text-3xl tracking-tight font-extrabold dark:text-gray-200 text-gray-900 sm:text-4xl">
                     Ticket #<span v-text="ticket.id"></span>
@@ -40,11 +43,12 @@
 
 </template>
 <script>
+import JetButtonLink from "@/Jetstream/ButtonLink";
 import StatusIndicator from "@/Jetstream/StatusIndicator";
 import moment from "moment";
 
 export default {
-    components: {StatusIndicator},
+    components: {JetButtonLink, StatusIndicator},
     props: ['ticket'],
     methods: {
         ago(date) {

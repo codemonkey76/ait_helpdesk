@@ -54,6 +54,7 @@ class PermissionSeeder extends Seeder
 
         Permission::create(['name' => 'respond to all tickets']);
         Permission::create(['name' => 'respond to own company tickets']);
+        Permission::create(['name' => 'edit tickets']);
         Permission::create(['name' => 'change ticket status']);
         Permission::create(['name' => 'subscribe to tickets']);
 
@@ -105,6 +106,7 @@ class PermissionSeeder extends Seeder
         $agentRole->givePermissionTo('view team settings');
         $agentRole->givePermissionTo('create teams');
         $agentRole->givePermissionTo('list tickets');
+        $agentRole->givePermissionTo('edit tickets');
         $agentRole->givePermissionTo('view all tickets');
         $agentRole->givePermissionTo('change ticket status');
         $agentRole->givePermissionTo('respond to all tickets');

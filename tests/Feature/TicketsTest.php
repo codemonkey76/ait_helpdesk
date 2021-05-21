@@ -106,6 +106,51 @@ class TicketsTest extends TestCase
         $response->assertSessionHasErrors(['company_id']);
     }
 
+    public function test_agent_can_edit_ticket()
+    {
+        $ticket = Ticket::factory()->create(['user_id' => $this->standardUser, 'company_id' => $this->company1->id]);
+
+        $this->actingAs($this->agentUser)
+            ->get(route('tickets.edit', $ticket->id))
+            ->assertStatus(200);
+
+        $this->patch(route('tickets.update', $ticket->id), [
+            'subject'    => 'new subject',
+            'content'    => 'new content',
+            'company_id' => $this->company2->id
+        ])
+            ->assertSessionHasNoErrors()
+            ->assertRedirect(route('tickets.show', $ticket->id));
+        $this->assertDatabaseHas('tickets', [
+            'id'         => $ticket->id,
+            'subject'    => 'new subject',
+            'content'    => 'new content',
+            'company_id' => $this->company2->id
+        ]);
+    }
+
+    public function test_non_agent_cannot_edit_ticket()
+    {
+        $ticket = Ticket::factory()->create(['user_id' => $this->standardUser, 'company_id' => $this->company1->id]);
+
+        $this->actingAs($this->standardUser)
+            ->get(route('tickets.edit', $ticket->id))
+            ->assertStatus(403);
+
+        $this->patch(route('tickets.update', $ticket->id), [
+            'subject'    => 'new subject',
+            'content'    => 'new content',
+            'company_id' => $this->company2->id
+        ])
+            ->assertStatus(403);
+        $this->assertDatabaseHas('tickets', [
+            'id'         => $ticket->id,
+            'subject'    => $ticket->subject,
+            'content'    => $ticket->content,
+            'company_id' => $ticket->company_id
+        ]);
+    }
+
     public function test_agent_can_create_ticket_for_company_they_are_not_assigned_to()
     {
         $response = $this->actingAs($this->agentUser)->post('/tickets', [
@@ -118,12 +163,12 @@ class TicketsTest extends TestCase
             ->assertRedirect(route('tickets.index'));
 
         $this->assertDatabaseHas('tickets',
-        [
-            'subject' => 'test subject',
-            'content' => 'test content',
-            'company_id' => $this->company2->id,
-            'user_id' => $this->agentUser->id
-        ]);
+            [
+                'subject'    => 'test subject',
+                'content'    => 'test content',
+                'company_id' => $this->company2->id,
+                'user_id'    => $this->agentUser->id
+            ]);
 
 
     }

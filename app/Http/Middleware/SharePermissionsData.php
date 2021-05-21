@@ -37,6 +37,7 @@ class SharePermissionsData
                     'canViewTeamSettings'   => $request->user()?->hasPermissionTo('view team settings'),
                     'canSwitchTeams'        => $request->user()?->hasPermissionTo('switch teams'),
                     'canChangeTicketStatus' => $request->user()?->hasPermissionTo('change ticket status'),
+                    'canEditTicket' => $request->user()?->hasPermissionTo('edit tickets'),
                     'canCreateJob'          => $request->user()?->hasPermissionTo('create job'),
                     'isAgent'               => $request->user()?->hasRole('agent'),
                 ];

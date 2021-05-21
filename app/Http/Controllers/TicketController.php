@@ -131,4 +131,45 @@ class TicketController extends Controller
 
         return redirect()->route('tickets.index');
     }
+
+    public function edit(Request $request, Ticket $ticket): InertiaResponse
+    {
+        Gate::forUser($request->user())->authorize('edit', $ticket);
+
+        $companyOptions = $this->getCompanyOptions($request->user());
+
+        return Inertia::render('Tickets/Edit', compact('companyOptions'));
+    }
+    public function update(Request $request, Ticket $ticket)
+    {
+        Gate::forUser($request->user())->authorize('edit', $ticket);
+
+        $validated = $request->validate([
+            'subject'    => 'required|string',
+            'content'    => 'required|string',
+            'company_id' => [
+                'nullable',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($request->user()->hasPermissionTo('create ticket for unassigned companies')) {
+                        if (is_null(Company::find($value))) {
+                            $fail('The '.$attribute.' is invalid');
+                        }
+                    } else {
+                        if (DB::table('company_user')
+                                ->select('company_id', 'user_id')
+                                ->where('user_id', 1)
+                                ->where('company_id', $value)
+                                ->count() === 0) {
+                            $fail('The user is not assigned to this'.$attribute.'');
+                        }
+
+                    }
+                }
+            ]
+        ]);
+
+        $ticket->update($validated);
+
+        return redirect()->route('tickets.show', $ticket->id);
+    }
 }

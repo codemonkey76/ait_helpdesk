@@ -20941,19 +20941,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Jetstream_StatusIndicator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/StatusIndicator */ "./resources/js/Jetstream/StatusIndicator.vue");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Jetstream_ButtonLink__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/ButtonLink */ "./resources/js/Jetstream/ButtonLink.vue");
+/* harmony import */ var _Jetstream_StatusIndicator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/StatusIndicator */ "./resources/js/Jetstream/StatusIndicator.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    StatusIndicator: _Jetstream_StatusIndicator__WEBPACK_IMPORTED_MODULE_0__.default
+    JetButtonLink: _Jetstream_ButtonLink__WEBPACK_IMPORTED_MODULE_0__.default,
+    StatusIndicator: _Jetstream_StatusIndicator__WEBPACK_IMPORTED_MODULE_1__.default
   },
   props: ['ticket'],
   methods: {
     ago: function ago(date) {
-      return moment__WEBPACK_IMPORTED_MODULE_1___default()(date).fromNow();
+      return moment__WEBPACK_IMPORTED_MODULE_2___default()(date).fromNow();
     }
   },
   computed: {
@@ -20965,7 +20968,7 @@ __webpack_require__.r(__webpack_exports__);
       var reader = (_this$ticket$readers = this.ticket.readers) === null || _this$ticket$readers === void 0 ? void 0 : _this$ticket$readers.find(function (x) {
         return x.id === _this.$page.props.user.id;
       });
-      return (_this$ticket$readers2 = this.ticket.readers) !== null && _this$ticket$readers2 !== void 0 && _this$ticket$readers2.agent_read_at ? moment__WEBPACK_IMPORTED_MODULE_1___default()(this.ticket.agent_read_at).fromNow() : 'unread';
+      return (_this$ticket$readers2 = this.ticket.readers) !== null && _this$ticket$readers2 !== void 0 && _this$ticket$readers2.agent_read_at ? moment__WEBPACK_IMPORTED_MODULE_2___default()(this.ticket.agent_read_at).fromNow() : 'unread';
     }
   }
 });
@@ -31957,35 +31960,41 @@ var _hoisted_3 = {
   "class": "absolute -mt-12 right-0"
 };
 var _hoisted_4 = {
+  "class": "flex"
+};
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Edit Ticket");
+
+var _hoisted_6 = {
   "class": "text-3xl tracking-tight font-extrabold dark:text-gray-200 text-gray-900 sm:text-4xl"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Ticket #");
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Ticket #");
 
-var _hoisted_6 = {
+var _hoisted_8 = {
   "class": "mt-4 pt-12"
 };
-var _hoisted_7 = {
+var _hoisted_9 = {
   href: "#",
   "class": "block mt-4"
 };
-var _hoisted_8 = {
+var _hoisted_10 = {
   "class": "mt-6 flex items-center"
 };
-var _hoisted_9 = {
+var _hoisted_11 = {
   "class": "flex-shrink-0"
 };
-var _hoisted_10 = {
+var _hoisted_12 = {
   href: "#"
 };
-var _hoisted_11 = {
+var _hoisted_13 = {
   "class": "ml-3"
 };
-var _hoisted_12 = {
+var _hoisted_14 = {
   "class": "flex space-x-1 text-sm dark:text-gray-400 text-gray-500"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
   "aria-hidden": "true"
 }, "· Read: ", -1
 /* HOISTED */
@@ -31994,14 +32003,29 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _$props$ticket$user, _$props$ticket$user2;
 
+  var _component_jet_button_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-button-link");
+
   var _component_status_indicator = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("status-indicator");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_status_indicator, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_ctx.$page.props.permissions.canEditTicket ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_jet_button_link, {
+    key: 0,
+    "class": "mr-2",
+    href: _ctx.route('tickets.edit', $props.ticket.id)
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_5];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_status_indicator, {
     status_id: $props.ticket.status_id,
     options: _ctx.$page.props.statusOptions
   }, null, 8
   /* PROPS */
-  , ["status_id", "options"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  , ["status_id", "options"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
     textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.ticket.id)
   }, null, 8
   /* PROPS */
@@ -32010,12 +32034,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.ticket.subject)
   }, null, 8
   /* PROPS */
-  , ["textContent"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  , ["textContent"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
     "class": "mt-2 dark:bg-gray-900 py-2 px-4 rounded-md dark:text-gray-400",
     textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.ticket.content)
   }, null, 8
   /* PROPS */
-  , ["textContent"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  , ["textContent"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
     "class": "sr-only",
     textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$ticket$user = $props.ticket.user) === null || _$props$ticket$user === void 0 ? void 0 : _$props$ticket$user.name)
   }, null, 8
@@ -32026,16 +32050,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     alt: ""
   }, null, 8
   /* PROPS */
-  , ["src"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+  , ["src"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
     "class": "text-sm font-medium dark:text-gray-200 text-gray-900",
     textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$props$ticket$user2 = $props.ticket.user) === null || _$props$ticket$user2 === void 0 ? void 0 : _$props$ticket$user2.name)
   }, null, 8
   /* PROPS */
-  , ["textContent"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  , ["textContent"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
     textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.ago($props.ticket.created_at))
   }, null, 8
   /* PROPS */
-  , ["textContent"]), _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  , ["textContent"]), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
     textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.readText)
   }, null, 8
   /* PROPS */
