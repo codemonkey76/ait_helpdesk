@@ -138,7 +138,7 @@ class TicketController extends Controller
 
         $companyOptions = $this->getCompanyOptions($request->user());
 
-        return Inertia::render('Tickets/Edit', compact('companyOptions'));
+        return Inertia::render('Tickets/Edit', compact('ticket', 'companyOptions'));
     }
     public function update(Request $request, Ticket $ticket)
     {

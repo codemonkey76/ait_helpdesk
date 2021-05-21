@@ -4,7 +4,7 @@
             Ticket Activity
         </h2>
         <jet-section-border />
-        <div v-if="!activities || !activities.total" class="text-center dark:text-gray-400 text-gray-500 italic">
+        <div v-if="!activities || !activities.total" class="text-center dark:text-gray-400 text-gray-500 italic mb-2">
             No activity at this time
         </div>
         <div v-else v-for="activity in activities.data">
