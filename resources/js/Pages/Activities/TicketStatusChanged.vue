@@ -1,5 +1,5 @@
 <template>
-    <div class="dark:bg-gray-800 rounded-md shadow-lg dark:text-gray-400 py-2 px-4">
+    <div class="dark:bg-gray-800 bg-white text-gray-600 rounded-md shadow-lg dark:text-gray-400 py-2 px-4">
         <div class="text-sm italic" v-text="ago(statusChange.created_at)"></div>
         <div class="mt-2">
             {{ statusChange.user?.userType }}
