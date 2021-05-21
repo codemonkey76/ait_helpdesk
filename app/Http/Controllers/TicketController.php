@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Ticket;
 use App\Models\TicketStatus;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 
@@ -36,7 +37,7 @@ class TicketController extends Controller
             $builder->where('user_id', $request->user()->id);
         }
 
-        $filters = (array)$request->user()->filters;
+        $filters = (array) $request->user()->filters;
         $selected = array_filter(array_keys($filters), fn($v, $k) => array_values($filters)[$k], ARRAY_FILTER_USE_BOTH);
         $statuses = TicketStatus::whereIn(DB::raw('lower(name)'), $selected)->pluck('id')->toArray();
 
@@ -65,14 +66,24 @@ class TicketController extends Controller
         return Inertia::render('Tickets/Show', compact('ticket', 'activities', 'statusOptions'));
     }
 
+    private function getCompanyOptions(User $user): \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
+    {
+        if ($user->hasPermissionTo('create ticket for unassigned companies')) {
+            return Company::select('id', 'name')->limit(500)->get();
+        }
+
+        return $user->companies()
+            ->select('companies.id', 'companies.name')
+            ->limit(500)
+            ->get();
+    }
+
     public function create(Request $request): InertiaResponse
     {
         Gate::forUser($request->user())->authorize('create', Ticket::class);
 
-        $companyOptions = $request->user()->companies()
-            ->select('companies.id', 'companies.name')
-            ->limit(500)
-            ->get();
+        $companyOptions = $this->getCompanyOptions($request->user());
+
         return Inertia::render('Tickets/Create', compact('companyOptions'));
     }
 
@@ -85,9 +96,22 @@ class TicketController extends Controller
             'content'    => 'required|string',
             'company_id' => [
                 'nullable',
-                Rule::exists('company_user')
-                    ->where(fn($query) => $query->where('user_id', $request->user()->id)
-                        ->where('company_id', $request->company_id))
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($request->user()->hasPermissionTo('create ticket for unassigned companies')) {
+                        if (is_null(Company::find($value))) {
+                            $fail('The '.$attribute.' is invalid');
+                        }
+                    } else {
+                        if (DB::table('company_user')
+                                ->select('company_id', 'user_id')
+                                ->where('user_id', 1)
+                                ->where('company_id', $value)
+                                ->count() === 0) {
+                            $fail('The user is not assigned to this'.$attribute.'');
+                        }
+
+                    }
+                }
             ]
         ]);
         $validated['user_id'] = $request->user()->id;

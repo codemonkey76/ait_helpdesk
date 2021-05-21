@@ -89,7 +89,7 @@ class TicketsTest extends TestCase
         $response->assertStatus(403);
     }
 
-    public function test_user_cannot_create_tickets_for_a_company_they_are_not_assigned_to()
+    public function test_non_agent_cannot_create_tickets_for_a_company_they_are_not_assigned_to()
     {
         // Given we have user attached to company 1
         $this->company1->users()->attach([$this->standardUser->id]);
@@ -104,6 +104,28 @@ class TicketsTest extends TestCase
         ]);
 
         $response->assertSessionHasErrors(['company_id']);
+    }
+
+    public function test_agent_can_create_ticket_for_company_they_are_not_assigned_to()
+    {
+        $response = $this->actingAs($this->agentUser)->post('/tickets', [
+            'subject'    => 'test subject',
+            'content'    => 'test content',
+            'company_id' => $this->company2->id
+        ]);
+
+        $response->assertSessionHasNoErrors()
+            ->assertRedirect(route('tickets.index'));
+
+        $this->assertDatabaseHas('tickets',
+        [
+            'subject' => 'test subject',
+            'content' => 'test content',
+            'company_id' => $this->company2->id,
+            'user_id' => $this->agentUser->id
+        ]);
+
+
     }
 
     public function test_user_cannot_view_ticket_they_created_if_they_are_no_longer_assigned_to_that_company()
@@ -168,10 +190,10 @@ class TicketsTest extends TestCase
         $response->assertRedirect(route('tickets.show', $ticket->id));
 
         $this->assertDatabaseHas('tickets', [
-            'id' => $ticket->id,
-            'user_id' => $this->standardUser->id,
+            'id'         => $ticket->id,
+            'user_id'    => $this->standardUser->id,
             'company_id' => $this->company1->id,
-            'status_id' => TICKET_STATUS::BILLING
+            'status_id'  => TICKET_STATUS::BILLING
         ]);
     }
 
@@ -189,10 +211,10 @@ class TicketsTest extends TestCase
         $response->assertStatus(403);
 
         $this->assertDatabaseMissing('tickets', [
-            'id' => $ticket->id,
-            'user_id' => $this->standardUser->id,
+            'id'         => $ticket->id,
+            'user_id'    => $this->standardUser->id,
             'company_id' => $this->company1->id,
-            'status_id' => TICKET_STATUS::BILLING
+            'status_id'  => TICKET_STATUS::BILLING
         ]);
     }
 
@@ -208,8 +230,8 @@ class TicketsTest extends TestCase
         $response->assertStatus(403);
 
         $this->assertDatabaseHas('tickets', [
-            'id' => $ticket->id,
-            'user_id' => $this->standardUser->id,
+            'id'         => $ticket->id,
+            'user_id'    => $this->standardUser->id,
             'company_id' => $this->company1->id,
         ]);
     }
