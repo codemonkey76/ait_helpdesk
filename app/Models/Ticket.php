@@ -69,7 +69,7 @@ class Ticket extends Model
 
     #[Pure] public function getExcerptAttribute(): string
     {
-        return Str::limit($this->attributes['content'], Ticket::EXCERPT_LENGTH);
+        return Str::limit(strip_tags(str_replace('<', ' <', $this->attributes['content'])), Ticket::EXCERPT_LENGTH);
     }
 
     public function responses(): HasMany

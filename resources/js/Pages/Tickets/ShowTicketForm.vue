@@ -16,7 +16,7 @@
             <div class="mt-4 pt-12">
                 <div>
                     <a href="#" class="block mt-4">
-                        <div class="mt-2 dark:bg-gray-900 py-2 px-4 rounded-md dark:text-gray-400" v-text="ticket.content" />
+                        <div class="mt-2 dark:bg-gray-900 py-2 px-4 rounded-md dark:text-gray-400" v-html="ticket.content" />
                     </a>
                     <div class="mt-6 flex items-center">
                         <div class="flex-shrink-0">

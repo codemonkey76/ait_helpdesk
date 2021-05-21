@@ -26,6 +26,8 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-inline": "^27.1.0",
+        "@ckeditor/ckeditor5-vue": "^2.0.1",
         "litepie-datepicker": "^1.0.14",
         "moment": "^2.29.1",
         "vue-invisible-recaptcha": "^0.2.1"
