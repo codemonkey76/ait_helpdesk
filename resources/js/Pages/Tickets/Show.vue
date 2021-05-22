@@ -14,7 +14,6 @@
 
                 <div>
                     <ticket-activity-list :activities="$page.props.activities" />
-<!--                    <ticket-response-list :ticket="$page.props.ticket" :responses="$page.props.responses.data"/>-->
 
                     <jet-section-border />
                 </div>
@@ -65,6 +64,6 @@ export default {
                 preserveScroll: true
             })
         }
-    }
+    },
 }
 </script>

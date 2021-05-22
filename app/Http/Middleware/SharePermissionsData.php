@@ -39,6 +39,10 @@ class SharePermissionsData
                     'canChangeTicketStatus' => $request->user()?->hasPermissionTo('change ticket status'),
                     'canEditTicket' => $request->user()?->hasPermissionTo('edit tickets'),
                     'canCreateJob'          => $request->user()?->hasPermissionTo('create job'),
+                    'canEditAllResponses' => $request->user()?->hasPermissionTo('edit all responses'),
+                    'canEditOwnResponse' => $request->user()?->hasPermissionTo('edit own response'),
+                    'canDeleteAllResponses' => $request->user()?->hasPermissionTo('delete all responses'),
+                    'canDeleteOwnResponse' => $request->user()?->hasPermissionTo('delete own response'),
                     'isAgent'               => $request->user()?->hasRole('agent'),
                 ];
             },

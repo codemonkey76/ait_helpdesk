@@ -38,6 +38,10 @@ class TicketResponse extends Model
 
             $response->readers()->sync([$response->user_id]);
         });
+
+        static::deleting(function (TicketResponse $response) {
+           $response->activity()->delete();
+        });
     }
 
     public function ticket(): BelongsTo

@@ -18,8 +18,7 @@
 
             <div class="col-span-6">
                 <jet-label for="content" value="Content" />
-                <editor id="content" class="mt-1 block w-full" v-model="form.content"></editor>
-<!--                <jet-text id="content" tclass="mt-1 block w-full" v-model="form.content" autofocus />-->
+                <editor id="content" v-model="form.content"></editor>
                 <jet-input-error :message="form.errors.content" class="mt-2" />
             </div>
 

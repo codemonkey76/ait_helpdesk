@@ -1,5 +1,5 @@
 <template>
-    <jet-form-section @submitted="createResponse">
+    <jet-form-section @submitted="updateResponse">
         <template #title>
             Response Details
         </template>
@@ -15,22 +15,11 @@
                 <jet-input-error :message="form.errors.content" class="mt-2" />
             </div>
 
-            <div v-if="$page.props.permissions.canChangeTicketStatus" class="col-span-6">
-                <jet-label for="status_id" value="Status" />
-                <jet-select
-                    id="status_id"
-                    :options="$page.props.statusOptions"
-                    v-model="form.status_id">
-                </jet-select>
-                <span class="text-gray-500 ml-2" v-text="statusDescription(form.status_id)" />
-                <jet-input-error :message="form.errors.status_id" class="mt-2" />
-            </div>
-
         </template>
 
         <template #actions>
             <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save
+                Update
             </jet-button>
         </template>
     </jet-form-section>
@@ -59,25 +48,22 @@ export default {
         JetSelect,
         JetText
     },
-    props: ['status', 'ticket'],
+    props: ['response'],
     data() {
         return {
             form: this.$inertia.form({
-                content: '',
-                status_id: this.ticket.status_id
+                _method: 'PATCH',
+                content: this.response.content,
             })
         }
     },
     methods: {
-        createResponse() {
-            this.form.post(route('tickets.responses.store', this.ticket.id), {
-                errorBag: 'createResponse',
+        updateResponse() {
+            this.form.patch(route('tickets.responses.update', [this.response.ticket_id, this.response.id]), {
+                errorBag: 'updateResponse',
                 preserveScroll: true
             });
         },
-        statusDescription(id) {
-            return this.status.find(x => parseInt(x.id) === parseInt(id))?.description
-        }
     },
 }
 </script>

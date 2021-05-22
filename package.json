@@ -26,6 +26,7 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^27.1.0",
         "@ckeditor/ckeditor5-build-inline": "^27.1.0",
         "@ckeditor/ckeditor5-vue": "^2.0.1",
         "litepie-datepicker": "^1.0.14",

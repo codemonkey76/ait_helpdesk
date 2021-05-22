@@ -2,13 +2,13 @@
     <app-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Create Response
+                Edit Response
             </h2>
         </template>
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <create-response-form :ticket="$page.props.ticket" :status="$page.props.statusOptions"/>
+                <edit-response-form :response="$page.props.response" />
             </div>
         </div>
     </app-layout>
@@ -16,12 +16,12 @@
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
-import CreateResponseForm from './CreateResponseForm'
+import EditResponseForm from './EditResponseForm'
 
 export default {
     components: {
         AppLayout,
-        CreateResponseForm,
+        EditResponseForm,
     },
 }
 </script>

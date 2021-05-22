@@ -6,7 +6,8 @@
 </template>
 
 <script>
-import InlineEditor from '@ckeditor/ckeditor5-build-inline'
+
+import InlineEditor from '@ckeditor/ckeditor5-build-classic'
 export default {
     name: "Editor",
     props: ['modelValue'],

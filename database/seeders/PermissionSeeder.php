@@ -51,8 +51,11 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'view own company tickets']);
         Permission::create(['name' => 'create job card']);
         Permission::create(['name' => 'create job']);
-
+        Permission::create(['name' => 'delete own response']);
+        Permission::create(['name' => 'delete all responses']);
         Permission::create(['name' => 'respond to all tickets']);
+        Permission::create(['name' => 'edit own response']);
+        Permission::create(['name' => 'edit all responses']);
         Permission::create(['name' => 'respond to own company tickets']);
         Permission::create(['name' => 'edit tickets']);
         Permission::create(['name' => 'change ticket status']);
@@ -78,7 +81,9 @@ class PermissionSeeder extends Seeder
         $adminRole->givePermissionTo('delete companies');
         $adminRole->givePermissionTo('delete notes');
         $adminRole->givePermissionTo('delete users');
-        $adminRole->givePermissionto('delete tickets');
+        $adminRole->givePermissionTo('delete tickets');
+        $adminRole->givePermissionTo('edit all responses');
+        $adminRole->givePermissionTo('delete all responses');
 
         $managerRole = Role::create(['name' => 'manager']);
         $managerRole->givePermissionTo('view own company tickets');
@@ -112,6 +117,8 @@ class PermissionSeeder extends Seeder
         $agentRole->givePermissionTo('respond to all tickets');
         $agentRole->givePermissionTo('create job');
         $agentRole->givePermissionTo('create ticket for unassigned companies');
+        $agentRole->givePermissionTo('edit own response');
+        $agentRole->givePermissionTo('delete own response');
 
         $userRole = Role::create(['name' => 'user']);
         $userRole->givePermissionTo('create tickets');

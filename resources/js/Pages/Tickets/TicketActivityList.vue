@@ -26,6 +26,6 @@ import TicketStatusChanged from "@/Pages/Activities/TicketStatusChanged";
 import TicketResponseCard from "@/Pages/Tickets/TicketResponseCard";
 export default {
     components: {Paginator, TicketResponse, TicketResponseCard, TicketStatusChanged, TicketJob, JetSectionBorder},
-    props: ['activities']
+    props: ['activities'],
 }
 </script>

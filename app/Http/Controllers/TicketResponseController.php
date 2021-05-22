@@ -47,4 +47,40 @@ class TicketResponseController extends Controller
 
         return redirect()->route('tickets.show', $ticket->id);
     }
+
+    public function destroy(Request $request, Ticket $ticket, TicketResponse $response): RedirectResponse
+    {
+        Gate::forUser($request->user())->authorize('destroy', $response);
+
+        $response->delete();
+
+        return redirect()->route('tickets.show', $ticket->id);
+    }
+
+    public function edit(Request $request, Ticket $ticket, TicketResponse $response): InertiaResponse
+    {
+        Gate::forUser($request->user())->authorize('edit', $response);
+
+        $statusOptions = TicketStatus::select(['id', 'name', 'description'])
+            ->limit(500)
+            ->get();
+
+        $response->load('ticket');
+
+        return Inertia::render('Responses/Edit', compact('statusOptions', 'response'));
+    }
+
+    public function update(Request $request, Ticket $ticket, TicketResponse $response): RedirectResponse
+    {
+        Gate::forUSer($request->user())->authorize('edit', $response);
+
+        $validated = $request->validate([
+            'content' => 'required'
+        ]);
+
+        $response->update($validated);
+
+        return redirect()->route('tickets.show', $ticket->id);
+    }
+
 }
