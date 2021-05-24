@@ -24,7 +24,7 @@
                             @close-modal="closeModal">
                         </note-create-modal>
 
-                        <jet-search class="ml-2 flex-1" :search-route="route('organizations.show', $page.props.organization.id)"></jet-search>
+                        <jet-search class="ml-2 flex-1" :search-route="route('organizations.show', $page.props.organization.id)" :search="$page.props.q"></jet-search>
 
                     </div>
 

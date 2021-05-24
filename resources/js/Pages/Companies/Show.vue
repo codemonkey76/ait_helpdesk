@@ -21,7 +21,7 @@
                             noteable-type="company"
                             @close-modal="closeModal">
                         </note-create-modal>
-                        <jet-search class="ml-2 flex-1" :search-route="route('companies.show', $page.props.company.id)"></jet-search>
+                        <jet-search class="ml-2 flex-1" :search-route="route('companies.show', $page.props.company.id)" :search="$page.props.q"></jet-search>
 
                     </div>
                     <notes-list :notes="$page.props.notes"/>

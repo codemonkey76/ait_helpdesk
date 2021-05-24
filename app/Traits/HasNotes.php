@@ -10,7 +10,7 @@ trait HasNotes
     public function notes()
     {
         return $this->morphMany(Note::class, 'noteable')
-            ->orderBy('is_favorite', 'desc')
+            ->orderBy('is_pinned', 'desc')
             ->orderBy('created_at', 'desc');
     }
 }

@@ -52,7 +52,8 @@ class CompanyController extends Controller
         else
             $companies = Company::paginate(config('app.defaults.pagination'));
 
-        return Inertia::render('Companies/Index', compact('companies'));
+        $q = $request->q;
+        return Inertia::render('Companies/Index', compact('companies', 'q'));
     }
 
     /**
@@ -73,7 +74,8 @@ class CompanyController extends Controller
         else
             $notes = $company->notes()->paginate(15);
 
-        return Inertia::render('Companies/Show', compact('company', 'notes'));
+        $q = $request->q;
+        return Inertia::render('Companies/Show', compact('company', 'notes', 'q'));
     }
 
     /**

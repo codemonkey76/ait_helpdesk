@@ -20,7 +20,7 @@
 
 <script>
 export default {
-    props: ['searchRoute'],
+    props: ['searchRoute', 'search'],
 
     methods: {
         searchModel() {
@@ -32,7 +32,7 @@ export default {
     data() {
         return {
             form: this.$inertia.form({
-                q: '',
+                q: this.search,
             }),
 
         }

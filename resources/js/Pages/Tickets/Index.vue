@@ -12,7 +12,7 @@
                     <jet-button-link :href="route('tickets.create')">
                         Create
                     </jet-button-link>
-                    <jet-search class="ml-4 w-full" :search-route="route('tickets.index')"></jet-search>
+                    <jet-search class="ml-4 w-full" :search-route="route('tickets.index')" :search="$page.props.q"></jet-search>
                 </div>
                 <div class="w-full flex justify-center">
                     <jet-button-group class="my-1">

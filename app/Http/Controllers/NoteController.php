@@ -11,12 +11,7 @@ use Illuminate\Http\Request;
 class NoteController extends Controller
 {
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return RedirectResponse
-     */
+
     public function store(Request $request): RedirectResponse
     {
         $creator = app(CreateNote::class);
@@ -26,7 +21,7 @@ class NoteController extends Controller
         return back();
     }
 
-    public function destroy(Request $request, Note $note)
+    public function destroy(Request $request, Note $note): RedirectResponse
     {
         app(DeleteNote::class)->delete($request->user(), $note);
         return back();

@@ -41,13 +41,14 @@ class TicketController extends Controller
         $selected = array_filter(array_keys($filters), fn($v, $k) => array_values($filters)[$k], ARRAY_FILTER_USE_BOTH);
         $statuses = TicketStatus::whereIn(DB::raw('lower(name)'), $selected)->pluck('id')->toArray();
 
+        $builder = Ticket::whereIn('id', $builder->get()->pluck('id'));
         $builder->whereIn('status_id', $statuses);
 
 
         $tickets = $builder->with('user')->paginate(config('app.defaults.pagination'));
 
-
-        return Inertia::render('Tickets/Index', compact('tickets'));
+        $q = $request->q;
+        return Inertia::render('Tickets/Index', compact('tickets', 'q'));
     }
 
     public function show(Request $request, Ticket $ticket): InertiaResponse

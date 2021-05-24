@@ -5,52 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6f6d0bc-ad43-488c-86b8-0813f7b93565" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/Permission.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Role.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Permissions/Create.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Permissions/CreatePermissionForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Permissions/DeletePermissionForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Permissions/Edit.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Permissions/EditPermissionForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Permissions/Index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Permissions/PermissionList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Roles/Create.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Roles/CreateRoleForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Roles/DeleteRoleForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Roles/Edit.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Roles/EditRoleForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Roles/Index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Roles/PermissionAttachForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Roles/RoleList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserCompanyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserCompanyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/SharePermissionsData.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/SharePermissionsData.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/PermissionSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/PermissionSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/TicketResponseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/TicketResponseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbfile.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/7.4/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/7.4/php.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/7.4/start-container" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/7.4/supervisord.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/8.0/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/8.0/php.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/8.0/start-container" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/8.0/supervisord.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CompanyNoteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CompanyNoteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NoteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NoteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrganizationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrganizationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrganizationNoteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrganizationNoteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Traits/HasNotes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/HasNotes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Companies/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Organizations/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Organizations/EditOrganizationForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/EditOrganizationForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Tickets/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Tickets/Show.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Users/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Users/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Jetstream/Search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Jetstream/Search.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Companies/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Companies/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Companies/Show.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Organizations/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Organizations/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Organizations/Show.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Tickets/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Tickets/Index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,9 +229,12 @@
     <property name="credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm" value="Docker Compose" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="ReaderModeSettings">
+    <option name="showLigatures" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -299,10 +271,10 @@
     </configuration>
     <list>
       <item itemvalue="PHPUnit.phpunit.xml" />
-      <item itemvalue="PHPUnit.PermissionsTest.test_non_admin_cannot_create_role" />
       <item itemvalue="PHPUnit.PermissionsTest.test_admin_can_edit_and_assign_permission_to_role" />
-      <item itemvalue="PHPUnit.PermissionsTest.test_non_admin_cannot_edit_or_assign_permission_to_role" />
       <item itemvalue="PHPUnit.PermissionsTest.test_admin_can_remove_permission_from_role" />
+      <item itemvalue="PHPUnit.PermissionsTest.test_non_admin_cannot_create_role" />
+      <item itemvalue="PHPUnit.PermissionsTest.test_non_admin_cannot_edit_or_assign_permission_to_role" />
       <item itemvalue="PHPUnit.PermissionsTest.test_non_admin_cannot_remove_permission_from_role" />
     </list>
     <recent_temporary>
@@ -347,6 +319,8 @@
       <workItem from="1621395576073" duration="5229000" />
       <workItem from="1621401446119" duration="2828000" />
       <workItem from="1621807320561" duration="17471000" />
+      <workItem from="1621897736066" duration="32000" />
+      <workItem from="1621897781701" duration="1161000" />
     </task>
     <servers />
   </component>
@@ -370,9 +344,9 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ait_helpdesk@Feature.xml" NAME="Feature Coverage Results" MODIFIED="1621399683741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/ait_helpdesk@tests.xml" NAME="tests Coverage Results" MODIFIED="1621399472811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/ait_helpdesk@OrganizationNoteTest.xml" NAME="OrganizationNoteTest Coverage Results" MODIFIED="1621399644127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/ait_helpdesk@AuthenticationTest.xml" NAME="AuthenticationTest Coverage Results" MODIFIED="1621399427265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ait_helpdesk@tests.xml" NAME="tests Coverage Results" MODIFIED="1621399472811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ait_helpdesk@Feature.xml" NAME="Feature Coverage Results" MODIFIED="1621399683741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

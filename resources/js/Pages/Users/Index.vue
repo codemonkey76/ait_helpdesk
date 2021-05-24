@@ -8,7 +8,7 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <jet-search class="w-full" :search-route="route('users.index')"></jet-search>
+                <jet-search class="w-full" :search-route="route('users.index')" :search="$page.props.q"></jet-search>
 
                 <user-list :users="$page.props.users" />
             </div>

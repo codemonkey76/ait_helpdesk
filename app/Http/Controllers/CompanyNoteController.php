@@ -9,9 +9,6 @@ use Inertia\Response as InertiaResponse;
 
 class CompanyNoteController extends Controller
 {
-    /**
-     * @return InertiaResponse
-     */
     public function create(): InertiaResponse
     {
         return Inertia::render('Notes/Create');

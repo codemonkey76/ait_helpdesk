@@ -33,7 +33,8 @@ class UserController extends Controller
             $users = User::paginate(15);
         }
 
-        return Inertia::render('Users/Index', compact('users'));
+        $q = $request->q;
+        return Inertia::render('Users/Index', compact('users', 'q'));
     }
 
     public function show(Request $request, User $user): InertiaResponse

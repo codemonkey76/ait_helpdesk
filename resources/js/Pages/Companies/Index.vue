@@ -12,7 +12,7 @@
                     <jet-button-link :href="route('companies.create')">
                         Create
                     </jet-button-link>
-                    <jet-search class="ml-4 w-full" :search-route="route('companies.index')"></jet-search>
+                    <jet-search class="ml-4 w-full" :search-route="route('companies.index')" :search="$page.props.q"></jet-search>
                 </div>
                 <company-list :companies="$page.props.companies" />
             </div>
