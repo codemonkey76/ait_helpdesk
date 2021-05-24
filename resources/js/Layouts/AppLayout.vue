@@ -33,7 +33,12 @@
                                 <jet-nav-link v-show="$page.props.permissions.canListUsers" :href="route('users.index')" :active="route().current('users.*')">
                                     Users
                                 </jet-nav-link>
-
+                                <jet-nav-link v-show="$page.props.permissions.canListRoles" :href="route('roles.index')" :active="route().current('roles.*')">
+                                    Roles
+                                </jet-nav-link>
+                                <jet-nav-link v-show="$page.props.permissions.canListPermissions" :href="route('permissions.index')" :active="route().current('permissions.*')">
+                                    Permissions
+                                </jet-nav-link>
                             </div>
                         </div>
 
@@ -168,6 +173,12 @@
                         </jet-responsive-nav-link>
                         <jet-responsive-nav-link v-show="$page.props.permissions.canListUsers" :href="route('users.index')" :active="route().current('users.*')">
                             Users
+                        </jet-responsive-nav-link>
+                        <jet-responsive-nav-link v-show="$page.props.permissions.canListRoles" :href="route('roles.index')" :active="route().current('roles.*')">
+                            Roles
+                        </jet-responsive-nav-link>
+                        <jet-responsive-nav-link v-show="$page.props.permissions.canListPermissions" :href="route('permissions.index')" :active="route().current('permissions.*')">
+                            Permissions
                         </jet-responsive-nav-link>
 
 

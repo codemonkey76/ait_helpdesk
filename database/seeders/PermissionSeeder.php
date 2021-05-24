@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 
 class PermissionSeeder extends Seeder
@@ -24,24 +24,29 @@ class PermissionSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         // create permissions
+
+        // Organizations
         Permission::create(['name' => 'list organizations']);
         Permission::create(['name' => 'show organizations']);
         Permission::create(['name' => 'create organizations']);
         Permission::create(['name' => 'update organizations']);
         Permission::create(['name' => 'delete organizations']);
 
+        // Companies
         Permission::create(['name' => 'list companies']);
         Permission::create(['name' => 'show companies']);
         Permission::create(['name' => 'create companies']);
         Permission::create(['name' => 'update companies']);
         Permission::create(['name' => 'delete companies']);
 
+        // Notes
         Permission::create(['name' => 'list notes']);
         Permission::create(['name' => 'pin notes']);
         Permission::create(['name' => 'unpin notes']);
         Permission::create(['name' => 'delete notes']);
         Permission::create(['name' => 'create notes']);
 
+        // Tickets
         Permission::create(['name' => 'list tickets']);
         Permission::create(['name' => 'list own tickets']);
         Permission::create(['name' => 'create tickets']);
@@ -49,26 +54,49 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'view all tickets']);
         Permission::create(['name' => 'delete tickets']);
         Permission::create(['name' => 'view own company tickets']);
-        Permission::create(['name' => 'create job card']);
-        Permission::create(['name' => 'create job']);
+        Permission::create(['name' => 'edit tickets']);
+        Permission::create(['name' => 'change ticket status']);
+        Permission::create(['name' => 'subscribe to tickets']);
+
+        // Responses
         Permission::create(['name' => 'delete own response']);
         Permission::create(['name' => 'delete all responses']);
         Permission::create(['name' => 'respond to all tickets']);
         Permission::create(['name' => 'edit own response']);
         Permission::create(['name' => 'edit all responses']);
         Permission::create(['name' => 'respond to own company tickets']);
-        Permission::create(['name' => 'edit tickets']);
-        Permission::create(['name' => 'change ticket status']);
-        Permission::create(['name' => 'subscribe to tickets']);
 
+        // Jobs
+        Permission::create(['name' => 'create job']);
+        // Job Cards
+        Permission::create(['name' => 'create job card']);
+
+        // Users
         Permission::create(['name' => 'list users']);
         Permission::create(['name' => 'show users']);
         Permission::create(['name' => 'delete users']);
         Permission::create(['name' => 'update users']);
+        Permission::create(['name' => 'attach companies']);
+        Permission::create(['name' => 'detach companies']);
 
+        // Teams
         Permission::create(['name' => 'view team settings']);
         Permission::create(['name' => 'create teams']);
         Permission::create(['name' => 'switch teams']);
+
+        // Permissions
+        Permission::create(['name' => 'list permissions']);
+        Permission::create(['name' => 'delete permissions']);
+        Permission::create(['name' => 'edit permissions']);
+        Permission::create(['name' => 'create permissions']);
+
+        Permission::create(['name' => 'list roles']);
+        Permission::create(['name' => 'delete roles']);
+        Permission::create(['name' => 'edit roles']);
+        Permission::create(['name' => 'create roles']);
+
+        Permission::create(['name' => 'attach permissions']);
+        Permission::create(['name' => 'detach permissions']);
 
         $superAdminRole = Role::create(['name' => 'super-admin']);
 
@@ -84,6 +112,18 @@ class PermissionSeeder extends Seeder
         $adminRole->givePermissionTo('delete tickets');
         $adminRole->givePermissionTo('edit all responses');
         $adminRole->givePermissionTo('delete all responses');
+        $adminRole->givePermissionTo('list permissions');
+        $adminRole->givePermissionTo('edit permissions');
+        $adminRole->givePermissionTo('create permissions');
+        $adminRole->givePermissionTo('delete permissions');
+        $adminRole->givePermissionTo('list roles');
+        $adminRole->givePermissionTo('edit roles');
+        $adminRole->givePermissionTo('create roles');
+        $adminRole->givePermissionTo('delete roles');
+        $adminRole->givePermissionTo('create job card');
+        $adminRole->givePermissionTo('attach permissions');
+        $adminRole->givePermissionTo('detach permissions');
+
 
         $managerRole = Role::create(['name' => 'manager']);
         $managerRole->givePermissionTo('view own company tickets');
@@ -119,6 +159,8 @@ class PermissionSeeder extends Seeder
         $agentRole->givePermissionTo('create ticket for unassigned companies');
         $agentRole->givePermissionTo('edit own response');
         $agentRole->givePermissionTo('delete own response');
+        $agentRole->givePermissionTo('attach companies');
+        $agentRole->givePermissionTo('detach companies');
 
         $userRole = Role::create(['name' => 'user']);
         $userRole->givePermissionTo('create tickets');

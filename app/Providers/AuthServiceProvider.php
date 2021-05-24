@@ -2,15 +2,16 @@
 
 namespace App\Providers;
 
-use App\Models\{Company, Note, Organization, Team, Ticket, TicketResponse, User};
+use App\Models\{Company, Note, Organization, Permission, Role, Team, Ticket, TicketResponse, User};
 use App\Policies\{CompanyPolicy,
     NotePolicy,
     OrganizationPolicy,
+    PermissionPolicy,
+    RolePolicy,
     TeamPolicy,
     TicketPolicy,
     TicketResponsePolicy,
-    UserPolicy
-};
+    UserPolicy};
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -30,7 +31,9 @@ class AuthServiceProvider extends ServiceProvider
         Note::class           => NotePolicy::class,
         Ticket::class         => TicketPolicy::class,
         TicketResponse::class => TicketResponsePolicy::class,
-        User::class           => UserPolicy::class
+        User::class           => UserPolicy::class,
+        Permission::class => PermissionPolicy::class,
+        Role::class => RolePolicy::class
     ];
 
     /**

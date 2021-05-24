@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Company;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -12,7 +13,6 @@ use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 use Laravel\Jetstream\Contracts\DeletesUsers;
-use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {

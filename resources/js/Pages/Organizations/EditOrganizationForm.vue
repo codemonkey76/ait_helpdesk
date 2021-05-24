@@ -63,20 +63,20 @@ export default {
         JetCombo,
         JetSelect
     },
-
+    props: ['organization'],
     data() {
         return {
             form: this.$inertia.form({
                 _method: 'PUT',
-                name: this.$page.props.organization.name,
-                head_office_id: this.$page.props.organization.head_office_id
+                name: this.organization.name,
+                head_office_id: this.organization.head_office_id
             }),
         }
     },
 
     methods: {
         updateOrganization() {
-            this.form.post(route('organizations.update', this.$page.props.organization.id), {
+            this.form.post(route('organizations.update', this.organization.id), {
                 errorBag: 'updateOrganization',
                 preserveScroll: true
             });

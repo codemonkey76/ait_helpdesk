@@ -16,8 +16,6 @@
 
                 <div v-show="$page.props.permissions.canDeleteOrganizations">
                     <delete-organization-form class="mt-10 sm:mt-0" :organization="$page.props.organization"/>
-
-                    <jet-section-border />
                 </div>
             </div>
         </div>

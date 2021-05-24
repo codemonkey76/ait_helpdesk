@@ -10,9 +10,12 @@ use App\Http\Controllers\NotePinController;
 use App\Http\Controllers\OrganizationNoteController;
 use App\Http\Controllers\OrganizationNoteSearchController;
 use App\Http\Controllers\OrganizationSearchController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PermissionRoleController;
 use App\Http\Controllers\PhoneVerificationController;
 use App\Http\Controllers\PhoneVerificationNotificationController;
 use App\Http\Controllers\PhoneVerificationPromptController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TicketJobCardController;
 use App\Http\Controllers\TicketJobController;
@@ -62,6 +65,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('tickets.responses', TicketResponseController::class);
 
     Route::resource('users', UserController::class);
+    Route::resource('permissions', PermissionController::class);
+    Route::resource('roles', RoleController::class);
 
     Route::post('/tickets/{ticket}/subscription', [TicketSubscriptionController::class, 'store'])->name('tickets.subscribe');
     Route::delete('tickets/{ticket}/subscription', [TicketSubscriptionController::class, 'destroy'])->name('tickets.unsubscribe');
@@ -69,8 +74,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::patch('tickets/{ticket}/status', [TicketStatusController::class, 'update'])->name('tickets.status.update');
     Route::patch('/user/filters', [UserDefaultFilterController::class, 'update'])->name('api.user.filters');
     Route::get('/api/companies', [CompanyApiController::class, 'index'])->name('api.companies.index');
+
     Route::post('/users/{user}/companies', [UserCompanyController::class, 'store'])->name('users.companies.store');
     Route::delete('/users/{user}/companies', [UserCompanyController::class, 'destroy'])->name('users.companies.destroy');
+
+    Route::post('/roles/{role}/permissions', [PermissionRoleController::class, 'store'])->name('roles.permissions.store');
+    Route::delete('/roles/{role}/permissions', [PermissionRoleController::class, 'destroy'])->name('roles.permissions.destroy');
 
     Route::post('/users/{user}/roles', [UserRoleController::class, 'store'])->name('users.roles.store');
     Route::delete('/users/{user}/roles', [UserRoleController::class, 'destroy'])->name('users.roles.destroy');
@@ -81,7 +90,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::post('/tickets/{ticket}/jobs', [TicketJobController::class, 'store'])->name('tickets.jobs.store');
     Route::post('/tickets/{ticket}/job-card', [TicketJobCardController::class, 'store'])->name('tickets.job-card.store');
+    Route::get('/tickets/{ticket}/job-card/create', [TicketJobCardController::class, 'create'])->name('tickets.job-card.create');
     Route::get('/tickets/{ticket}/jobs/create', [TicketJobController::class, 'create'])->name('tickets.jobs.create');
+
+
 });
 
 
