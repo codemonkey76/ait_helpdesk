@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\TicketRespondedTo;
 use App\Traits\RecordsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,9 +19,12 @@ class TicketResponse extends Model
     use SoftDeletes;
     use RecordsActivity;
 
-    protected $fillable = ['content', 'status_id', 'user_id', 'user_read_at', 'agent_read_at'];
+    protected $fillable = ['content', 'status_id', 'user_id', 'user_read_at', 'agent_read_at', 'private'];
     protected $appends = ['userName'];
     protected $with = ['user'];
+    protected $casts = [
+        'private' => 'boolean'
+    ];
 
     public function user(): BelongsTo
     {
@@ -37,10 +41,15 @@ class TicketResponse extends Model
             $ticket->readers()->sync([$response->user_id]);
 
             $response->readers()->sync([$response->user_id]);
+
+            //dump($ticket->toNotify($response));
+            $ticket
+                ->toNotify($response)
+                ->each(fn($notifiable) => $notifiable->notify(new TicketRespondedTo($ticket, $response)));
         });
 
         static::deleting(function (TicketResponse $response) {
-           $response->activity()->delete();
+            $response->activity()->delete();
         });
     }
 

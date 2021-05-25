@@ -6,6 +6,7 @@ use App\Traits\RecordsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
 class Job extends Model
 {
@@ -14,7 +15,10 @@ class Job extends Model
 
     protected $fillable = ['date', 'user_id', 'time_spent', 'content'];
     protected $with = ['user'];
-    protected $appends = ['userName', 'timeSpentString'];
+    protected $appends = ['userName', 'timeSpentString', 'summary'];
+    protected $dates = ['date'];
+    protected $dateFormat = 'Y-m-d';
+
 
     public function ticket(): BelongsTo
     {
@@ -41,11 +45,24 @@ class Job extends Model
             return $time." minutes";
         }
 
-        $result .= (string)intVal($time / 60) . ' hour(s)';
+        $result .= (string)intVal($time / 60) . ' ' . Str::plural('hour', intVal($time/60));
         $mod = ($time % 60);
         if ($mod > 0) {
-            $result .= ' ' . $mod . ' minute(s)';
+            $result .= ' ' . $mod . ' minutes';
         }
         return $result;
+    }
+    public function getSummaryAttribute()
+    {
+        return sprintf('%s
+%s
+
+Agent: %s
+Time: %s',
+            $this->date->format('d/m/Y'),
+            $this->content,
+            $this->userName,
+            $this->formatTime($this->time_spent)
+        );
     }
 }

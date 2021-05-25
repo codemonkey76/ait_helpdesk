@@ -57,7 +57,7 @@ class TicketController extends Controller
 
         //$responses = $ticket->responses()->with('user')->paginate(15);
 
-        $ticket->load('status', 'user');
+        $ticket->load('status', 'user', 'jobCard');
         $ticket->readers()->syncWithoutDetaching($request->user()->id);
         //$responses->each(fn($response) => $response->readers()->syncWithoutDetaching($request->user()->id));
         $statusOptions = TicketStatus::select(['id', 'name', 'description'])

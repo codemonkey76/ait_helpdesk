@@ -27,7 +27,8 @@ class JobFactory extends Factory
             'user_id' => User::factory()->withPersonalTeam()->create()->id,
             'ticket_id' => Ticket::factory()->create()->id,
             'content' => $this->faker->paragraph(),
-            'time_spent' => ceil( mt_rand(1, 900) / 15 ) * 15
+            'time_spent' => ceil( mt_rand(1, 900) / 15 ) * 15,
+            'date' => now()
         ];
     }
 }

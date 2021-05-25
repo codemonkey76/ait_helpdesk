@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->text('profile_photo_path')->nullable();
             $table->boolean('terms')->default(false);
             $table->json('filters')->nullable();
+            $table->json('comms_preference')->default('["mail"]');
             $table->softDeletes();
             $table->timestamps();
         });

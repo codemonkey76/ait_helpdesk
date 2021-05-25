@@ -53,9 +53,11 @@ class JobCardTest extends TestCase
     public function test_accounts_can_create_job_card_from_ticket()
     {
         $this->withoutExceptionHandling();
-
         $this->actingAs($this->accountsUser)
-            ->post(route('tickets.job-card.store', $this->ticket->id), [
+            ->get(route('tickets.job-card.create', $this->ticket->id))
+            ->assertStatus(200);
+
+        $this->post(route('tickets.job-card.store', $this->ticket->id), [
                 'content'    => 'some content',
                 'time_spent' => 30
             ])
@@ -121,7 +123,7 @@ class JobCardTest extends TestCase
         $this->assertDatabaseHas('jobs', [
             'ticket_id'  => $this->ticket->id,
             'user_id'    => $this->agentUser->id,
-            'date'       => $workDate,
+            'date'       => Carbon::parse($workDate)->format('Y-m-d'),
             'time_spent' => 30,
             'content'    => 'some content'
         ]);

@@ -6,6 +6,7 @@ use App\Models\Ticket;
 use App\Models\TicketResponse;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
@@ -35,6 +36,10 @@ class TicketRespondedTo extends Notification
      */
     public function via($notifiable)
     {
+        if (!is_null($notifiable->phone_verified_at)) {
+            return $notifiable->comms_preference;
+        }
+
         return ['mail'];
     }
 
@@ -56,16 +61,11 @@ class TicketRespondedTo extends Notification
             ->line(new HtmlString('<small>You are receiving this message because you either created a ticket on our helpdesk system or have subscribed to notifications for a ticket created by one of your colleagues!</small>'));
     }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
+    public function toNexmo($notifiable)
     {
-        return [
-            //
-        ];
+        $validity = config('app.defaults.sms_expiry') / 60;
+
+        return (new NexmoMessage)
+            ->content("Alpha IT Centre Helpdesk: " . '[#'.$this->ticket->id.'] '. $this->ticket->subject .' - ticket has been responded to');
     }
 }
