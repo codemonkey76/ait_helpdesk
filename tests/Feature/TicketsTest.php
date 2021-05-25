@@ -59,7 +59,8 @@ class TicketsTest extends TestCase
 
         $this->assertDatabaseHas('tickets', [
             'subject' => 'test subject',
-            'content' => 'test content'
+            'content' => 'test content',
+            'owner_id' => $this->standardUser->id
         ]);
     }
 

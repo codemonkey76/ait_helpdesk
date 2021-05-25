@@ -6,12 +6,20 @@ namespace Tests\Unit;
 use App\Models\Job;
 use App\Models\Ticket;
 use App\Models\User;
+use Database\Seeders\PermissionSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class TicketTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->seed(PermissionSeeder::class);
+    }
 
     public function test_ticket_can_get_job_summary()
     {

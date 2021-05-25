@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\TicketCreated;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -26,7 +27,7 @@ class Ticket extends Model
     const EXCERPT_LENGTH = 50;
 
     protected $appends = ['excerpt', 'isSubscribed', 'jobSummary', 'timeSummary'];
-    protected $fillable = ['subject', 'content', 'company_id', 'user_id', 'current_team_id', 'status_id'];
+    protected $fillable = ['subject', 'content', 'company_id', 'user_id', 'current_team_id', 'status_id', 'owner_id', 'assigned_agent_id'];
 
     protected static function booted()
     {
@@ -47,7 +48,11 @@ class Ticket extends Model
         });
         static::created(function (Ticket $ticket) {
             $ticket->readers()->sync([$ticket->user_id]);
+
+            User::permission('notified of new tickets')->each(fn($user) => $user->notify(new TicketCreated($ticket)));
+
         });
+
 
         static::addGlobalScope('sorted', function (Builder $builder) {
             $builder->orderBy('updated_at', 'desc');
@@ -139,14 +144,10 @@ class Ticket extends Model
             return $notifiables;
         }
 
-        // Assigned Agent
-        dump("Agent: ".$this->agent?->name);
         if (!is_null($this->agent) && $response->user_id !== $this->agent->id) {
             $notifiables->push($this->agent);
         }
 
-        // Assigned User
-        dump("Owner: ".$this->owner?->name);
         if (!is_null($this->owner) &&
             !$notifiables->contains($this->owner) &&
             $response->user_id !== $this->owner->id) {
@@ -154,8 +155,6 @@ class Ticket extends Model
             $notifiables->push($this->owner);
         }
 
-        // Subscribers
-        dump("Subscribers: ".$this->subscribers()->count());
         return $notifiables->merge($this->subscribers->reject(fn($value, $key) => $response->user_id===$value->id || $notifiables->contains($value)));
     }
 

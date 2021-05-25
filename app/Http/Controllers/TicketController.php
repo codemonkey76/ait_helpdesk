@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTicketRequest;
 use App\Models\Company;
 use App\Models\Ticket;
 use App\Models\TicketStatus;
@@ -15,12 +16,7 @@ use Inertia\Response as InertiaResponse;
 
 class TicketController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param  Request  $request
-     * @return InertiaResponse
-     */
+
     public function index(Request $request): InertiaResponse
     {
         if ($request->has('q')) {
@@ -88,36 +84,13 @@ class TicketController extends Controller
         return Inertia::render('Tickets/Create', compact('companyOptions'));
     }
 
-    public function store(Request $request)
+    public function store(StoreTicketRequest $request)
     {
-        Gate::forUser($request->user())->authorize('create', Ticket::class);
-
-        $validated = $request->validate([
-            'subject'    => 'required|string',
-            'content'    => 'required|string',
-            'company_id' => [
-                'nullable',
-                function ($attribute, $value, $fail) use ($request) {
-                    if ($request->user()->hasPermissionTo('create ticket for unassigned companies')) {
-                        if (is_null(Company::find($value))) {
-                            $fail('The '.$attribute.' is invalid');
-                        }
-                    } else {
-                        if (DB::table('company_user')
-                                ->select('company_id', 'user_id')
-                                ->where('user_id', 1)
-                                ->where('company_id', $value)
-                                ->count() === 0) {
-                            $fail('The user is not assigned to this'.$attribute.'');
-                        }
-
-                    }
-                }
-            ]
-        ]);
+        $validated = $request->validated();
         $validated['user_id'] = $request->user()->id;
         $validated['current_team_id'] = $request->user()->current_team_id;
         $validated['status_id'] = config('app.defaults.status');
+        $validated['owner_id'] = $request->user()->id;
 
         Ticket::create($validated);
 

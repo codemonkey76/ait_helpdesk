@@ -57,6 +57,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'edit tickets']);
         Permission::create(['name' => 'change ticket status']);
         Permission::create(['name' => 'subscribe to tickets']);
+        Permission::create(['name' => 'notified of new tickets']);
 
         // Responses
         Permission::create(['name' => 'delete own response']);
@@ -161,6 +162,7 @@ class PermissionSeeder extends Seeder
         $agentRole->givePermissionTo('delete own response');
         $agentRole->givePermissionTo('attach companies');
         $agentRole->givePermissionTo('detach companies');
+        $agentRole->givePermissionTo('notified of new tickets');
 
         $userRole = Role::create(['name' => 'user']);
         $userRole->givePermissionTo('create tickets');
