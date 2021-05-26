@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTicketRequest;
+use App\Models\Activity;
 use App\Models\Company;
 use App\Models\Ticket;
 use App\Models\TicketStatus;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
@@ -59,7 +62,10 @@ class TicketController extends Controller
         $statusOptions = TicketStatus::select(['id', 'name', 'description'])
             ->limit(500)
             ->get();
-        $activities = $ticket->activities()->latest()->with('subject')->paginate(config('app.defaults.pagination'));
+
+        $activityData = Activity::userFilter($ticket, $request->user());
+        $activities = new LengthAwarePaginator($activityData, $activityData->count(), config('app.defaults.pagination'));
+//        $activities = $ticket->activities()->filterPrivate()->latest()->with('subject')->paginate(config('app.defaults.pagination'));
         return Inertia::render('Tickets/Show', compact('ticket', 'activities', 'statusOptions'));
     }
 

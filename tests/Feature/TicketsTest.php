@@ -30,16 +30,10 @@ class TicketsTest extends TestCase
         $this->seed(PermissionSeeder::class);
         $this->seed(TicketStatusSeeder::class);
 
-        $this->adminUser = User::factory()->withPersonalTeam()->create()->assignRole([
-            'admin', 'agent', 'user', 'restricted user'
-        ]);
-        $this->managerUser = User::factory()->withPersonalTeam()->create()->assignRole([
-            'manager', 'user', 'restricted user'
-        ]);
-        $this->agentUser = User::factory()->withPersonalTeam()->create()->assignRole([
-            'agent', 'manager', 'user', 'restricted user'
-        ]);
-        $this->standardUser = User::factory()->withPersonalTeam()->create()->assignRole(['user', 'restricted user']);
+        $this->adminUser = User::factory()->withPersonalTeam()->create()->assignRole('admin');
+        $this->managerUser = User::factory()->withPersonalTeam()->create()->assignRole('manager');
+        $this->agentUser = User::factory()->withPersonalTeam()->create()->assignRole('agent');
+        $this->standardUser = User::factory()->withPersonalTeam()->create()->assignRole('user');
 
         $organization = Organization::factory()->create();
         $this->company1 = Company::factory()->create(['organization_id' => $organization->id]);

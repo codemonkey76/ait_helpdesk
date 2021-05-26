@@ -136,31 +136,6 @@ class TicketResponseTest extends TestCase
         $this->assertNotNull($this->agentResponse->fresh()->deleted_at);
     }
 
-    public function test_non_agent_cannot_delete_own_response()
-    {
-        $this->actingAs($this->standardUser)
-            ->delete(route('tickets.responses.destroy', [$this->ticket->id, $this->userResponse->id]))
-            ->assertStatus(403);
-
-        $this->assertNull($this->userResponse->fresh()->deleted_at);
-    }
-
-    public function test_non_agent_cannot_edit_own_response()
-    {
-        $this->actingAs($this->standardUser)
-            ->get(route('tickets.responses.edit', [$this->ticket->id, $this->userResponse->id]))
-            ->assertStatus(403);
-
-        $this->patch(route('tickets.responses.update', [$this->ticket->id, $this->userResponse->id]),[
-            'content' => 'new content'
-        ])
-            ->assertStatus(403);
-
-        $this->assertDatabaseHas('ticket_responses', [
-            'id' => $this->userResponse->id,
-            'content' => $this->userResponse->content
-        ]);
-    }
 
     public function test_gent_can_edit_own_response()
     {
@@ -232,4 +207,53 @@ class TicketResponseTest extends TestCase
             'content' => $this->userResponse->content
         ]);
     }
+
+    public function test_agent_can_make_response_private()
+    {
+        $this->actingAs($this->agentUser)
+            ->post(route('tickets.responses.store', $this->ticket->id), [
+                'content' => 'some content',
+                'private' => true
+            ])
+            ->assertSessionHasNoErrors()
+            ->assertRedirect(route('tickets.show', $this->ticket->id));
+
+        $this->assertDatabaseHas('ticket_responses', [
+            'ticket_id' => $this->ticket->id,
+            'user_id' => $this->agentUser->id,
+            'content' => 'some content',
+            'private' => '1'
+        ]);
+    }
+
+    public function test_standard_user_cannot_make_response_private()
+    {
+        $this->company1->users()->syncWithoutDetaching($this->standardUser->id);
+
+        $this->actingAs($this->standardUser)
+            ->post(route('tickets.responses.store', $this->ticket->id), [
+                'content' => 'some content',
+                'private' => true
+            ])
+            ->assertSessionHasNoErrors()
+            ->assertRedirect(route('tickets.show', $this->ticket->id));
+
+        $this->assertDatabaseHas('ticket_responses', [
+            'ticket_id' => $this->ticket->id,
+            'user_id' => $this->standardUser->id,
+            'content' => 'some content',
+            'private' => '0'
+        ]);
+    }
+
+    public function test_agent_can_see_private_responses()
+    {
+        $this->markTestSkipped('Not yet implemented');
+    }
+
+    public function test_standard_user_cannot_see_private_responses()
+    {
+        $this->markTestSkipped('Not yet implemented');
+    }
+
 }

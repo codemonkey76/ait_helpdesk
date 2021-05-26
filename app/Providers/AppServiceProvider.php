@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Telescope\TelescopeServiceProvider;
@@ -35,6 +36,5 @@ class AppServiceProvider extends ServiceProvider
             'job' => 'App\Models\Job',
             'job_card' => 'App\Models\JobCard'
         ]);
-
     }
 }

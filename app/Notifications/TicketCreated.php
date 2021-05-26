@@ -9,6 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
+use PHPUnit\TextUI\XmlConfiguration\Logging\TestDox\Html;
 
 class TicketCreated extends Notification
 {
@@ -49,7 +50,7 @@ class TicketCreated extends Notification
             ->subject('[#'.$this->ticket->id.'] '. $this->ticket->subject .' - ticket has been created')
             ->greeting('Hello ' . $notifiable->name)
             ->line(new HtmlString('<small>--Please do not reply to this email as this is a system generated message--</small>'))
-            ->line('Content: '.$this->ticket->content)
+            ->line('Content: '. new HtmlString($this->ticket->content))
             ->line('NOTE: If you wish to view this ticket progress online or reply with additional information regarding this ticket, click "View Ticket" below')
             ->action('View Ticket', route('tickets.show', $this->ticket->id))
             ->line(new HtmlString('<small>You are receiving this message because you are a technical support agent on the Alpha IT Centre Helpdesk system!</small>'));

@@ -15,6 +15,12 @@
                 <jet-input-error :message="form.errors.content" class="mt-2" />
             </div>
 
+            <div class="col-span-6">
+                <jet-label for="private" value="Private" />
+                <jet-checkbox id="private" v-model="form.private" />
+                <jet-input-error :message="form.errors.private" class="mt-2" />
+            </div>
+
             <div v-if="$page.props.permissions.canChangeTicketStatus" class="col-span-6">
                 <jet-label for="status_id" value="Status" />
                 <jet-select
@@ -46,6 +52,7 @@ import JetInputError from '@/Jetstream/InputError'
 import JetLabel from '@/Jetstream/Label'
 import JetSelect from '@/Jetstream/Select'
 import JetText from '@/Jetstream/TextArea'
+import JetCheckbox from '@/Jetstream/Checkbox'
 
 export default {
     components: {
@@ -57,13 +64,15 @@ export default {
         JetInputError,
         JetLabel,
         JetSelect,
-        JetText
+        JetText,
+        JetCheckbox
     },
     props: ['status', 'ticket'],
     data() {
         return {
             form: this.$inertia.form({
                 content: '',
+                private: false,
                 status_id: this.ticket.status_id
             })
         }

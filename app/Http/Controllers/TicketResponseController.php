@@ -32,15 +32,20 @@ class TicketResponseController extends Controller
         Gate::forUser($request->user())->authorize('create', [TicketResponse::class, $ticket]);
 
         $validated = $request->validate([
-            'content' => 'required'
+            'content' => 'required',
+            'private' => 'sometimes|boolean'
         ]);
 
         $validated['user_id'] = $request->user()->id;
 
+        if (! $request->user()->hasPermissionTo('create private responses'))
+        {
+            unset($validated['private']);
+        }
 
         if ($request->user()->hasPermissionTo('change ticket status'))
         {
-            $ticket->update(['status_id' => $request->status_id]);
+            $ticket->update(['status_id' => $request->status_id ?? config('app.defaults.status')]);
         }
 
         $ticket->responses()->create($validated);

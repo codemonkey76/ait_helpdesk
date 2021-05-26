@@ -38,8 +38,8 @@ class Ticket extends Model
                     $statusChange = TicketStatusChange::create([
                         'ticket_id'     => $ticket->id,
                         'user_id'       => auth()->user()->id,
-                        'old_status_id' => $ticket->getOriginal('status_id'),
-                        'new_status_id' => $ticket->status_id
+                        'old_status_id' => $ticket->getOriginal('status_id') ?? config('app.defaults.status'),
+                        'new_status_id' => $ticket->status_id ?? config('app.defaults.status')
                     ]);
                 }
             }
@@ -165,6 +165,11 @@ class Ticket extends Model
 
     public function activities(): HasMany
     {
+        if (auth()->user()->can('see private responses'))
+        {
+            return $this->hasMany(Activity::class);
+        }
+
         return $this->hasMany(Activity::class);
     }
 

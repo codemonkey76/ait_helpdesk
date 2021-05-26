@@ -65,9 +65,9 @@ class OrganizationsTest extends TestCase
         $this->assertDatabaseHas('organizations', ['name' => 'organization name']);
     }
 
-    public function test_non_admin_cannot_create_organization()
+    public function test_non_agent_cannot_create_organization()
     {
-        $this->actingAs($this->agentUser);
+        $this->actingAs($this->standardUser);
 
         $response = $this->post('/organizations', [
             'name' => 'organization name'
