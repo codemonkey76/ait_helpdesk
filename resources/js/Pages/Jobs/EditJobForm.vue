@@ -106,7 +106,7 @@ export default {
     },
     methods: {
         updateJob() {
-            this.form.post(route('tickets.jobs.update', this.ticket.id, this.job.id), {
+            this.form.post(route('tickets.jobs.update', [this.ticket.id, this.job.id]), {
                 errorBag: 'updateTicketJob',
                 preserveScroll: true
             });
