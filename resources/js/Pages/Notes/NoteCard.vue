@@ -19,7 +19,7 @@
                 <p class="text-sm text-gray-500">
                     <a href="#" class="hover:underline" v-text="ago(note.created_at)"></a>
                 </p>
-                <p class="text-sm font-medium text-gray-900 mt-2" v-text="note.content"/>
+                <div class="text-sm font-medium text-gray-900 mt-2" v-html="note.content"/>
             </div>
             <div class="flex-shrink-0 self-start flex">
                 <div class="relative z-30 inline-block text-left">

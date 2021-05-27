@@ -12,7 +12,7 @@
 
             <div class="col-span-6">
                 <jet-label for="content" value="Content"/>
-                <jet-text id="content" class="mt-1 block w-full" v-model="form.content" autofocus/>
+                <editor id="content" v-model="form.content"></editor>
                 <jet-input-error :message="form.errors.content" class="mt-2"/>
             </div>
 
@@ -63,6 +63,7 @@
 <script>
 import JetButton from '@/Jetstream/Button'
 import DatePicker from "@/Jetstream/DatePicker";
+import Editor from "@/Jetstream/Editor";
 import JetSecondaryButtonLink from '@/Jetstream/SecondaryButtonLink'
 import JetFormSection from '@/Jetstream/FormSection'
 import JetInput from '@/Jetstream/Input'
@@ -73,6 +74,7 @@ import JetText from '@/Jetstream/TextArea'
 
 export default {
     components: {
+        Editor,
         DatePicker,
         JetButton,
         JetSecondaryButtonLink,

@@ -10,10 +10,7 @@
             <div class="mt-4">
 
                 <jet-label for="content" value="Note content" />
-                <jet-text type="text" class="mt-1 block w-full" placeholder="Enter note here"
-                          ref="content"
-                          id="content"
-                          v-model="form.content"/>
+                <editor id="content" ref="content" v-model="form.content" />
                 <jet-input-error :message="form.errors.content" class="mt-2"/>
             </div>
         </template>

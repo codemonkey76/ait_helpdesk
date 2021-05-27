@@ -69,6 +69,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $casts = [
+        'phone_verification_expiry' => 'datetime',
         'email_verified_at' => 'datetime',
         'filters'           => 'object',
         'comms_preference' => 'array'
@@ -139,6 +140,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->companies()->find($company->id) !== null;
     }
     public function routeNotificationForNexmo($notification)
+    {
+        return $this->internationalFormatPhoneNumber;
+    }
+    public function routeNotificationForPlivo($notification)
     {
         return $this->internationalFormatPhoneNumber;
     }

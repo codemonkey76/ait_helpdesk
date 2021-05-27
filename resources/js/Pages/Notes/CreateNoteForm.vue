@@ -12,7 +12,7 @@
 
                 <div class="col-span-6 sm:col-span-4">
                     <jet-label for="content" value="Content" />
-                    <jet-input id="content" type="text" class="mt-1 block w-full" v-model="form.content" autofocus />
+                    <editor id="content" v-model="form.content" />
                     <jet-input-error :message="form.errors.content" class="mt-2" />
                 </div>
 
@@ -34,6 +34,7 @@
         import JetInputError from '@/Jetstream/InputError'
         import JetLabel from '@/Jetstream/Label'
         import JetSelect from '@/Jetstream/Select'
+        import Editor from "@/Jetstream/Editor";
 
         export default {
             components: {
@@ -42,7 +43,8 @@
                 JetInput,
                 JetInputError,
                 JetLabel,
-                JetSelect
+                JetSelect,
+                Editor
             },
 
             data() {

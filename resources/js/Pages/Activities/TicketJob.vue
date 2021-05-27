@@ -7,7 +7,7 @@
             added a job
 
             <div class="mt-2 dark:bg-gray-900 bg-gray-100 py-2 px-4 rounded-md">
-                <div v-text="job.content" />
+                <div v-html="job.content" />
 
                 <div>
                     Time allocated: {{job.timeSpentString}}
