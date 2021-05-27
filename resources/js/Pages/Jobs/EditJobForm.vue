@@ -89,6 +89,7 @@ export default {
     data() {
         return {
             form: this.$inertia.form({
+                _method: 'PATCH',
                 content: this.job.content,
                 user_id: this.job.user_id,
                 time_spent: this.job.time_spent,
@@ -106,7 +107,7 @@ export default {
     },
     methods: {
         updateJob() {
-            this.form.post(route('tickets.jobs.update', [this.ticket.id, this.job.id]), {
+            this.form.patch(route('tickets.jobs.update', [this.ticket.id, this.job.id]), {
                 errorBag: 'updateTicketJob',
                 preserveScroll: true
             });
