@@ -22,11 +22,11 @@ class PermissionsTest extends TestCase
 
         $this->seed(PermissionSeeder::class);
 
-        $this->adminUser = User::factory()->withPersonalTeam()->create()->assignRole([
+        $this->adminUser = User::factory()->create()->assignRole([
             'admin', 'agent', 'user', 'restricted user'
         ]);
 
-        $this->agentUser = User::factory()->withPersonalTeam()->create()->assignRole([
+        $this->agentUser = User::factory()->create()->assignRole([
             'agent', 'manager', 'user', 'restricted user'
         ]);
     }

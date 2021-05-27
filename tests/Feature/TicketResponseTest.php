@@ -32,16 +32,16 @@ class TicketResponseTest extends TestCase
 
         $this->seed(PermissionSeeder::class);
 
-        $this->adminUser = User::factory()->withPersonalTeam()->create()->assignRole([
+        $this->adminUser = User::factory()->create()->assignRole([
             'admin', 'agent', 'user', 'restricted user'
         ]);
-        $this->managerUser = User::factory()->withPersonalTeam()->create()->assignRole([
+        $this->managerUser = User::factory()->create()->assignRole([
             'manager', 'user', 'restricted user'
         ]);
-        $this->agentUser = User::factory()->withPersonalTeam()->create()->assignRole([
+        $this->agentUser = User::factory()->create()->assignRole([
             'agent', 'manager', 'user', 'restricted user'
         ]);
-        $this->standardUser = User::factory()->withPersonalTeam()->create()->assignRole(['user', 'restricted user']);
+        $this->standardUser = User::factory()->create()->assignRole(['user', 'restricted user']);
 
         $organization = Organization::factory()->create();
         $this->company1 = Company::factory()->create(['organization_id' => $organization->id]);

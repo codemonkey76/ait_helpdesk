@@ -17,7 +17,7 @@ class UpdatePasswordTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = User::factory()->withPersonalTeam()->create();
+        $this->user = User::factory()->create();
     }
 
     public function test_password_can_be_updated()

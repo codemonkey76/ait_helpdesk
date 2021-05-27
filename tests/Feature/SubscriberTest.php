@@ -24,8 +24,8 @@ class SubscriberTest extends TestCase
         parent::setUp();
 
         $this->seed(PermissionSeeder::class);
-        $this->user = User::factory()->withPersonalTeam()->create()->assignRole('user');
-        $this->agent = User::factory()->withPersonalTeam()->create()->assignRole('agent');
+        $this->user = User::factory()->create()->assignRole('user');
+        $this->agent = User::factory()->create()->assignRole('agent');
     }
 
     public function test_subscriber_received_notification_when_ticket_is_responded_to()
@@ -133,7 +133,7 @@ class SubscriberTest extends TestCase
     {
         Notification::fake();
         // We have a ticket and a user, and user is subscribed to ticket
-        $this->agent = User::factory()->withPersonalTeam()->create()->assignRole('agent');
+        $this->agent = User::factory()->create()->assignRole('agent');
         $ticket = Ticket::factory()->create(['owner_id' => $this->user->id]);
 
         Notification::assertSentTo($this->agent, TicketCreated::class);

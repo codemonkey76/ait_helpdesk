@@ -32,21 +32,21 @@ class JobCardTest extends TestCase
 
         $this->workDate = now()->format('Y-m-d');
 
-        $this->adminUser = User::factory()->withPersonalTeam()->create()->assignRole([
+        $this->adminUser = User::factory()->create()->assignRole([
             'admin', 'agent', 'user', 'restricted user'
         ]);
-        $this->managerUser = User::factory()->withPersonalTeam()->create()->assignRole([
+        $this->managerUser = User::factory()->create()->assignRole([
             'manager', 'user', 'restricted user'
         ]);
 
-        $this->accountsUser = User::factory()->withPersonalTeam()->create()->assignRole([
+        $this->accountsUser = User::factory()->create()->assignRole([
             'accounts', 'manager', 'user', 'restricted user'
         ]);
 
-        $this->agentUser = User::factory()->withPersonalTeam()->create()->assignRole([
+        $this->agentUser = User::factory()->create()->assignRole([
             'agent', 'manager', 'user', 'restricted user'
         ]);
-        $this->standardUser = User::factory()->withPersonalTeam()->create()->assignRole(['user', 'restricted user']);
+        $this->standardUser = User::factory()->create()->assignRole(['user', 'restricted user']);
         $this->ticket = Ticket::factory()->create();
     }
 

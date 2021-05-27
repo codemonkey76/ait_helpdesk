@@ -24,7 +24,7 @@ class TicketActivityTest extends TestCase
 
         $this->seed(PermissionSeeder::class);
         $this->seed(TicketStatusSeeder::class);
-        $this->user = User::factory()->withPersonalTeam()->create();
+        $this->user = User::factory()->create();
         $this->ticket = Ticket::factory()->statusOpen()->create(['user_id' => $this->user->id]);
 
     }

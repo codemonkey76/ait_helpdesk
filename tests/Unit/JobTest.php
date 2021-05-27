@@ -24,7 +24,7 @@ class JobTest extends TestCase
     public function test_job_can_retrieve_summary()
     {
         $ticket = Ticket::factory()->create();
-        $agentUser = User::factory()->withPersonalTeam()->create(['name' => 'Agent name'])->assignRole('agent');
+        $agentUser = User::factory()->create(['name' => 'Agent name'])->assignRole('agent');
         $jobs = Job::factory(3)->create([
             'ticket_id'  => $ticket->id,
             'user_id'    => $agentUser->id,

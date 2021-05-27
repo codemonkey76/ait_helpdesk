@@ -17,7 +17,7 @@ class ProfileInformationTest extends TestCase
     {
         parent::setUp();
         $this->seed(PermissionSeeder::class);
-        $this->user = User::factory()->withPersonalTeam()->create();
+        $this->user = User::factory()->create();
     }
 
     public function test_profile_information_can_be_updated()

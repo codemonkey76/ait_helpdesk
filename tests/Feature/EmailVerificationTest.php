@@ -21,7 +21,7 @@ class EmailVerificationTest extends TestCase
         parent::setUp();
 
         $this->seed(PermissionSeeder::class);
-        $this->unverifiedUser = User::factory()->withPersonalTeam()->unverified()->create();
+        $this->unverifiedUser = User::factory()->unverified()->create();
     }
 
     public function test_email_verification_screen_can_be_rendered()

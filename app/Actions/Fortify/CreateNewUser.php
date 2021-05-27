@@ -37,32 +37,8 @@ class CreateNewUser implements CreatesNewUsers
                 'phone' => $input['phone'],
                 'password' => Hash::make($input['password']),
             ]), function (User $user) {
-                $supportTeam = Team::whereName('support')->first();
-                $salesTeam = Team::whereName('sales')->first();
-                $accountsTeam = Team::whereName('accounts')->first();
-                if (!is_null($supportTeam) && !is_null($salesTeam) && !is_null($accountsTeam)) {
-                    $supportTeam->users()->attach($user, ['role' => 'editor']);
-                    $salesTeam->users()->attach($user, ['role' => 'editor']);
-                    $accountsTeam->users()->attach($user, ['role' => 'editor']);
-                }
-
-                $user->assignRole('user', 'restricted user');
+                $user->assignRole('user');
             });
         });
-    }
-
-    /**
-     * Create a personal team for the user.
-     *
-     * @param  \App\Models\User  $user
-     * @return void
-     */
-    protected function createTeam(User $user)
-    {
-        $user->ownedTeams()->save(Team::forceCreate([
-            'user_id' => $user->id,
-            'name' => explode(' ', $user->name, 2)[0]."'s Team",
-            'personal_team' => true,
-        ]));
     }
 }

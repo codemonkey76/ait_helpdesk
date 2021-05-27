@@ -28,7 +28,7 @@ class TicketFactory extends Factory
             'subject'   => $this->faker->sentence(),
             'content'   => $this->faker->paragraph(),
             'status_id' => TicketStatus::factory()->create()->id,
-            'user_id'   => User::factory()->withPersonalTeam()->create()->id
+            'user_id'   => User::factory()->create()->id
         ];
     }
 

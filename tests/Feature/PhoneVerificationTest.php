@@ -22,7 +22,7 @@ class PhoneVerificationTest extends TestCase
     {
         parent::setUp();
         $this->seed(PermissionSeeder::class);
-        $this->unverifiedUser = User::factory()->phoneUnverified()->withPersonalTeam()->create();
+        $this->unverifiedUser = User::factory()->phoneUnverified()->create();
     }
 
     public function test_phone_verification_screen_can_be_rendered()

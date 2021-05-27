@@ -16,7 +16,7 @@ class TwoFactorAuthenticationSettingsTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = User::factory()->withPersonalTeam()->create();
+        $this->user = User::factory()->create();
     }
 
     public function test_two_factor_authentication_can_be_enabled()

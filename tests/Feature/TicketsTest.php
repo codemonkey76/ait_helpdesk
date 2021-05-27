@@ -30,10 +30,10 @@ class TicketsTest extends TestCase
         $this->seed(PermissionSeeder::class);
         $this->seed(TicketStatusSeeder::class);
 
-        $this->adminUser = User::factory()->withPersonalTeam()->create()->assignRole('admin');
-        $this->managerUser = User::factory()->withPersonalTeam()->create()->assignRole('manager');
-        $this->agentUser = User::factory()->withPersonalTeam()->create()->assignRole('agent');
-        $this->standardUser = User::factory()->withPersonalTeam()->create()->assignRole('user');
+        $this->adminUser = User::factory()->create()->assignRole('admin');
+        $this->managerUser = User::factory()->create()->assignRole('manager');
+        $this->agentUser = User::factory()->create()->assignRole('agent');
+        $this->standardUser = User::factory()->create()->assignRole('user');
 
         $organization = Organization::factory()->create();
         $this->company1 = Company::factory()->create(['organization_id' => $organization->id]);
@@ -70,8 +70,8 @@ class TicketsTest extends TestCase
     public function test_user_cannot_view_other_users_tickets()
     {
         // Given we have 2 users in the same company
-        $standardUser1 = User::factory()->withPersonalTeam()->create()->assignRole(['user', 'restricted user']);
-        $standardUser2 = User::factory()->withPersonalTeam()->create()->assignRole(['user', 'restricted user']);
+        $standardUser1 = User::factory()->create()->assignRole(['user', 'restricted user']);
+        $standardUser2 = User::factory()->create()->assignRole(['user', 'restricted user']);
 
         $this->company1->users()->attach([$standardUser1->id, $standardUser2->id]);
 

@@ -24,7 +24,7 @@ class JobFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory()->withPersonalTeam()->create()->id,
+            'user_id' => User::factory()->create()->id,
             'ticket_id' => Ticket::factory()->create()->id,
             'content' => $this->faker->paragraph(),
             'time_spent' => ceil( mt_rand(1, 900) / 15 ) * 15,
