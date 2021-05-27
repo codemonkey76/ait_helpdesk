@@ -13,7 +13,7 @@ class UpdateTicketJobRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return $this->user()->can('update', $this->job);
+        return $this->user()->can('edit', $this->job);
     }
 
 

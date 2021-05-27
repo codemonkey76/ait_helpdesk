@@ -24,10 +24,8 @@ class TicketJobController extends Controller
         return redirect()->route('tickets.show', $ticket->id);
     }
 
-    public function edit(Request $request, Ticket $ticket, Job $job): InertiaResponse
+    public function edit(UpdateTicketJobRequest $request, Ticket $ticket, Job $job): InertiaResponse
     {
-        Gate::forUser($request->user())->authorize('edit', $job);
-
         $agentOptions = User::permission('create job')->select('id', 'name')
             ->limit(500)
             ->get();
