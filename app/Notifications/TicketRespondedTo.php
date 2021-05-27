@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\LoggableMailMessage;
 use App\Models\Ticket;
 use App\Models\TicketResponse;
 use Illuminate\Bus\Queueable;
@@ -46,8 +47,9 @@ class TicketRespondedTo extends Notification
 
     public function toMail($notifiable): MailMessage
     {
-        return (new MailMessage)
+        return (new LoggableMailMessage)
             ->subject('[#'.$this->ticket->id.'] '. $this->ticket->subject .' - ticket has been responded to')
+            ->bccIf(!is_null(config('app.defaults.bcc.email')), config('app.defaults.bcc.email'), config('app.defaults.bcc.name'))
             ->greeting('Hello ' . $notifiable->name)
             ->line(new HtmlString('<small>--Please do not reply to this email as this is a system generated message--</small>'))
             ->line('Response: '. new HtmlString($this->ticketResponse->content))
