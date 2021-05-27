@@ -35,18 +35,18 @@ class PermissionSeeder extends Seeder
 
 
 
-        $admin = app(CreatesNewUsers::class)
-            ->create([
-                'name'                  => 'Shane Poppleton',
-                'email'                 => 'shane@alphasg.com.au',
-                'phone'                 => '0400 588 588',
-                'password'              => 'secret123',
-                'password_confirmation' => 'secret123',
-                'terms'                 => true
-            ])
-            ->removeRole('user')
-            ->assignRole('admin');
-        $admin->update(['email_verified_at' => now()]);
+//        $admin = app(CreatesNewUsers::class)
+//            ->create([
+//                'name'                  => 'Shane Poppleton',
+//                'email'                 => 'shane@alphasg.com.au',
+//                'phone'                 => '0400 588 588',
+//                'password'              => 'secret123',
+//                'password_confirmation' => 'secret123',
+//                'terms'                 => true
+//            ])
+//            ->removeRole('user')
+//            ->assignRole('admin');
+//        $admin->update(['email_verified_at' => now()]);
     }
 
     public function createPermissions()
@@ -99,6 +99,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'create job']);
         Permission::create(['name' => 'see jobs']);
         Permission::create(['name' => 'see status changes']);
+        Permission::create(['name' => 'edit own job']);
+        Permission::create(['name' => 'delete own job']);
+        Permission::create(['name' => 'edit all jobs']);
+        Permission::create(['name' => 'delete all jobs']);
         // Job Cards
         Permission::create(['name' => 'create job card']);
 
@@ -182,6 +186,8 @@ class PermissionSeeder extends Seeder
         $agentRole->givePermissionTo('create job');
         $agentRole->givePermissionTo('see jobs');
         $agentRole->givePermissionTo('see status changes');
+        $agentRole->givePermissionTo('edit own job');
+        $agentRole->givePermissionTo('delete own job');
 
         // Users
         $agentRole->givePermissionTo('list users');
@@ -241,6 +247,10 @@ class PermissionSeeder extends Seeder
         $adminRole->givePermissionTo('create job');
         $adminRole->givePermissionTo('see jobs');
         $adminRole->givePermissionTo('see status changes');
+        $adminRole->givePermissionTo('edit own job');
+        $adminRole->givePermissionTo('delete own job');
+        $adminRole->givePermissionTo('edit all jobs');
+        $adminRole->givePermissionTo('delete all jobs');
 
         // Job Cards
         $adminRole->givePermissionTo('create job card');
@@ -339,6 +349,9 @@ class PermissionSeeder extends Seeder
         $accountsRole->givePermissionTo('see jobs');
         $accountsRole->givePermissionTo('see status changes');
         $accountsRole->givePermissionTo('create job card');
+        $accountsRole->givePermissionTo('edit own job');
+        $accountsRole->givePermissionTo('delete own job');
+
 
         // Users
         $accountsRole->givePermissionTo('list users');

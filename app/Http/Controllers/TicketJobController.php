@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateTicketJobRequest;
+use App\Http\Requests\UpdateTicketJobRequest;
 use App\Models\Job;
 use App\Models\Ticket;
 use App\Models\User;
@@ -15,26 +17,32 @@ use Inertia\Response as InertiaResponse;
 
 class TicketJobController extends Controller
 {
-    public function store(Request $request, Ticket $ticket)
+    public function store(CreateTicketJobRequest $request, Ticket $ticket)
     {
+        $ticket->jobs()->create($request->validated());
 
-        Gate::forUser($request->user())->authorize('create', Job::class);
+        return redirect()->route('tickets.show', $ticket->id);
+    }
 
-        $validated = $request->validate([
-            'date' => 'required|date_format:Y-m-d',
-            'user_id' => [
-                'required',
-                Rule::in(User::permission('create job')->pluck('id'))
-            ],
-            'time_spent' => [
-                'required',
-                'numeric',
-                new Multiple
-            ],
-            'content' => 'required|string'
-        ]);
+    public function edit(Request $request, Ticket $ticket, Job $job): InertiaResponse
+    {
+        Gate::forUser($request->user())->authorize('edit', $job);
 
-        $ticket->jobs()->create($validated);
+        $agentOptions = User::permission('create job')->select('id', 'name')
+            ->limit(500)
+            ->get();
+
+        $timeOptions = collect();
+        for ($time=0;$time<300; $time+=config('app.defaults.min_job_time')) {
+            $timeOptions->push((object)['id' => $time, 'name' => $this->formatTime($time)]);
+        }
+
+        return Inertia::render('Jobs/Edit', compact('agentOptions', 'timeOptions', 'ticket', 'job'));
+    }
+
+    public function update(UpdateTicketJobRequest $request, Ticket $ticket, Job $job)
+    {
+        $job->update($request->validated());
 
         return redirect()->route('tickets.show', $ticket->id);
     }
