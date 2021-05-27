@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionSeeder::class);
 
         //Create default teams
-        $this->call(TeamSeeder::class);
+        //$this->call(TeamSeeder::class);
 
         //Create orgs and companies
         $this->call(OrganizationSeeder::class);

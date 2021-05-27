@@ -61,7 +61,11 @@ return [
         'status' => TICKET_STATUS::PENDING,
         'sms_expiry' => 180,
         'min_job_time' => 15,
-        'pagination' => 15
+        'pagination' => 15,
+        'bcc' => [
+            'name' => env('BCC_EMAIL_NAME'),
+            'email' => env('BCC_EMAIL_ADDRESS')
+        ]
     ],
 
     /*

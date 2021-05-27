@@ -36,5 +36,7 @@ class AppServiceProvider extends ServiceProvider
             'job' => 'App\Models\Job',
             'job_card' => 'App\Models\JobCard'
         ]);
+
+        Ma
     }
 }
