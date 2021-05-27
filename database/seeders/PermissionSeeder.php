@@ -44,7 +44,8 @@ class PermissionSeeder extends Seeder
                 'password_confirmation' => 'secret123',
                 'terms'                 => true
             ])
-            ->assignRole(['admin']);
+            ->removeRole('user')
+            ->assignRole('admin');
         $admin->update(['email_verified_at' => now()]);
     }
 
