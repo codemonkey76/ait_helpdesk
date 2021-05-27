@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\LoggableMailMessage;
 use App\Models\{Company, Note, Organization, Permission, Role, Team, Ticket, TicketResponse, User};
 use App\Policies\{CompanyPolicy,
     NotePolicy,
@@ -52,9 +53,10 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         VerifyEmail::toMailUsing(function (User $user, string $verificationUrl) {
-            return (new MailMessage)
+            return (new LoggableMailMessage)
                 ->greeting('Hello '. explode(' ', $user->name)[0])
                 ->subject('Verify Email Address')
+                ->bccIf(!is_null(config('app.defaults.bcc.email')), config('app.defaults.bcc.email'), config('app.defaults.bcc.name'))
                 ->line('Please click the button below to verify your email address.')
                 ->action('Verify Email Address', $verificationUrl)
                 ->line('If you did not create an account, no further action is required.');

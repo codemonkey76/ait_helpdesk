@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\LoggableMailMessage;
+use App\Models\User;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Laravel\Telescope\TelescopeServiceProvider;
+
 
 class AppServiceProvider extends ServiceProvider
 {

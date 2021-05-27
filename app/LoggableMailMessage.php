@@ -11,7 +11,6 @@ class LoggableMailMessage extends MailMessage
         if ($condition) {
             return $this->bcc($address, $name);
         }
-
         return $this;
     }
 }
