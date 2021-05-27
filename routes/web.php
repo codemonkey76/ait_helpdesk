@@ -63,6 +63,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('tickets', TicketController::class);
     Route::resource('tickets.responses', TicketResponseController::class);
+    Route::resource('tickets.jobs', TicketJobController::class);
 
     Route::resource('users', UserController::class);
     Route::resource('permissions', PermissionController::class);
@@ -88,10 +89,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/phone/verification-notification', PhoneVerificationNotificationController::class)->name('phone.verify.send');
     Route::post('/phone/verify', PhoneVerificationController::class)->name('phone.verify');
 
-    Route::post('/tickets/{ticket}/jobs', [TicketJobController::class, 'store'])->name('tickets.jobs.store');
     Route::post('/tickets/{ticket}/job-card', [TicketJobCardController::class, 'store'])->name('tickets.job-card.store');
     Route::get('/tickets/{ticket}/job-card/create', [TicketJobCardController::class, 'create'])->name('tickets.job-card.create');
-    Route::get('/tickets/{ticket}/jobs/create', [TicketJobController::class, 'create'])->name('tickets.jobs.create');
 
 
 });

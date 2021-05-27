@@ -18,7 +18,16 @@ class Job extends Model
     protected $appends = ['userName', 'timeSpentString', 'summary'];
     protected $dates = ['date'];
     protected $dateFormat = 'Y-m-d';
+    protected $casts = [
+        'date' => 'date:Y-m-d'
+    ];
 
+    protected static function booted()
+    {
+        static::deleting(function (Job $job) {
+            $job->activity()->delete();
+        });
+    }
 
     public function ticket(): BelongsTo
     {
@@ -34,24 +43,27 @@ class Job extends Model
     {
         return $this->user->name;
     }
+
     public function getTimeSpentStringAttribute()
     {
         return $this->formatTime($this->time_spent);
     }
+
     private function formatTime(int $time): string
     {
         $result = "";
-        if ($time < 60 ) {
+        if ($time < 60) {
             return $time." minutes";
         }
 
-        $result .= (string)intVal($time / 60) . ' ' . Str::plural('hour', intVal($time/60));
+        $result .= (string) intVal($time / 60).' '.Str::plural('hour', intVal($time / 60));
         $mod = ($time % 60);
         if ($mod > 0) {
-            $result .= ' ' . $mod . ' minutes';
+            $result .= ' '.$mod.' minutes';
         }
         return $result;
     }
+
     public function getSummaryAttribute()
     {
         return sprintf('%s

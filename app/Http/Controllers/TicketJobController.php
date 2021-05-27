@@ -62,6 +62,15 @@ class TicketJobController extends Controller
 
         return Inertia::render('Jobs/Create', compact('agentOptions', 'timeOptions', 'ticket'));
     }
+
+    public function destroy(Request $request, Ticket $ticket, Job $job)
+    {
+        Gate::forUser($request->user())->authorize('delete', $job);
+
+        $job->delete();
+
+        return redirect()->route('tickets.show', $ticket->id);
+    }
     private function formatTime(int $time): string
     {
         $result = "";

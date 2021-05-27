@@ -17,16 +17,16 @@
             <div class="flex mt-2">
                 <jet-button-link
                     v-if="canEdit"
-                    :href="route('tickets.responses.edit', [response.ticket_id, response.id])">Edit
+                    :href="route('tickets.jobs.edit', [job.ticket_id, job.id])">Edit
                 </jet-button-link>
                 <jet-danger-button @click="deleting = true" v-if="canDelete" class="ml-2">Delete</jet-danger-button>
                 <jet-confirmation-modal :show="deleting" @close="deleting = false">
                     <template #title>
-                        Delete Response
+                        Delete Job
                     </template>
 
                     <template #content>
-                        Are you sure you would like to delete response?
+                        Are you sure you would like to delete job?
                     </template>
 
                     <template #footer>
@@ -34,13 +34,14 @@
                             Cancel
                         </jet-secondary-button>
 
-                        <jet-danger-button class="ml-2" @click="deleteResponse"
+                        <jet-danger-button class="ml-2" @click="deleteJob"
                                            :class="{ 'opacity-25': deleteForm.processing }"
                                            :disabled="deleteForm.processing">
                             Delete
                         </jet-danger-button>
                     </template>
-
+                </jet-confirmation-modal>
+            </div>
         </div>
     </div>
 </template>
