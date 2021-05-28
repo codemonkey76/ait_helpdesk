@@ -132,6 +132,12 @@ class PermissionSeeder extends Seeder
 
         Permission::create(['name' => 'attach permissions']);
         Permission::create(['name' => 'detach permissions']);
+
+        // Stats
+        Permission::create(['name' => 'view billable hours']);
+        Permission::create(['name' => 'view count of billable tickets']);
+        Permission::create(['name' => 'view ticket creation rate']);
+        Permission::create(['name' => 'view count of open tickets']);
     }
 
 
@@ -194,6 +200,12 @@ class PermissionSeeder extends Seeder
         $agentRole->givePermissionTo('show users');
         $agentRole->givePermissionTo('attach companies');
         $agentRole->givePermissionTo('detach companies');
+
+        // Stats
+        $agentRole->givePermissionTo('view billable hours');
+        $agentRole->givePermissionTo('view count of billable tickets');
+        $agentRole->givePermissionTo('view ticket creation rate');
+        $agentRole->givePermissionTo('view count of open tickets');
     }
 
     public function createAdmin()
@@ -303,6 +315,12 @@ class PermissionSeeder extends Seeder
         $adminRole->givePermissionTo('create job card');
         $adminRole->givePermissionTo('attach permissions');
         $adminRole->givePermissionTo('detach permissions');
+
+        // Stats
+        $adminRole->givePermissionTo('view billable hours');
+        $adminRole->givePermissionTo('view count of billable tickets');
+        $adminRole->givePermissionTo('view ticket creation rate');
+        $adminRole->givePermissionTo('view count of open tickets');
     }
     public function createAccounts()
     {
@@ -358,6 +376,12 @@ class PermissionSeeder extends Seeder
         $accountsRole->givePermissionTo('show users');
         $accountsRole->givePermissionTo('attach companies');
         $accountsRole->givePermissionTo('detach companies');
+
+        // Stats
+        $accountsRole->givePermissionTo('view billable hours');
+        $accountsRole->givePermissionTo('view count of billable tickets');
+        $accountsRole->givePermissionTo('view ticket creation rate');
+        $accountsRole->givePermissionTo('view count of open tickets');
     }
     public function createManager()
     {

@@ -46,7 +46,7 @@ class Job extends Model
 
     public function getTimeSpentStringAttribute()
     {
-        return $this->formatTime($this->time_spent);
+        return is_null($this->time_spent)?'0 minutes':$this->formatTime($this->time_spent);
     }
 
     private function formatTime(int $time): string
@@ -71,10 +71,10 @@ class Job extends Model
 
 Agent: %s
 Time: %s',
-            $this->date->format('d/m/Y'),
+            $this->date?->format('d/m/Y'),
             $this->content,
             $this->userName,
-            $this->formatTime($this->time_spent)
+            is_null($this->time_spent)?'0 minutes':$this->formatTime($this->time_spent)
         );
     }
 }

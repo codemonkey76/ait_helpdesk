@@ -5,6 +5,7 @@ use App\Http\Controllers\CompanyApiController;
 use App\Http\Controllers\CompanyNoteController;
 use App\Http\Controllers\CompanyNoteSearchController;
 use App\Http\Controllers\CompanySearchController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\NotePinController;
 use App\Http\Controllers\OrganizationNoteController;
@@ -40,15 +41,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
-
-
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('organizations', OrganizationController::class);
     Route::resource('organizations/{organization}/notes', OrganizationNoteController::class, ['as' => 'organizations']);

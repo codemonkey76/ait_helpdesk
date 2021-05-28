@@ -52,7 +52,7 @@ class TicketCreated extends Notification
             ->bccIf(!is_null(config('app.defaults.bcc.email')), config('app.defaults.bcc.email'), config('app.defaults.bcc.name'))
             ->greeting('Hello ' . $notifiable->name)
             ->line(new HtmlString('<small>--Please do not reply to this email as this is a system generated message--</small>'))
-            ->line('Content: '. new HtmlString($this->ticket->content))
+            ->line(new HtmlString('Content: ' . $this->ticket->content))
             ->line('NOTE: If you wish to view this ticket progress online or reply with additional information regarding this ticket, click "View Ticket" below')
             ->action('View Ticket', route('tickets.show', $this->ticket->id))
             ->line(new HtmlString('<small>You are receiving this message because you are a technical support agent on the Alpha IT Centre Helpdesk system!</small>'));
