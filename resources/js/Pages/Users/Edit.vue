@@ -19,7 +19,11 @@
                 </div>
                 <div class="md:block hidden">
                     <assign-roles-form :user="$page.props.targetUser" :roles="$page.props.availableRoles"/>
+                    <jet-section-border />
                 </div>
+                <div class="md:block hidden" />
+                    <communication-preferences-form :user="$page.props.targetUser" />
+
             </div>
         </div>
     </app-layout>
@@ -27,6 +31,7 @@
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
+import CommunicationPreferencesForm from '@/Pages/Users/CommunicationPreferencesForm'
 import JetSectionBorder from '@/Jetstream/SectionBorder'
 import AssignCompaniesForm from "@/Pages/Users/AssignCompaniesForm";
 import AssignRolesForm from "@/Pages/Users/AssignRolesForm";
@@ -38,9 +43,9 @@ export default {
         AssignRolesForm,
         AssignCompaniesForm,
         AppLayout,
+        CommunicationPreferencesForm,
         EditUserForm,
         JetSectionBorder,
-
     },
 }
 </script>
