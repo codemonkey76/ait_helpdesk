@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
-use JetBrains\PhpStorm\Pure;
 use Laravel\Scout\Searchable;
 
 class Ticket extends Model
@@ -74,9 +73,9 @@ class Ticket extends Model
         return $this->belongsTo(TicketStatus::class);
     }
 
-    #[Pure] public function getExcerptAttribute(): string
+    public function getExcerptAttribute(): string
     {
-        return Str::limit(strip_tags(str_replace('<', ' <', $this->attributes['content'])), Ticket::EXCERPT_LENGTH);
+        return Str::limit(html_entity_decode(strip_tags(str_replace('<', ' <', $this->attributes['content']))), Ticket::EXCERPT_LENGTH);
     }
 
     public function responses(): HasMany
