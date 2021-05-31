@@ -4,9 +4,43 @@
             <div>
                 <div class="absolute -mt-12 right-0">
                     <div class="flex">
-                        <jet-button-link v-if="$page.props.permissions.canEditTicket" class="mr-2" :href="route('tickets.edit', ticket.id)">Edit Ticket</jet-button-link>
+                        <jet-button v-if="$page.props.permissions.canChangeTicketStatus" @click="updatingStatus = true">Change Status</jet-button>
+                        <jet-button-link v-if="$page.props.permissions.canEditTicket" class="mx-2" :href="route('tickets.edit', ticket.id)">Edit Ticket</jet-button-link>
                         <status-indicator :status_id="ticket.status_id" :options="$page.props.statusOptions" />
                     </div>
+
+                    <jet-confirmation-modal :show="updatingStatus" @close="updatingStatus = false">
+                        <template #title>
+                            Change Status
+                        </template>
+
+                        <template #content>
+                            Changing ticket status?
+                            <div class="col-span-6 mt-4">
+                                <jet-label for="status_id" value="Status" />
+                                <jet-select
+                                    id="status_id"
+                                    :options="$page.props.statusOptions"
+                                    v-model="form.status_id">
+                                </jet-select>
+                                <span class="dark:text-gray-400 text-gray-500 ml-2" v-text="statusDescription(form.status_id)" />
+                                <jet-input-error :message="form.errors.status_id" class="mt-2" />
+                            </div>
+                        </template>
+
+
+                        <template #footer>
+                            <jet-secondary-button @click="deleting = false">
+                                Cancel
+                            </jet-secondary-button>
+
+                            <jet-danger-button class="ml-2" @click="changeStatus"
+                                               :class="{ 'opacity-25': form.processing }"
+                                               :disabled="form.processing">
+                                Change
+                            </jet-danger-button>
+                        </template>
+                    </jet-confirmation-modal>
                 </div>
                 <h2 class="text-3xl tracking-tight font-extrabold dark:text-gray-200 text-gray-900 sm:text-4xl">
                     Ticket #<span v-text="ticket.id"></span>
@@ -43,16 +77,50 @@
 
 </template>
 <script>
-import JetButtonLink from "@/Jetstream/ButtonLink";
-import StatusIndicator from "@/Jetstream/StatusIndicator";
+import JetLabel from "@/Jetstream/Label"
+import JetSelect from "@/Jetstream/Select"
+import JetInputError from "@/Jetstream/InputError"
+import JetDangerButton from "@/Jetstream/DangerButton"
+import JetSecondaryButton from "@/Jetstream/SecondaryButton"
+import JetButton from "@/Jetstream/Button"
+import JetButtonLink from "@/Jetstream/ButtonLink"
+import JetConfirmationModal from "@/Jetstream/ConfirmationModal"
+import StatusIndicator from "@/Jetstream/StatusIndicator"
 import moment from "moment";
 
 export default {
-    components: {JetButtonLink, StatusIndicator},
+    components: {
+        JetLabel,
+        JetSelect,
+        JetInputError,
+        JetDangerButton,
+        JetSecondaryButton,
+        JetButton,
+        JetButtonLink,
+        StatusIndicator,
+        JetConfirmationModal
+    },
     props: ['ticket'],
+    data() {
+        return {
+            updatingStatus: false,
+
+            form: this.$inertia.form({
+                _method: 'PATCH',
+                status_id: this.ticket.status_id
+            })
+        }
+    },
     methods: {
         ago(date) {
             return moment(date).fromNow()
+        },
+        statusDescription(id) {
+            return this.$page.props.statusOptions.find(x => parseInt(x.id) === parseInt(id))?.description
+        },
+        changeStatus() {
+            this.updatingStatus = false
+            this.form.patch(route('tickets.status.update', this.ticket.id))
         }
     },
     computed: {

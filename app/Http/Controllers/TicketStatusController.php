@@ -22,7 +22,7 @@ class TicketStatusController extends Controller
             ]
         ]);
 
-        $ticket->update($validated);
+        $ticket->updateStatus($validated['status_id']);
 
         return redirect()->route('tickets.show', $ticket->id);
     }
