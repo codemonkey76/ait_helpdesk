@@ -42,6 +42,7 @@ class TicketController extends Controller
 
         $builder = Ticket::whereIn('id', $builder->get()->pluck('id'));
         $builder->whereIn('status_id', $statuses);
+        $builder->with('readers');
 
 
         $tickets = $builder->with('user')->paginate(config('app.defaults.pagination'));
