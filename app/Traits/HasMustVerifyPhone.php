@@ -43,7 +43,7 @@ trait HasMustVerifyPhone
     {
         return $this->forceFill([
             'phone_verification_code' => sprintf("%06d", mt_rand(1, 999999)),
-            'phone_verification_expiry' => now()->addSeconds(config('app.default_sms_expiry'))
+            'phone_verification_expiry' => now()->addSeconds(config('app.defaults.sms_expiry'))
         ])->save();
     }
 }
