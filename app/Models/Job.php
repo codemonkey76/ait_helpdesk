@@ -66,11 +66,10 @@ class Job extends Model
 
     public function getSummaryAttribute()
     {
-        return sprintf('%s
-%s
-
-Agent: %s
-Time: %s',
+        return sprintf('%s<br>
+%s<br><br>
+Agent: %s<br>
+Time: %s<br><br>',
             $this->date?->format('d/m/Y'),
             $this->content,
             $this->userName,
