@@ -7,6 +7,7 @@
             added a job
 
             <div class="mt-2 dark:bg-gray-900 bg-gray-100 py-2 px-4 rounded-md">
+                <p class="mb-2">[{{ new Date(job.date).toLocaleDateString('en-AU') }}]</p>
                 <div v-html="job.content" />
 
                 <div>

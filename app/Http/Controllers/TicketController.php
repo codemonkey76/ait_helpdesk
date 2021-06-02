@@ -29,7 +29,7 @@ class TicketController extends Controller
         }
 
         // filter by current team.
-        $builder->where('current_team_id', $request->user()->current_team_id);
+
 
         // filter by current user, if not allow to list tickets
         if (!$request->user()->hasPermissionTo('list tickets')) {
@@ -95,7 +95,6 @@ class TicketController extends Controller
     {
         $validated = $request->validated();
         $validated['user_id'] = $request->user()->id;
-        $validated['current_team_id'] = $request->user()->current_team_id;
         $validated['status_id'] = config('app.defaults.status');
         $validated['owner_id'] = $request->user()->id;
 
