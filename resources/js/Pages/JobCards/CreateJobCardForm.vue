@@ -12,7 +12,7 @@
 
             <div class="col-span-6 sm:col-span-4">
                 <jet-label for="name" value="Job Details" />
-                <jet-text id="name" type="text" class="mt-1 block w-full" v-model="form.content" autofocus :rows="15" />
+                <editor id="content" v-model="form.content" />
                 <jet-input-error :message="form.errors.content" class="mt-2" />
             </div>
             <div class="col-span-6">
@@ -29,7 +29,7 @@
         <template #actions>
             <jet-secondary-button-link :href="route('tickets.show', ticket.id)">Cancel</jet-secondary-button-link>
             <jet-button class="ml-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Close Ticket
+                Save
             </jet-button>
         </template>
     </jet-form-section>
@@ -37,6 +37,7 @@
 
 <script>
 import JetButton from '@/Jetstream/Button'
+import Editor from "@/Jetstream/Editor";
 import JetSecondaryButtonLink from '@/Jetstream/SecondaryButtonLink'
 import JetFormSection from '@/Jetstream/FormSection'
 import JetInput from '@/Jetstream/Input'
@@ -47,6 +48,7 @@ import JetSelect from '@/Jetstream/Select'
 
 export default {
     components: {
+        Editor,
         JetButton,
         JetSecondaryButtonLink,
         JetFormSection,

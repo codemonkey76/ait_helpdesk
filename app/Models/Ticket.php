@@ -164,20 +164,15 @@ class Ticket extends Model
 
     public function activities(): HasMany
     {
-        if (auth()->user()->can('see private responses'))
-        {
-            return $this->hasMany(Activity::class);
-        }
-
         return $this->hasMany(Activity::class);
     }
 
-    public function getJobSummaryAttribute()
+    public function getJobSummaryAttribute(): string
     {
         return $this->jobs()->orderBy('date')->get()->implode('summary', PHP_EOL.PHP_EOL.PHP_EOL);
     }
 
-    public function getTimeSummaryAttribute()
+    public function getTimeSummaryAttribute(): int
     {
         return $this->jobs()->sum('time_spent');
     }

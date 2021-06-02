@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Activity;
 use App\Models\Company;
 use App\Models\Organization;
 use App\Models\Ticket;
@@ -248,12 +249,24 @@ class TicketResponseTest extends TestCase
 
     public function test_agent_can_see_private_responses()
     {
-        $this->markTestSkipped('Not yet implemented');
+        // $this->ticket already has 2 public responses
+        $response = TicketResponse::factory()->create([
+            'private' => true,
+            'ticket_id' => $this->ticket->id
+        ]);
+
+        $this->actingAs($this->agentUser)->assertEquals(3, Activity::userFilter($this->ticket, $this->agentUser)->count());
     }
 
     public function test_standard_user_cannot_see_private_responses()
     {
-        $this->markTestSkipped('Not yet implemented');
+        // $this->ticket already has 2 public responses
+        $response = TicketResponse::factory()->create([
+            'private' => true,
+            'ticket_id' => $this->ticket->id
+        ]);
+
+        $this->assertEquals(2, Activity::userFilter($this->ticket, $this->standardUser)->count());
     }
 
 }

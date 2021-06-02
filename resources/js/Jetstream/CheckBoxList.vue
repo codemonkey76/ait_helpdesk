@@ -6,9 +6,9 @@
                     <div class="space-y-6 sm:space-y-5 divide-y dark:divide-gray-600 divide-gray-200">
                         <div class="mt-4 sm:mt-0 sm:col-span-2">
                             <div class="max-w-lg space-y-4">
-                                <div v-for="checkbox in checkboxes" class="relative flex items-start">
+                                <div v-for="(checkbox, key) in checkboxes" class="relative flex items-start">
                                     <div class="flex items-center h-5">
-                                        <jet-checkbox @update:checked="updated" :id="checkbox.name" v-model="selectedOptions[checkbox.id]"></jet-checkbox>
+                                        <jet-checkbox @update:checked="updated" :id="checkbox.name" :name="checkbox.name" :checked="selectedOptions[key]"></jet-checkbox>
                                     </div>
                                     <div class="ml-3 text-sm">
                                         <label :for="checkbox.name"
@@ -28,15 +28,25 @@
 import JetCheckbox from "@/Jetstream/Checkbox";
 export default {
     components: {JetCheckbox},
-    props: ['checkboxes'],
+    props: ['checkboxes', 'value'],
     data() {
         return {
-            selectedOptions: []
+            selectedOptions: this.getSelectionFromValue()
         }
     },
     methods: {
         updated() {
             this.$emit('update:modelValue', this.selectedOptions)
+            console.log(this.selectedOptions);
+            console.log(this.modelValue);
+        },
+        getSelectionFromValue() {
+            let output = [];
+            let checkboxes = this.checkboxes
+            this.value.forEach(function(item, key, arr) {
+                output[checkboxes.find(x => x.value === arr[key])?.id] = true
+            })
+            return output
         }
     }
 }

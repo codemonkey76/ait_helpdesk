@@ -29,7 +29,6 @@ class TicketJobCardController extends Controller
         ]);
 
         $ticket->jobCard()->create($validated);
-        $ticket->updateStatus(TICKET_STATUS::CLOSED);
 
         return redirect()->route('tickets.show', $ticket->id);
     }

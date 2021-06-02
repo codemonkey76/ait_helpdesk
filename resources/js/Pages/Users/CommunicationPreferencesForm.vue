@@ -8,7 +8,9 @@
         </template>
         <template #form>
             <div class="col-span-6">
-                <preferences-check-box-list v-model="form.preferences"></preferences-check-box-list>
+                <preferences-check-box-list
+                    v-model="form.preferences"
+                    :communication-preferences="$page.props.user.comms_preference" />
             </div>
         </template>
 
