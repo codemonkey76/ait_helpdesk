@@ -17,8 +17,5 @@ mix.js('resources/js/app.js', 'public/js').vue()
         require('tailwindcss'),
     ])
     .copyDirectory('resources/images', 'public/images')
-    .webpackConfig(require('./webpack.config'));
-
-if (mix.inProduction()) {
-    mix.version();
-}
+    .webpackConfig(require('./webpack.config'))
+    .version();
