@@ -4,9 +4,7 @@
             Job Card
         </div>
         <div class="my-2 dark:bg-gray-900 bg-gray-100 py-2 px-4 rounded-md">
-            <div>
-                <pre>{{jobCard.content}}</pre>
-            </div>
+            <div v-html="jobCard.content" />
         </div>
     </div>
 </template>
