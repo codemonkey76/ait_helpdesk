@@ -38,7 +38,7 @@ class TicketJobCardController extends Controller
         Gate::forUser($request->user())->authorize('create', JobCard::class);
 
         $timeOptions = collect();
-        for ($time=0;$time<300; $time+=config('app.defaults.min_job_time')) {
+        for ($time=0;$time<config('app.defaults.max_ticket_time'); $time+=config('app.defaults.min_job_time')) {
             $timeOptions->push((object)['id' => $time, 'name' => $this->formatTime($time)]);
         }
         return Inertia::render('JobCards/Create', compact('ticket', 'timeOptions'));

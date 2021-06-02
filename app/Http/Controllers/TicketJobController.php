@@ -56,7 +56,7 @@ class TicketJobController extends Controller
             ->get();
 
         $timeOptions = collect();
-        for ($time=0;$time<600; $time+=config('app.defaults.min_job_time')) {
+        for ($time=0;$time<config('app.defaults.max_job_time'); $time+=config('app.defaults.min_job_time')) {
             $timeOptions->push((object)['id' => $time, 'name' => $this->formatTime($time)]);
         }
 
