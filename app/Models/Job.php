@@ -27,6 +27,9 @@ class Job extends Model
         static::deleting(function (Job $job) {
             $job->activity()->delete();
         });
+        static::saving(function (Job $job) {
+            $job->ticket()->touch();
+        });
     }
 
     public function ticket(): BelongsTo
