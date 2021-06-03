@@ -139,11 +139,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->companies()->find($company->id) !== null;
     }
-    public function routeNotificationForNexmo($notification)
-    {
-        return $this->internationalFormatPhoneNumber;
-    }
-    public function routeNotificationForPlivo($notification)
+    public function routeNotificationForTwilio($notification)
     {
         return $this->internationalFormatPhoneNumber;
     }
