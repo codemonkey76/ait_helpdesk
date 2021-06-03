@@ -20,7 +20,7 @@ trait HasMustVerifyPhone
             'phone_verification_expiry' => null
         ])->save();
     }
-    public function clearPhoneVerificationStatus(): Model
+    public function clearPhoneVerificationStatus(): bool
     {
         return $this->forceFill([
             'phone_verified_at' => null,
