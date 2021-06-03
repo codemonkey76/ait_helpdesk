@@ -1,7 +1,7 @@
 <template>
     <div class="dark:bg-gray-800 bg-white overflow-hidden shadow-xl sm:rounded-lg divide-y divide-gray-600 m-2">
         <div class="px-4 py-3 sm:px-6 dark:text-gray-200">
-            Billable hours (last 7 days)
+            Billable hours (last 30 days)
         </div>
         <div class="px-4 py-5 sm:p-6 dark:text-gray-400">
             <div v-if="!billableHours">

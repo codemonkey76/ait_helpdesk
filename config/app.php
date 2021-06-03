@@ -58,7 +58,7 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
     'defaults' => [
-        'report_days' => 7,
+        'report_days' => 30,
         'status' => TICKET_STATUS::PENDING,
         'sms_expiry' => 180,
         'min_job_time' => 15,
