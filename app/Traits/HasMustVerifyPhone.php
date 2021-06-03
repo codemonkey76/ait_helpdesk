@@ -26,7 +26,7 @@ trait HasMustVerifyPhone
             'phone_verified_at' => null,
             'phone_verification_code' => null,
             'phone_verification_expiry' => null
-        ]);
+        ])->save();
     }
 
     public function sendPhoneVerificationNotification(): void
