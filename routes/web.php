@@ -17,6 +17,7 @@ use App\Http\Controllers\PhoneVerificationController;
 use App\Http\Controllers\PhoneVerificationNotificationController;
 use App\Http\Controllers\PhoneVerificationPromptController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TicketJobCardController;
 use App\Http\Controllers\TicketJobController;
@@ -86,7 +87,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::post('/tickets/{ticket}/job-card', [TicketJobCardController::class, 'store'])->name('tickets.job-card.store');
     Route::get('/tickets/{ticket}/job-card/create', [TicketJobCardController::class, 'create'])->name('tickets.job-card.create');
-
+    Route::get('/test', [TestController::class, 'test'])->name('test.form');
+    Route::post('/test', [TestController::class, 'store'])->name('test.store');
 
 });
 

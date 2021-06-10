@@ -28,8 +28,6 @@ export default {
     methods: {
         updated(e) {
             this.$emit('update:modelValue', e)
-            console.log('clicked')
-            console.log(e);
         }
     }
 }

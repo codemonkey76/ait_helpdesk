@@ -11,7 +11,6 @@ class PhoneVerificationController extends Controller
 {
     public function __invoke(Request $request): RedirectResponse
     {
-        info($request->all());
         $request->validate([
             'phone_verification_code' => [
                 'required',

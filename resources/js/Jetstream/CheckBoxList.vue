@@ -8,7 +8,7 @@
                             <div class="max-w-lg space-y-4">
                                 <div v-for="(checkbox, key) in checkboxes" class="relative flex items-start">
                                     <div class="flex items-center h-5">
-                                        <jet-checkbox @update:checked="updated" :id="checkbox.name" :name="checkbox.name" :checked="selectedOptions[key]"></jet-checkbox>
+                                        <jet-checkbox @update:checked="updated(checkbox.value)" :ref="checkbox.name" :id="checkbox.name" :name="checkbox.name" :checked="selectedOptions[key]"></jet-checkbox>
                                     </div>
                                     <div class="ml-3 text-sm">
                                         <label :for="checkbox.name"
@@ -35,10 +35,9 @@ export default {
         }
     },
     methods: {
-        updated() {
+        updated(e) {
+            console.log(e)
             this.$emit('update:modelValue', this.selectedOptions)
-            console.log(this.selectedOptions);
-            console.log(this.modelValue);
         },
         getSelectionFromValue() {
             let output = [];

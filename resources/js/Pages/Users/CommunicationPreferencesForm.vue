@@ -9,8 +9,8 @@
         <template #form>
             <div class="col-span-6">
                 <preferences-check-box-list
-                    v-model="form.preferences"
-                    :communication-preferences="$page.props.user.comms_preference" />
+                    v-model="preferences"
+                    :communication-preferences="comms_preferences" />
             </div>
         </template>
 
@@ -44,7 +44,7 @@ export default {
     data() {
         return {
             changed: false,
-            test: '',
+            preferences: [],
             form: this.$inertia.form({
                 _method: 'PATCH',
                 preferences: ''
@@ -52,6 +52,7 @@ export default {
         }
     },
     methods: {
+
         updateUserPreferences() {
             // this.form.patch(route('users.companies.store', this.user.id), {
             //     errorBag: 'addCompanyToUser',
@@ -61,5 +62,10 @@ export default {
         },
 
     },
+    computed: {
+        comms_preferences() {
+            return this.user.comms_preference ?? ['email'];
+        }
+    }
 }
 </script>
