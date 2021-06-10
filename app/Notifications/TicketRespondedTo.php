@@ -52,7 +52,8 @@ class TicketRespondedTo extends Notification
             ->bccIf(!is_null(config('app.defaults.bcc.email')), config('app.defaults.bcc.email'), config('app.defaults.bcc.name'))
             ->greeting('Hello ' . $notifiable->name)
             ->line(new HtmlString('<small>--Please do not reply to this email as this is a system generated message--</small>'))
-            ->line('Response: '. new HtmlString($this->ticketResponse->content))
+            ->line('Response:')
+            ->line(new HtmlString($this->ticketResponse->content))
             ->line('NOTE: If you wish to view this ticket progress online or reply with additional information regarding this ticket, click "View Ticket" below')
             ->action('View Ticket', route('tickets.show', $this->ticket->id))
             ->line(new HtmlString('<small>You are receiving this message because you either created a ticket on our helpdesk system or have subscribed to notifications for a ticket created by one of your colleagues!</small>'));
