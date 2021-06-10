@@ -37,10 +37,12 @@ import JetInputError from '@/Jetstream/InputError'
 import JetSecondaryButton from '@/Jetstream/SecondaryButton'
 import JetText from '@/Jetstream/TextArea'
 import JetLabel from '@/Jetstream/Label'
+import Editor from '@/Jetstream/Editor'
 
 
 export default {
     components: {
+        Editor,
         JetActionSection,
         JetButton,
         JetDialogModal,
