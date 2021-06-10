@@ -12,7 +12,7 @@ trait HasMustVerifyPhone
         return ! is_null($this->phone_verified_at);
     }
 
-    public function markPhoneAsVerified(): bool
+    public function markPhoneAsVerified(): Model
     {
         return $this->forceFill([
             'phone_verified_at' => $this->freshTimestamp(),
@@ -20,7 +20,7 @@ trait HasMustVerifyPhone
             'phone_verification_expiry' => null
         ]);
     }
-    public function clearPhoneVerificationStatus(): bool
+    public function clearPhoneVerificationStatus(): Model
     {
         return $this->forceFill([
             'phone_verified_at' => null,
