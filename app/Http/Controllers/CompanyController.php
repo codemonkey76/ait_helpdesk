@@ -34,6 +34,7 @@ class CompanyController extends Controller
     {
         $organizationOptions = Organization::query()
             ->select('id', 'name')
+            ->orderBy('name')
             ->limit(500)
             ->get();
         return Inertia::render('Companies/Create', compact('organizationOptions'));
