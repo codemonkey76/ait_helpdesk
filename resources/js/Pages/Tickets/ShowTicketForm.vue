@@ -4,8 +4,8 @@
             <div>
                 <div class="absolute -mt-12 right-0">
                     <div class="flex items-center space-x-2">
-                        <div v-if="ticket.agent" class="dark:text-gray-400 space-x-1">
-                            <span>Agent assigned:</span> 
+                        <div v-if="ticket.agent" class="flex items-center dark:text-gray-400 space-x-1">
+                            <span>Agent assigned:</span>
                             <user-tag :user="ticket.agent" />
                         </div>
                         <jet-button v-if="$page.props.permissions.canAssignAgent" @click="updatingAgent = true">Assign Agent</jet-button>
