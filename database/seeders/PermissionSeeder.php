@@ -82,6 +82,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'view own company tickets']);
         Permission::create(['name' => 'edit tickets']);
         Permission::create(['name' => 'change ticket status']);
+        Permission::create(['name' => 'assign agent']);
         Permission::create(['name' => 'subscribe to tickets']);
         Permission::create(['name' => 'notified of new tickets']);
 
@@ -172,6 +173,7 @@ class PermissionSeeder extends Seeder
         $agentRole->givePermissionTo('edit tickets');
         $agentRole->givePermissionTo('view all tickets');
         $agentRole->givePermissionTo('change ticket status');
+        $agentRole->givePermissionTo('assign agent');
         $agentRole->givePermissionTo('respond to all tickets');
         $agentRole->givePermissionTo('create tickets');
         $agentRole->givePermissionTo('create ticket for unassigned companies');
@@ -243,6 +245,7 @@ class PermissionSeeder extends Seeder
         $adminRole->givePermissionTo('view own company tickets');
         $adminRole->givePermissionTo('edit tickets');
         $adminRole->givePermissionTo('change ticket status');
+        $adminRole->givePermissionTo('assign agent');
         $adminRole->givePermissionTo('subscribe to tickets');
         $adminRole->givePermissionTo('notified of new tickets');
 
@@ -348,6 +351,7 @@ class PermissionSeeder extends Seeder
         $accountsRole->givePermissionTo('edit tickets');
         $accountsRole->givePermissionTo('view all tickets');
         $accountsRole->givePermissionTo('change ticket status');
+        $accountsRole->givePermissionTo('assign agent');
         $accountsRole->givePermissionTo('respond to all tickets');
         $accountsRole->givePermissionTo('create tickets');
         $accountsRole->givePermissionTo('create ticket for unassigned companies');

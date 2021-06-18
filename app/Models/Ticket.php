@@ -105,9 +105,13 @@ class Ticket extends Model
 
     public function updateStatus($ticketStatus)
     {
-        Gate::forUser(auth()->user())->authorize('changeTicketStatus', $this);
-
         $this->update(['status_id' => $ticketStatus]);
+    }
+
+    public function assignAgent($agent_id)
+    {
+        info('assigning agent: ' . $agent_id);
+        $this->update(['assigned_agent_id' => $agent_id]);
     }
 
     public function jobs(): HasMany

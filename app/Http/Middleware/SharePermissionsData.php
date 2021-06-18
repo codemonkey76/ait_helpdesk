@@ -33,6 +33,7 @@ class SharePermissionsData
                     // Tickets
                     'canListOwnTickets'      => $request->user()?->hasPermissionTo('list own tickets'),
                     'canChangeTicketStatus'  => $request->user()?->hasPermissionTo('change ticket status'),
+                    'canAssignAgent'         => $request->user()?->hasPermissionTo('assign agent'),
                     'canEditTicket'          => $request->user()?->hasPermissionTo('edit tickets'),
 
                     // Responses

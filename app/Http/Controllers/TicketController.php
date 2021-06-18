@@ -57,17 +57,22 @@ class TicketController extends Controller
 
         //$responses = $ticket->responses()->with('user')->paginate(15);
 
-        $ticket->load('status', 'user', 'jobCard');
+        $ticket->load('status', 'user', 'jobCard', 'agent');
         $ticket->readers()->syncWithoutDetaching($request->user()->id);
         //$responses->each(fn($response) => $response->readers()->syncWithoutDetaching($request->user()->id));
         $statusOptions = TicketStatus::select(['id', 'name', 'description'])
             ->limit(500)
             ->get();
 
+        $agentOptions = User::permission('assign agent')
+            ->pluck('name', 'id')
+            ->map(fn($item, $key) => (object)['id' => $key, 'name' => $item])
+            ->values();
+
         $activityData = Activity::userFilter($ticket, $request->user());
         $activities = new LengthAwarePaginator($activityData, $activityData->count(), config('app.defaults.pagination'));
 //        $activities = $ticket->activities()->filterPrivate()->latest()->with('subject')->paginate(config('app.defaults.pagination'));
-        return Inertia::render('Tickets/Show', compact('ticket', 'activities', 'statusOptions'));
+        return Inertia::render('Tickets/Show', compact('ticket', 'activities', 'statusOptions', 'agentOptions'));
     }
 
     private function getCompanyOptions(User $user): \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection

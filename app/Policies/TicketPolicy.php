@@ -64,6 +64,15 @@ class TicketPolicy
 
         return false;
     }
+
+    public function changeTicketAgent(User $user, Ticket $ticket):bool
+    {
+        if ($user->hasPermissionTo('assign agent')) {
+            return true;
+        }
+
+        return false;
+    }
     public function destroy(User $user, Ticket $ticket): bool
     {
         if ($user->hasPermissionTo('delete tickets')) {

@@ -3,11 +3,52 @@
         <div class="relative max-w-lg mx-auto divide-y-2 dark:divide-gray-600 divide-gray-200 lg:max-w-7xl">
             <div>
                 <div class="absolute -mt-12 right-0">
-                    <div class="flex">
+                    <div class="flex items-center space-x-2">
+                        <div v-if="ticket.agent" class="dark:text-gray-400 space-x-1">
+                            <span>Agent assigned:</span> 
+                            <user-tag :user="ticket.agent" />
+                        </div>
+                        <jet-button v-if="$page.props.permissions.canAssignAgent" @click="updatingAgent = true">Assign Agent</jet-button>
                         <jet-button v-if="$page.props.permissions.canChangeTicketStatus" @click="updatingStatus = true">Change Status</jet-button>
-                        <jet-button-link v-if="$page.props.permissions.canEditTicket" class="mx-2" :href="route('tickets.edit', ticket.id)">Edit Ticket</jet-button-link>
+                        <jet-button-link v-if="$page.props.permissions.canEditTicket" :href="route('tickets.edit', ticket.id)">Edit Ticket</jet-button-link>
                         <status-indicator :status_id="ticket.status_id" :options="$page.props.statusOptions" />
                     </div>
+
+                    <jet-confirmation-modal :show="updatingAgent" @close="updatingAgent = false">
+                        <template #title>
+                            Assign Agent
+                        </template>
+
+                        <template #content>
+                            Assign agent to ticket?
+                            <div class="col-span-6 mt-4">
+                                <jet-label for="agent_id" value="Agent" />
+                                <jet-select
+                                    id="agent_id"
+                                    :options="$page.props.agentOptions"
+                                    v-model="agentForm.agent_id">
+                                    <template v-slot:none-selected>
+                                        <option value="">No agent assigned</option>
+                                    </template>
+                                </jet-select>
+
+                                <jet-input-error :message="form.errors.agent_id" class="mt-2" />
+                            </div>
+                        </template>
+
+
+                        <template #footer>
+                            <jet-secondary-button @click="updatingAgent = false">
+                                Cancel
+                            </jet-secondary-button>
+
+                            <jet-danger-button class="ml-2" @click="changeAgent"
+                                               :class="{ 'opacity-25': agentForm.processing }"
+                                               :disabled="agentForm.processing">
+                                Change
+                            </jet-danger-button>
+                        </template>
+                    </jet-confirmation-modal>
 
                     <jet-confirmation-modal :show="updatingStatus" @close="updatingStatus = false">
                         <template #title>
@@ -86,10 +127,12 @@ import JetButton from "@/Jetstream/Button"
 import JetButtonLink from "@/Jetstream/ButtonLink"
 import JetConfirmationModal from "@/Jetstream/ConfirmationModal"
 import StatusIndicator from "@/Jetstream/StatusIndicator"
+import UserTag from "@/Pages/Users/UserTag";
 import moment from "moment";
 
 export default {
     components: {
+        UserTag,
         JetLabel,
         JetSelect,
         JetInputError,
@@ -104,7 +147,12 @@ export default {
     data() {
         return {
             updatingStatus: false,
+            updatingAgent: false,
 
+            agentForm: this.$inertia.form({
+                _method: 'PATCH',
+                agent_id: this.ticket.assigned_agent_id ?? ""
+            }),
             form: this.$inertia.form({
                 _method: 'PATCH',
                 status_id: this.ticket.status_id
@@ -119,8 +167,19 @@ export default {
             return this.$page.props.statusOptions.find(x => parseInt(x.id) === parseInt(id))?.description
         },
         changeStatus() {
-            this.updatingStatus = false
-            this.form.patch(route('tickets.status.update', this.ticket.id))
+            this.form.patch(route('tickets.status.update', this.ticket.id), {
+                preserveScroll: true,
+                onSuccess: () => (this.updatingStatus = false),
+            })
+
+
+        },
+        changeAgent() {
+            this.updatingAgent = false
+            this.agentForm.patch(route('tickets.agent.update', this.ticket.id), {
+                preserveScroll: true,
+                onSuccess: () => (this.updatingAgent = false),
+            })
         }
     },
     computed: {

@@ -165,7 +165,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getUserTypeAttribute()
     {
-        if ($this->hasRole('agent') || $this->hasRole('accounts')) {
+        if ($this->hasRole('agent') || $this->hasRole('accounts') || $this->hasRole('admin')) {
             return 'Agent';
         }
 

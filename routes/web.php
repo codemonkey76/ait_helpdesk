@@ -18,6 +18,7 @@ use App\Http\Controllers\PhoneVerificationNotificationController;
 use App\Http\Controllers\PhoneVerificationPromptController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\TicketAgentController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TicketJobCardController;
 use App\Http\Controllers\TicketJobController;
@@ -69,6 +70,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::delete('tickets/{ticket}/subscription', [TicketSubscriptionController::class, 'destroy'])->name('tickets.unsubscribe');
 
     Route::patch('tickets/{ticket}/status', [TicketStatusController::class, 'update'])->name('tickets.status.update');
+    Route::patch('tickets/{ticket}/agent', [TicketAgentController::class, 'update'])->name('tickets.agent.update');
     Route::patch('/user/filters', [UserDefaultFilterController::class, 'update'])->name('api.user.filters');
     Route::get('/api/companies', [CompanyApiController::class, 'index'])->name('api.companies.index');
 
