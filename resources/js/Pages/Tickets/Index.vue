@@ -14,7 +14,8 @@
                     </jet-button-link>
                     <jet-search class="ml-4 w-full" :search-route="route('tickets.index')" :search="$page.props.q"></jet-search>
                 </div>
-                <div class="w-full flex justify-center">
+                <div class="w-full flex justify-center space-x-2">
+                    <jet-toggle-button class="my-1 rounded-md" v-model="form.filters.others">View Others</jet-toggle-button>
                     <jet-button-group class="my-1">
                         <jet-toggle-button @click="allFilters" class="rounded-l-md" :model-value="allFiltersSelected">All</jet-toggle-button>
                         <jet-toggle-button class="rounded-none -ml-px" v-model="form.filters.pending">Pending</jet-toggle-button>
@@ -52,7 +53,6 @@ export default {
           deep:true,
 
           handler() {
-              console.log('patching /api/user/filters')
               this.form.patch('/user/filters',{
                   errorBag: 'userFilters',
                   preserveScroll: true
@@ -75,6 +75,7 @@ export default {
             this.form.filters.waiting = true;
             this.form.filters.billing = true;
             this.form.filters.closed = true;
+            this.form.filters.others = false;
         }
     },
     computed: {
@@ -83,7 +84,8 @@ export default {
                 this.form.filters.open &&
                 this.form.filters.waiting &&
                 this.form.filters.billing &&
-                this.form.filters.closed
+                this.form.filters.closed &&
+                this.form.filters.others
         }
     }
 }

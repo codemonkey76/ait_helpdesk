@@ -17,6 +17,7 @@ class UserDefaultFilterController extends Controller
             'filters.waiting' => 'required|boolean',
             'filters.billing' => 'required|boolean',
             'filters.closed'  => 'required|boolean',
+            'filters.others' => 'required|boolean'
         ]);
         $request->user()->update(['filters' => $validated['filters']]);
 

@@ -128,7 +128,8 @@ class User extends Authenticatable implements MustVerifyEmail
                 'open'    => true,
                 'waiting' => true,
                 'billing' => false,
-                'closed'  => false
+                'closed'  => false,
+                'others' => false
             ];
         }
 
