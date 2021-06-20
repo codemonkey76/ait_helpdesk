@@ -44,9 +44,11 @@ class TicketController extends Controller
         $builder->whereIn('status_id', $statuses);
         $builder->when(!$request->user()->filters->others, fn($query) => $query->where('assigned_agent_id', $request->user()->id)->orWhere('owner_id', $request->user()->id));
         $builder->with('readers');
+        $builder->with('user');
 
+        info($builder->toSql());
 
-        $tickets = $builder->with('user')->paginate(config('app.defaults.pagination'));
+        $tickets = $builder->paginate(config('app.defaults.pagination'));
 
         $q = $request->q;
         return Inertia::render('Tickets/Index', compact('tickets', 'q'));
