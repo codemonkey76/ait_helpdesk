@@ -26,4 +26,8 @@ class NotePolicy
     {
         return $user->hasPermissionTo('delete notes');
     }
+    public function edit(User $user, Note $note): bool
+    {
+        return $user->hasPermissionTo('edit notes');
+    }
 }

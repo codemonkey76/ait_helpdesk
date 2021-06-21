@@ -71,6 +71,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'unpin notes']);
         Permission::create(['name' => 'delete notes']);
         Permission::create(['name' => 'create notes']);
+        Permission::create(['name' => 'edit notes']);
 
         // Tickets
         Permission::create(['name' => 'list tickets']);
@@ -166,6 +167,7 @@ class PermissionSeeder extends Seeder
         $agentRole->givePermissionTo('unpin notes');
         $agentRole->givePermissionTo('create notes');
         $agentRole->givePermissionTo('delete notes');
+        $agentRole->givePermissionTo('edit notes');
 
         // Tickets
         $agentRole->givePermissionTo('list tickets');
@@ -234,6 +236,7 @@ class PermissionSeeder extends Seeder
         $adminRole->givePermissionTo('unpin notes');
         $adminRole->givePermissionTo('delete notes');
         $adminRole->givePermissionTo('create notes');
+        $adminRole->givePermissionTo('edit notes');
 
         // Tickets
         $adminRole->givePermissionTo('list tickets');
@@ -344,6 +347,7 @@ class PermissionSeeder extends Seeder
         // Notes
         $accountsRole->givePermissionTo('list notes');
         $accountsRole->givePermissionTo('create notes');
+        $accountsRole->givePermissionTo('edit notes');
 
         // Tickets
         $accountsRole->givePermissionTo('list tickets');

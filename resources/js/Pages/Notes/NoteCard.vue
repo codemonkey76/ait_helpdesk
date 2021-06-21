@@ -60,6 +60,10 @@
                                     <span v-show="!note.is_favorite">Add to favourites</span>
                                     <span v-show="note.is_favorite">Remove from favourites</span>
                                 </a>
+                                <a href="#" v-show="$page.props.permissions.canEditNotes" @click="showEditModal" class="text-gray-700 flex px-4 py-2 text-sm" role="menuitem">
+                                    <svg class="mr-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M497.9 74.16l-60.09-60.1c-18.75-18.75-49.19-18.75-67.93 0L313.4 70.61l127.1 128 56.56-56.55c19.64-18.76 19.64-49.15.84-67.9zM31.04 352.1a16.01 16.01 0 00-4.377 8.176l-26.34 131.7C-1.703 502.1 6.156 512 15.95 512c1.049 0 2.117-.103 3.199-.32l131.7-26.34a16.009 16.009 0 008.176-4.373l259.7-259.7-128-128L31.04 352.1zm100.86 88.1l-75.14 15.03 15.03-75.15L96 355.9V416h60.12l-24.22 24.2z"/></svg>
+                                    <span>Edit</span>
+                                </a>
                                 <a v-show="$page.props.permissions.canDeleteNotes" @click="confirmNoteDeletion" href="#" class="text-gray-700 flex px-4 py-2 text-sm" role="menuitem" tabindex="-1"
                                    id="menu-0-item-1">
                                     <!-- Heroicon name: solid/code -->
@@ -69,6 +73,32 @@
 
                                     <span>Delete</span>
                                 </a>
+
+                                <jet-dialog-modal :show="editingNote" @close="editingNote = false">
+                                    <template #title>
+                                        Edit Note
+                                    </template>
+
+                                    <template #content>
+                                        <div class="mt-4">
+
+                                            <jet-label for="content" value="Note content" />
+                                            <editor id="content" ref="content" v-model="editingForm.content" />
+                                            <jet-input-error :message="editingForm.errors.content" class="mt-2"/>
+                                        </div>
+                                    </template>
+
+                                    <template #footer>
+                                        <jet-secondary-button @click="editingNote = false">
+                                            Cancel
+                                        </jet-secondary-button>
+
+                                        <jet-button class="ml-2" @click="editNote" :class="{ 'opacity-25': editingForm.processing }"
+                                                    :disabled="editingForm.processing">
+                                            Save Note
+                                        </jet-button>
+                                    </template>
+                                </jet-dialog-modal>
 
                                 <jet-confirmation-modal :show="confirmingNoteDeletion" @close="confirmingNoteDeletion = false">
                                     <template #title>
@@ -84,7 +114,7 @@
                                             Cancel
                                         </jet-secondary-button>
 
-                                        <jet-danger-button class="ml-2" @click="deleteNote" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                        <jet-danger-button class="ml-2" @click="deleteNote" :class="{ 'opacity-25': deleteForm.processing }" :disabled="deleteForm.processing">
                                             Delete Note
                                         </jet-danger-button>
                                     </template>
@@ -101,23 +131,37 @@
     </div>
 </template>
 <script>
-import JetConfirmationModal from "@/Jetstream/ConfirmationModal";
+import JetConfirmationModal from "@/Jetstream/ConfirmationModal"
 import JetSecondaryButton from '@/Jetstream/SecondaryButton'
 import JetDangerButton from '@/Jetstream/DangerButton'
+import JetButton from '@/Jetstream/Button'
+import JetLabel from '@/Jetstream/Label'
+import JetInputError from '@/Jetstream/InputError'
+import JetDialogModal from '@/Jetstream/DialogModal'
+import Editor from '@/Jetstream/Editor'
 import moment from 'moment'
 
 export default {
     components: {
         JetConfirmationModal,
         JetSecondaryButton,
-        JetDangerButton
+        JetDangerButton,
+        JetButton,
+        JetLabel,
+        JetInputError,
+        Editor,
+        JetDialogModal
     },
     props: ['note'],
     data() {
         return {
             confirmingNoteDeletion: false,
+            editingNote: false,
             menuOpen: false,
-
+            editingForm: this.$inertia.form({
+                _method: 'PATCH',
+                content: this.note.content
+            }),
             form: this.$inertia.form({
                     _method: 'POST',
                 }),
@@ -155,6 +199,20 @@ export default {
         },
         closeDeleteModal() {
             this.confirmingNoteDeletion = false
+        },
+        closeEditModal() {
+            this.editingnote = false;
+        },
+        showEditModal() {
+            this.menuOpen = false
+            this.editingNote = true
+        },
+        editNote() {
+            this.editingForm.patch(route('notes.update', this.note.id), {
+                errorBag: 'editNote',
+                preserverScroll: true,
+                onSuccess: () => this.closeEditModal()
+            })
         },
         deleteNote() {
             this.deleteForm.delete(route('notes.destroy', this.note.id), {

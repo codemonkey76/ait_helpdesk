@@ -49,6 +49,7 @@ class SharePermissionsData
 
                     // Notes
                     'canDeleteNotes'         => $request->user()?->hasPermissionTo('delete notes'),
+                    'canEditNotes'           => $request->user()?->hasPermissionTo('edit notes'),
 
                     // Teams
                     'canViewTeamSettings'    => $request->user()?->hasPermissionTo('view team settings'),
