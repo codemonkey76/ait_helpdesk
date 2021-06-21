@@ -19,7 +19,11 @@ class PhoneVerificationController extends Controller
             ]
         ]);
 
-        $request->user()->markPhoneAsVerified();
+        $user = $request->user();
+
+        $user->markPhoneAsVerified();
+        $user->save();
+
 
         return redirect()->route('profile.show');
     }

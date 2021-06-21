@@ -22,6 +22,7 @@ class TicketController extends Controller
 
     public function index(Request $request): InertiaResponse
     {
+        $user = $request->user();
         if ($request->has('q')) {
             $builder = Ticket::search($request->q);
         } else {
@@ -33,20 +34,24 @@ class TicketController extends Controller
 
         // filter by current user, if not allow to list tickets
         if (!$request->user()->hasPermissionTo('list tickets')) {
-            $builder->where('user_id', $request->user()->id);
+            $builder->where('user_id', $user->id);
         }
 
-        $filters = (array) $request->user()->filters;
+        $filters = (array) $user->filters;
         $selected = array_filter(array_keys($filters), fn($v, $k) => array_values($filters)[$k], ARRAY_FILTER_USE_BOTH);
         $statuses = TicketStatus::whereIn(DB::raw('lower(name)'), $selected)->pluck('id')->toArray();
 
         $builder = Ticket::whereIn('id', $builder->get()->pluck('id'));
         $builder->whereIn('status_id', $statuses);
-//        $builder->when(!$request->user()->filters->others, fn($query) => $query->where('assigned_agent_id', $request->user()->id)->orWhere('owner_id', $request->user()->id));
+        $builder->when(!$user->filters->others, fn($query) => $query->whereNested(function($query) use ($user) {
+            $query->where('assigned_agent_id', $user->id);
+            $query->orWhere('owner_id', $user->id);
+        }));
+
         $builder->with('readers');
         $builder->with('user');
 
-//        info($builder->toSql());
+        info($builder->toSql());
 
         $tickets = $builder->paginate(config('app.defaults.pagination'));
 
