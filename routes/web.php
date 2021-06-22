@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\UserDefaultFilterController;
+use App\Http\Controllers\BugController;
 use App\Http\Controllers\CompanyApiController;
 use App\Http\Controllers\CompanyNoteController;
 use App\Http\Controllers\CompanyNoteSearchController;
@@ -91,6 +92,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/tickets/{ticket}/job-card/create', [TicketJobCardController::class, 'create'])->name('tickets.job-card.create');
     Route::get('/test', [TestController::class, 'test'])->name('test.form');
     Route::post('/test', [TestController::class, 'store'])->name('test.store');
+    Route::resource('/bugs', BugController::class);
 
 });
 

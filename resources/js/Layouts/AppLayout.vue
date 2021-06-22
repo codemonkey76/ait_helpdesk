@@ -98,6 +98,24 @@
                                 </jet-dropdown>
                             </div>
 
+                            <!-- Bug Reporting Dropdown -->
+                            <div class="ml-3 relative flex-shrink-0">
+                                <jet-dropdown align="right" width="48">
+                                    <template #trigger>
+                                        <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none dark:focus:border-gray-600 focus:border-gray-300 transition">
+                                            <svg data-icon="bug" class="h-8 w-8 p-2 dark:text-gray-400 hover:text-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-full object-cover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M480 256h-64v-50.7l54.63-54.63c12.5-12.5 12.5-32.75 0-45.25s-32.75-12.5-45.25 0L370.8 160H141.3l-54.67-54.6c-12.5-12.5-32.75-12.5-45.25 0s-12.5 32.75 0 45.25L96 205.3V256H32c-17.69 0-32 14.3-32 32s14.31 32 32 32h64v32c0 15.11 3.088 29.4 7.895 42.86l-62.52 62.52c-12.5 12.5-12.5 32.75 0 45.25C47.63 508.9 55.81 512 64 512s16.38-3.125 22.62-9.375l54.13-54.13C163.2 467.9 192 480 224 480h16.1V239.9c0-8.7 7.1-15.9 15.9-15.9s16 7.2 16 15.9V480h16c31.96 0 60.82-12.13 83.25-31.5l54.13 54.13C431.6 508.9 439.8 512 448 512s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 0-45.25l-62.52-62.52C412.9 381.4 416 367.1 416 352v-32h64c17.69 0 32-14.33 32-32s-14.3-32-32-32zM352 96c0-53.02-42.98-96-96-96s-96 42.98-96 96v32h192V96z"/></svg>
+                                        </button>
+                                    </template>
+                                    <template #content>
+                                        <jet-dropdown-link :href="route('bugs.index')">
+                                            View Bugs
+                                        </jet-dropdown-link>
+                                        <jet-dropdown-link :href="route('bugs.create')">
+                                            Report Bug
+                                        </jet-dropdown-link>
+                                    </template>
+                                </jet-dropdown>
+                            </div>
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative flex-shrink-0">
                                 <jet-dropdown align="right" width="48">
