@@ -48,10 +48,9 @@ class CompanyController extends Controller
      */
     public function index(Request $request): InertiaResponse
     {
-        if ($request->has('q'))
-            $companies = Company::search($request->q)->paginate(config('app.defaults.pagination'));
-        else
-            $companies = Company::paginate(config('app.defaults.pagination'));
+        $companies = $request->has('q')
+            ? Company::search($request->q)->paginate(config('app.defaults.pagination'))
+            : Company::paginate(config('app.defaults.pagination'));
 
         $q = $request->q;
         return Inertia::render('Companies/Index', compact('companies', 'q'));
