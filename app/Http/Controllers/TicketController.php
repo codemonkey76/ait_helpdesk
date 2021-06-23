@@ -51,8 +51,6 @@ class TicketController extends Controller
         $builder->with('readers');
         $builder->with('user');
 
-        info($builder->toSql());
-
         $tickets = $builder->paginate(config('app.defaults.pagination'));
 
         $q = $request->q;
