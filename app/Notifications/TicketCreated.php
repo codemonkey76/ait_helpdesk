@@ -10,6 +10,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
+use NotificationChannels\Twilio\TwilioSmsMessage;
 use PHPUnit\TextUI\XmlConfiguration\Logging\TestDox\Html;
 
 class TicketCreated extends Notification
@@ -59,9 +60,10 @@ class TicketCreated extends Notification
             ->line(new HtmlString('<small>You are receiving this message because you are a technical support agent on the Alpha IT Centre Helpdesk system!</small>'));
     }
 
-    public function toNexmo($notifiable)
+    public function toTwilio($notifiable)
     {
-        return (new NexmoMessage)
+        return (new TwilioSmsMessage)
+            ->sender('AlphaIT')
             ->content("Alpha IT Centre Helpdesk: " . '[#'.$this->ticket->id.'] '. $this->ticket->subject .' - ticket has been created');
     }
 }
