@@ -7,10 +7,9 @@ use App\Models\Ticket;
 use App\Models\TicketResponse;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
-use NotificationChannels\Twilio\TwilioMessage;
+use NotificationChannels\Twilio\TwilioSmsMessage;
 
 class TicketRespondedTo extends Notification
 {
