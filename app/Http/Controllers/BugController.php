@@ -25,7 +25,7 @@ class BugController extends Controller
             'body' => $validated['content']
         ];
         GitHub::issues()->create(config('github.connections.main.user'), config('github.connections.main.repo'), $issue);
-        
+
         $request->user()->bugs()->create($validated);
 
         return redirect()->route('dashboard');
