@@ -46,7 +46,7 @@ class OrganizationController extends Controller
         if ($request->has('q'))
             $organizations = Organization::search($request->q)->paginate(15);
         else
-            $organizations = Organization::paginate(15);
+            $organizations = Organization::orderBy('name')->paginate(15);
 
         $q = $request->q;
         return Inertia::render('Organizations/Index', compact('organizations', 'q'));
