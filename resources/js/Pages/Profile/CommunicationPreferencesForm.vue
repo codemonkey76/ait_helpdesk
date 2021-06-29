@@ -26,6 +26,7 @@
                     id="pref_email"
                     value="mail"
                     v-model="form.comms_preference">
+                        <jet-input-error :message="form.errors.comms_preference" />
                 </div>
                 </div>
             </div>
@@ -43,6 +44,7 @@
     </jet-form-section>
 </template>
 <script>
+import JetInputError from '@/Jetstream/InputError'
 import JetLabel from '@/Jetstream/Label'
 import JetInput from '@/Jetstream/Input'
 import JetButton from '@/Jetstream/Button'
@@ -52,6 +54,7 @@ import JetCheckbox from "@/Jetstream/Checkbox";
 export default {
     props: ['user'],
     components: {
+        JetInputError,
         JetCheckbox,
         JetFormSection,
         JetActionMessage,
