@@ -88,6 +88,7 @@ class CompanyController extends Controller
         $organizationOptions = Organization::query()
             ->select('id', 'name')
             ->limit(500)
+            ->orderBy('name')
             ->get();
 
         return Inertia::render('Companies/Edit', compact('company', 'organizationOptions'));
