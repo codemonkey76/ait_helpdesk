@@ -30,7 +30,7 @@ class UserController extends Controller
         if ($request->has('q')) {
             $users = User::search($request->q)->paginate(15);
         } else {
-            $users = User::paginate(15);
+            $users = User::orderBy('name')->paginate(15);
         }
 
         $q = $request->q;
