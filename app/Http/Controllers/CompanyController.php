@@ -50,7 +50,7 @@ class CompanyController extends Controller
     {
         $companies = $request->has('q')
             ? Company::search($request->q)->paginate(config('app.defaults.pagination'))
-            : Company::paginate(config('app.defaults.pagination'));
+            : Company::orderBy('name')->paginate(config('app.defaults.pagination'));
 
         $q = $request->q;
         return Inertia::render('Companies/Index', compact('companies', 'q'));
