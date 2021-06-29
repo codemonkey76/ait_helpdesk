@@ -26,6 +26,7 @@ use App\Http\Controllers\TicketJobController;
 use App\Http\Controllers\TicketResponseController;
 use App\Http\Controllers\TicketStatusController;
 use App\Http\Controllers\TicketSubscriptionController;
+use App\Http\Controllers\UserCommunicationPreferencesController;
 use App\Http\Controllers\UserCompanyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRoleController;
@@ -93,7 +94,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/test', [TestController::class, 'test'])->name('test.form');
     Route::post('/test', [TestController::class, 'store'])->name('test.store');
     Route::resource('/bugs', BugController::class);
-
+    Route::patch('/user/communication_preferences', [UserCommunicationPreferencesController::class, 'update'])->name('user-communication-preferences.update');
 });
 
 

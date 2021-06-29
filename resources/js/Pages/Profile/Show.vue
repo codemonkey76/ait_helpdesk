@@ -26,6 +26,12 @@
                     <jet-section-border />
                 </div>
 
+                <div>
+                    <communication-preferences-form class="mt-10 sm:mt-0" :user="$page.props.user"/>
+
+                    <jet-section-border />
+                </div>
+
                 <logout-other-browser-sessions-form :sessions="sessions" class="mt-10 sm:mt-0" />
 
                 <template v-if="$page.props.jetstream.hasAccountDeletionFeatures">
@@ -46,11 +52,13 @@
     import TwoFactorAuthenticationForm from './TwoFactorAuthenticationForm'
     import UpdatePasswordForm from './UpdatePasswordForm'
     import UpdateProfileInformationForm from './UpdateProfileInformationForm'
+    import CommunicationPreferencesForm from "./CommunicationPreferencesForm";
 
     export default {
         props: ['sessions'],
 
         components: {
+            CommunicationPreferencesForm,
             AppLayout,
             DeleteUserForm,
             JetSectionBorder,
