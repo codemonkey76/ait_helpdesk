@@ -13,14 +13,14 @@ class CloseAbandondedTickets extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'tickets:auto-close';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Close abandoned tickets';
 
     /**
      * Create a new command instance.
@@ -45,7 +45,7 @@ class CloseAbandondedTickets extends Command
                     $ticket->update(['status_id' => TICKET_STATUS::CLOSED]);
                     return;
                 }
-                
+
                 $ticket->update(['status_id' => TICKET_STATUS::BILLING]);
             }
         });

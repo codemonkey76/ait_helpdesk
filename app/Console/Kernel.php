@@ -26,12 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // Get waiting tickets, is latest response not from creator?
-        //get tickets that are due to be auto closed.
-        // send warning
-        //
-
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('tickets:auto-close')->daily();
+        $schedule->command('tickets:auto-respond')->daily();
     }
 
     /**
