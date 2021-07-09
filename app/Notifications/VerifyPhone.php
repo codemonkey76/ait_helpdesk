@@ -2,9 +2,6 @@
 
 namespace App\Notifications;
 
-use Codemonkey76\Plivo\PlivoChannel;
-use Codemonkey76\Plivo\PlivoMessage;
-use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Twilio\TwilioChannel;
 use NotificationChannels\Twilio\TwilioSmsMessage;

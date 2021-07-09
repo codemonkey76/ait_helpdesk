@@ -64,6 +64,8 @@ return [
         'min_job_time' => 15,
         'max_job_time' => 600,
         'max_ticket_time' => 4320,
+        'auto_close_threshold' => 5,
+        'notification_hours' => 48,
         'pagination' => 15,
         'bcc' => [
             'name' => env('BCC_EMAIL_NAME'),

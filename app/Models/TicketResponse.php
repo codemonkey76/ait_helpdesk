@@ -38,6 +38,13 @@ class TicketResponse extends Model
             $ticket = $response->ticket;
 
             $ticket->touch();
+
+            if ($response->user_id !== 1000) {
+                if ($ticket->pending_closure) {
+                    $ticket->update(['pending_closure' => false]);
+                }
+            }
+
             $ticket->readers()->sync([$response->user_id]);
 
             $response->readers()->sync([$response->user_id]);

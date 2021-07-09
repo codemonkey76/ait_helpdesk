@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\TICKET_STATUS;
 use App\Notifications\TicketCreated;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -26,7 +27,10 @@ class Ticket extends Model
     const EXCERPT_LENGTH = 50;
 
     protected $appends = ['excerpt', 'isSubscribed', 'jobSummary', 'timeSummary'];
-    protected $fillable = ['subject', 'content', 'company_id', 'user_id', 'current_team_id', 'status_id', 'owner_id', 'assigned_agent_id'];
+    protected $fillable = ['subject', 'content', 'company_id', 'user_id', 'current_team_id', 'status_id', 'owner_id', 'assigned_agent_id', 'pending_closure'];
+    protected $casts = [
+        'pending_closure' => 'boolean'
+    ];
 
     protected static function booted()
     {
@@ -49,7 +53,6 @@ class Ticket extends Model
             $ticket->readers()->sync([$ticket->user_id]);
 
             User::permission('notified of new tickets')->each(fn($user) => $user->notify(new TicketCreated($ticket)));
-
         });
 
 
@@ -169,6 +172,28 @@ class Ticket extends Model
     public function activities(): HasMany
     {
         return $this->hasMany(Activity::class);
+    }
+    public function latestResponse()
+    {
+        return $this->hasOne(TicketResponse::class)->latest()->first();
+    }
+
+    public function dueForClose(): bool
+    {
+        if ($this->status_id !== TICKET_STATUS::WAITING || $this->pending_closure) {
+            return false;
+        }
+
+        $latestResponse = $this->latestResponse();
+
+        if ($latestResponse->user_id === $this->user_id) {
+            return false;
+        }
+
+        if ($latestResponse->created_at < now()->subDays(config('app.defaults.auto_close_threshold.'))) {
+            return true;
+        }
+        return false;
     }
 
     public function getJobSummaryAttribute(): string

@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Enums\TICKET_STATUS;
+use App\Models\Ticket;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,6 +26,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        // Get waiting tickets, is latest response not from creator?
+        //get tickets that are due to be auto closed.
+        // send warning
+        //
+
         // $schedule->command('inspire')->hourly();
     }
 
