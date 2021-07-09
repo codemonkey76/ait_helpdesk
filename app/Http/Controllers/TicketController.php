@@ -85,11 +85,12 @@ class TicketController extends Controller
     private function getCompanyOptions(User $user): \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
     {
         if ($user->hasPermissionTo('create ticket for unassigned companies')) {
-            return Company::select('id', 'name')->limit(500)->get();
+            return Company::select('id', 'name')->orderBy('name')->limit(500)->get();
         }
 
         return $user->companies()
             ->select('companies.id', 'companies.name')
+            ->orderBy('companies.name')
             ->limit(500)
             ->get();
     }

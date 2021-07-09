@@ -87,8 +87,9 @@
                     Ticket #<span v-text="ticket.id"></span>
                 </h2>
                 <p class="mt-3 text-xl  dark:text-gray-400 text-gray-500 sm:mt-4" v-text="ticket.subject"/>
+                <p class="mt-3 text-lg  dark:text-gray-400 text-gray-500 sm:mt-4" v-text="ticket.company_name"/>
             </div>
-            <div class="mt-4 pt-12">
+            <div class="mt-4 pt-4">
                 <div>
                     <a href="#" class="block mt-4">
                         <div class="mt-2 dark:bg-gray-900 py-2 px-4 rounded-md dark:text-gray-400" v-html="ticket.content" />
