@@ -29,9 +29,6 @@ class TicketController extends Controller
             $builder = Ticket::query();
         }
 
-        // filter by current team.
-
-
         // filter by current user, if not allow to list tickets
         if (!$request->user()->hasPermissionTo('list tickets')) {
             $builder->where('user_id', $user->id);
@@ -64,7 +61,7 @@ class TicketController extends Controller
 
         //$responses = $ticket->responses()->with('user')->paginate(15);
 
-        $ticket->load('status', 'user', 'jobCard', 'agent');
+        $ticket->load('status', 'user', 'jobCard', 'agent', 'children');
         $ticket->readers()->syncWithoutDetaching($request->user()->id);
         //$responses->each(fn($response) => $response->readers()->syncWithoutDetaching($request->user()->id));
         $statusOptions = TicketStatus::select(['id', 'name', 'description'])
@@ -155,7 +152,6 @@ class TicketController extends Controller
                                 ->count() === 0) {
                             $fail('The user is not assigned to this'.$attribute.'');
                         }
-
                     }
                 }
             ]

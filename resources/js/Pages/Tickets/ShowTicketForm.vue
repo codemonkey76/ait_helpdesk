@@ -8,9 +8,11 @@
                             <span>Agent assigned:</span>
                             <user-tag :user="ticket.agent" />
                         </div>
-                        <jet-button v-if="$page.props.permissions.canAssignAgent" @click="updatingAgent = true">Assign Agent</jet-button>
-                        <jet-button v-if="$page.props.permissions.canChangeTicketStatus" @click="updatingStatus = true">Change Status</jet-button>
-                        <jet-button-link v-if="$page.props.permissions.canEditTicket" :href="route('tickets.edit', ticket.id)">Edit Ticket</jet-button-link>
+                        <template v-if="!ticket.parent_id">
+                            <jet-button v-if="$page.props.permissions.canAssignAgent" @click="updatingAgent = true">Assign Agent</jet-button>
+                            <jet-button v-if="$page.props.permissions.canChangeTicketStatus" @click="updatingStatus = true">Change Status</jet-button>
+                            <jet-button-link v-if="$page.props.permissions.canEditTicket" :href="route('tickets.edit', ticket.id)">Edit Ticket</jet-button-link>
+                        </template>
                         <status-indicator :status_id="ticket.status_id" :options="$page.props.statusOptions" />
                     </div>
 
@@ -88,6 +90,7 @@
                 </h2>
                 <p class="mt-3 text-xl  dark:text-gray-400 text-gray-500 sm:mt-4" v-text="ticket.subject"/>
                 <p class="mt-3 text-lg  dark:text-gray-400 text-gray-500 sm:mt-4" v-text="ticket.company_name"/>
+                <p v-if="ticket.parent_id" class="mt-3 text-lg text-green-500 sm:mt-4">This ticket has been merged with Ticket #<span v-text="ticket.parent_id" /></p>
             </div>
             <div class="mt-4 pt-4">
                 <div>
@@ -113,6 +116,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <p v-if="ticket.children" class="mt-3 text-lg text-green-500 sm:mt-4">This ticket has other ticket(s) merged with it.</p>
+            <div v-for="child in ticket.children">
+                <div>child goes here</div>
             </div>
         </div>
     </div>

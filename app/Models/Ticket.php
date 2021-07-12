@@ -113,7 +113,6 @@ class Ticket extends Model
 
     public function assignAgent($agent_id)
     {
-        info('assigning agent: ' . $agent_id);
         $this->update(['assigned_agent_id' => $agent_id]);
     }
 
@@ -162,6 +161,16 @@ class Ticket extends Model
         }
 
         return $notifiables->merge($this->subscribers->reject(fn($value, $key) => $response->user_id===$value->id || $notifiables->contains($value)));
+    }
+
+    public function children(): hasMany
+    {
+        return $this->hasMany(Ticket::class, 'parent_id');
+    }
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsto(Ticket::class, 'parent_id');
     }
 
     public function jobCard(): HasOne
