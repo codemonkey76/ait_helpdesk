@@ -41,7 +41,7 @@ class CloseAbandondedTickets extends Command
     {
         Ticket::where('pending_closure', true)->each(function ($ticket) {
             if ($ticket->updated_at->diffInHours(now()) > config('app.defaults.notification_hours')) {
-                if ($ticket->jobs->count === 0) {
+                if ($ticket->jobs->count() === 0) {
                     $ticket->update(['status_id' => TICKET_STATUS::CLOSED]);
                     return;
                 }
