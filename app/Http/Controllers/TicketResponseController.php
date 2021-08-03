@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TICKET_STATUS;
 use App\Models\Ticket;
 use App\Models\TicketResponse;
 use App\Models\TicketStatus;
@@ -46,6 +47,11 @@ class TicketResponseController extends Controller
         if ($request->user()->hasPermissionTo('change ticket status'))
         {
             $ticket->update(['status_id' => $request->status_id ?? config('app.defaults.status')]);
+        }
+
+        if ($request->user()->id === $ticket->user_id && $ticket->status_id === TICKET_STATUS::WAITING)
+        {
+            $ticket->update(['status_id' => TICKET_STATUS::OPEN]);
         }
 
         $ticket->responses()->create($validated);
