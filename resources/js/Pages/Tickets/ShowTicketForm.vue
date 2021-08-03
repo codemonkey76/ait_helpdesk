@@ -117,7 +117,7 @@
                     </div>
                 </div>
             </div>
-            <p v-if="ticket.children" class="mt-3 text-lg text-green-500 sm:mt-4">This ticket has other ticket(s) merged with it.</p>
+            <p v-if="ticket.children.length" class="mt-3 text-lg text-green-500 sm:mt-4">This ticket has other ticket(s) merged with it.</p>
             <div v-for="child in ticket.children">
                 <div>child goes here</div>
             </div>
