@@ -40,7 +40,7 @@ class Ticket extends Model
                 if ($ticket->isDirty('status_id')) {
                     $statusChange = TicketStatusChange::create([
                         'ticket_id'     => $ticket->id,
-                        'user_id'       => auth()->user()->id,
+                        'user_id'       => auth()->user()?->id ?? 1000,
                         'old_status_id' => $ticket->getOriginal('status_id') ?? config('app.defaults.status'),
                         'new_status_id' => $ticket->status_id ?? config('app.defaults.status')
                     ]);
