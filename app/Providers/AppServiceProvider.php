@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 
@@ -38,5 +39,6 @@ class AppServiceProvider extends ServiceProvider
             'job' => 'App\Models\Job',
             'job_card' => 'App\Models\JobCard'
         ]);
+        URL::forceScheme('https');
     }
 }
