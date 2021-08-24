@@ -42,7 +42,7 @@ class TicketController extends Controller
         $builder->whereIn('status_id', $statuses);
         $builder->when(!$user->filters->others, fn($query) => $query->whereNested(function($query) use ($user) {
             $query->where('assigned_agent_id', $user->id);
-            $query->orWhere('owner_id', $user->id);
+//            $query->orWhere('owner_id', $user->id);
             $query->orWhere('assigned_agent_id', null);
         }));
 
