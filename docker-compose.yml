@@ -41,6 +41,12 @@ services:
             - hd_network
         healthcheck:
           test: ["CMD", "redis-cli", "ping"]
+    hd_mailhog:
+            image: 'mailhog/mailhog:latest'
+            ports:
+              - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
+            networks:
+              - hd_network
 networks:
     hd_network:
         driver: bridge

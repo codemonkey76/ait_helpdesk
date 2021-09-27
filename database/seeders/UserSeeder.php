@@ -25,19 +25,19 @@ class UserSeeder extends Seeder
         $accountsTeam = Team::whereName('accounts')->first();
 
 
-//        $ait = Company::whereName('Alpha IT Centre')->first();
-//        $shane = app(CreatesNewUsers::class)
-//            ->create([
-//                'name'                  => 'Shane Poppleton',
-//                'email'                 => 'shane@alphasg.com.au',
-//                'phone'                 => '0400 588 588',
-//                'password'              => 'secret123',
-//                'password_confirmation' => 'secret123',
-//                'terms'                 => true
-//            ])
-//            ->assignRole(['admin', 'agent', 'user', 'restricted user']);
-//        $shane->update(['email_verified_at' => now()]);
-//        $shane->companies()->attach($ait);
+        $ait = Company::whereName('Alpha IT Centre')->first();
+        $shane = app(CreatesNewUsers::class)
+            ->create([
+                'name'                  => 'Shane Poppleton',
+                'email'                 => 'shane@alphasg.com.au',
+                'phone'                 => '0400 588 588',
+                'password'              => 'secret123',
+                'password_confirmation' => 'secret123',
+                'terms'                 => true
+            ])
+            ->assignRole(['admin', 'agent', 'user', 'restricted user']);
+        $shane->update(['email_verified_at' => now()]);
+        $shane->companies()->attach($ait);
 //
 //        $len = app(CreatesNewUsers::class)
 //            ->create([

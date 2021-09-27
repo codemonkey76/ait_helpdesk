@@ -62,7 +62,7 @@ return [
         'status' => TICKET_STATUS::PENDING,
         'sms_expiry' => 180,
         'min_job_time' => 15,
-        'max_job_time' => 600,
+        'max_job_time' => 1440,
         'max_ticket_time' => 4320,
         'auto_close_threshold' => 5,
         'notification_hours' => 48,
