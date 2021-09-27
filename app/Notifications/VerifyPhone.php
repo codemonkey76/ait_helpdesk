@@ -2,13 +2,17 @@
 
 namespace App\Notifications;
 
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Twilio\TwilioChannel;
 use NotificationChannels\Twilio\TwilioSmsMessage;
 
 
-class VerifyPhone extends Notification
+class VerifyPhone extends Notification implements ShouldQueue
 {
+    use Queueable;
+    
     public function via(mixed $notifiable): array|string
     {
         return [TwilioChannel::class];

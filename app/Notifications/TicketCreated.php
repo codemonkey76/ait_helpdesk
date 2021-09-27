@@ -13,7 +13,7 @@ use Illuminate\Support\HtmlString;
 use NotificationChannels\Twilio\TwilioSmsMessage;
 use PHPUnit\TextUI\XmlConfiguration\Logging\TestDox\Html;
 
-class TicketCreated extends Notification
+class TicketCreated extends Notification implements ShouldQueue
 {
     use Queueable;
 

@@ -6,12 +6,13 @@ use App\LoggableMailMessage;
 use App\Models\Ticket;
 use App\Models\TicketResponse;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 use NotificationChannels\Twilio\TwilioSmsMessage;
 
-class TicketRespondedTo extends Notification
+class TicketRespondedTo extends Notification implements ShouldQueue
 {
     use Queueable;
 
