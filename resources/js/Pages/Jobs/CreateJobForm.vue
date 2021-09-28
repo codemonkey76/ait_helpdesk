@@ -52,7 +52,7 @@
         </template>
 
         <template #actions>
-            <jet-secondary-button-link :href="route('tickets.index')">Cancel</jet-secondary-button-link>
+            <jet-secondary-button-link :href="route('tickets.show', ticket.id)">Cancel</jet-secondary-button-link>
             <jet-button class="ml-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Create
             </jet-button>

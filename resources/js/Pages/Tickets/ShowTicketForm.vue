@@ -73,7 +73,7 @@
 
 
                         <template #footer>
-                            <jet-secondary-button @click="deleting = false">
+                            <jet-secondary-button @click="updatingStatus = false">
                                 Cancel
                             </jet-secondary-button>
 
