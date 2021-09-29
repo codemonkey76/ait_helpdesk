@@ -56,8 +56,10 @@ class UserController extends Controller
         ]);
 
         $user->update($validated);
+        
+        return redirect()->route('users.index');
     }
-    
+
     public function edit(Request $request, User $user): InertiaResponse
     {
         Gate::forUser($request->user())->authorize('edit', $user);
