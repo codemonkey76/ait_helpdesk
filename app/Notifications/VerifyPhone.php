@@ -12,7 +12,7 @@ use NotificationChannels\Twilio\TwilioSmsMessage;
 class VerifyPhone extends Notification implements ShouldQueue
 {
     use Queueable;
-    
+
     public function via(mixed $notifiable): array|string
     {
         return [TwilioChannel::class];

@@ -47,6 +47,17 @@ class UserController extends Controller
         ]);
     }
 
+    public function update(Request $request, User $user)
+    {
+        Gate::forUser($request->user())->authorize('edit', $user);
+
+        $validated = $request->validate([
+            'name' => 'required'
+        ]);
+
+        $user->update($validated);
+    }
+    
     public function edit(Request $request, User $user): InertiaResponse
     {
         Gate::forUser($request->user())->authorize('edit', $user);
