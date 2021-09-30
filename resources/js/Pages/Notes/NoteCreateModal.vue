@@ -10,7 +10,7 @@
             <div class="mt-4">
 
                 <jet-label for="content" value="Note content" />
-                <editor id="content" ref="content" v-model="form.content" />
+                <wysiwyg id="content" ref="content" v-model="form.content" :attachment-path="attachmentPath" />
                 <jet-input-error :message="form.errors.content" class="mt-2"/>
             </div>
         </template>
@@ -38,10 +38,12 @@ import JetSecondaryButton from '@/Jetstream/SecondaryButton'
 import JetText from '@/Jetstream/TextArea'
 import JetLabel from '@/Jetstream/Label'
 import Editor from '@/Jetstream/Editor'
+import Wysiwyg from "../../Components/Wysiwyg";
 
 
 export default {
     components: {
+        Wysiwyg,
         Editor,
         JetActionSection,
         JetButton,
@@ -80,5 +82,11 @@ export default {
             this.$emit('closeModal')
         },
     },
+    computed: {
+        attachmentPath() {
+            let date = new Date();
+            return '/attachments/' + date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+        }
+    }
 }
 </script>

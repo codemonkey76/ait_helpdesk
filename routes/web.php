@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\UserDefaultFilterController;
+use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\BugController;
 use App\Http\Controllers\CompanyApiController;
 use App\Http\Controllers\CompanyNoteController;
@@ -95,6 +96,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/test', [TestController::class, 'store'])->name('test.store');
     Route::resource('/bugs', BugController::class);
     Route::patch('/user/communication_preferences', [UserCommunicationPreferencesController::class, 'update'])->name('user-communication-preferences.update');
+    Route::post('/attach', [AttachmentController::class, 'store'])->name('attachments.store');
+
+    Route::get('/attachments/{year}/{month}/{day}/{attachment}', [AttachmentController::class, 'show'])->name('attachments.show');
 });
 
 

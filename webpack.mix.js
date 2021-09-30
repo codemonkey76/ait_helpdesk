@@ -18,4 +18,10 @@ mix.js('resources/js/app.js', 'public/js').vue()
     ])
     .copyDirectory('resources/images', 'public/images')
     .webpackConfig(require('./webpack.config'))
-    .version();
+    .options({
+        vue: {
+            compilerOptions: {
+                isCustomElement: (tag) => tag.startsWith('trix-')
+            }
+        }
+    });

@@ -12,7 +12,7 @@
 
                 <div class="col-span-6 sm:col-span-4">
                     <jet-label for="content" value="Content" />
-                    <editor id="content" v-model="form.content" />
+                    <wysiwyg id="content" v-model="form.content" :attachment-path="attachmentPath" />
                     <jet-input-error :message="form.errors.content" class="mt-2" />
                 </div>
 
@@ -35,9 +35,11 @@
         import JetLabel from '@/Jetstream/Label'
         import JetSelect from '@/Jetstream/Select'
         import Editor from "@/Jetstream/Editor";
+        import Wysiwyg from "../../Components/Wysiwyg";
 
         export default {
             components: {
+                Wysiwyg,
                 JetButton,
                 JetFormSection,
                 JetInput,
@@ -63,5 +65,11 @@
                     });
                 },
             },
+            computed: {
+                attachmentPath() {
+                    let date = new Date();
+                    return '/attachments/' + date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+                }
+            }
         }
     </script>

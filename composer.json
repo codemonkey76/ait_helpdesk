@@ -23,6 +23,7 @@
         "laravel/sanctum": "^2.6",
         "laravel/scout": "^9.1",
         "laravel/tinker": "^2.5",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "nexmo/laravel": "^2.4",
         "phpunit/php-code-coverage": "^9.2",
         "plivo/plivo-php": "^4.18",
