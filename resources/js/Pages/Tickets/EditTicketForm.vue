@@ -18,7 +18,7 @@
 
             <div class="col-span-6">
                 <jet-label for="content" value="Content" />
-                <editor id="content" v-model="form.content"></editor>
+                <wysiwyg id="content" v-model="form.content" />
                 <jet-input-error :message="form.errors.content" class="mt-2" />
             </div>
 
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import Wysiwyg from "@/Components/Wysiwyg";
 import JetButton from '@/Jetstream/Button'
 import Editor from "@/Jetstream/Editor";
 import JetSecondaryButtonLink from '@/Jetstream/SecondaryButtonLink'
@@ -60,6 +61,7 @@ import JetText from '@/Jetstream/TextArea'
 
 export default {
     components: {
+        Wysiwyg,
         Editor,
         JetButton,
         JetSecondaryButtonLink,
@@ -89,5 +91,11 @@ export default {
             });
         },
     },
+    computed: {
+        attachmentPath() {
+            let date = new Date();
+            return '/attachments/' + date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+        }
+    }
 }
 </script>

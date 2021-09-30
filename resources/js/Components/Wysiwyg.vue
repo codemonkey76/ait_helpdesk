@@ -1,7 +1,7 @@
 <template>
     <div>
         <input :id="id" type="hidden" :value="trixText">
-        <trix-editor ref="trix" :input="id" ></trix-editor>
+        <trix-editor ref="trix" :input="id" class="dark:text-gray-400 dark:bg-gray-900"></trix-editor>
     </div>
 </template>
 <script>
