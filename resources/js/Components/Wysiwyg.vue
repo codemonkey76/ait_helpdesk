@@ -1,7 +1,7 @@
 <template>
     <div>
         <input :id="id" type="hidden" :value="trixText">
-        <trix-editor ref="trix" :input="id" class="dark:text-gray-400 dark:bg-gray-900"></trix-editor>
+        <trix-editor ref="trix" :input="id"></trix-editor>
     </div>
 </template>
 <script>
@@ -61,3 +61,13 @@ export default {
 
 }
 </script>
+<style>
+
+    trix-editor {
+        --tw-text-opacity: 1;
+        color: rgba(156, 163, 175, var(--tw-text-opacity));
+
+        --tw-bg-opacity: 1;
+        background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
+    }
+</style>
