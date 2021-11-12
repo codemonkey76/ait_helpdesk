@@ -18,7 +18,7 @@
 
             <div class="col-span-6">
                 <jet-label for="content" value="Content" />
-                <wysiwyg id="content" v-model="form.content" />
+                <wysiwyg id="content" v-model="form.content" :attachment-path="attachmentPath"/>
                 <jet-input-error :message="form.errors.content" class="mt-2" />
             </div>
 
