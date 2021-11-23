@@ -159,7 +159,7 @@ export default {
 
             agentForm: this.$inertia.form({
                 _method: 'PATCH',
-                agent_id: this.ticket.assigned_agent_id ?? ""
+                agent_id: this.ticket.assigned_agent_id || ""
             }),
             form: this.$inertia.form({
                 _method: 'PATCH',
