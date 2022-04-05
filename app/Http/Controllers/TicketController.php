@@ -34,6 +34,10 @@ class TicketController extends Controller
             $builder->where('user_id', $user->id);
         }
 
+        if (!$request->user()->hasPermissionTo('list all tickets')) {
+            $builder->whereIn('company_id', $request->user()->companies()->pluck('companies.id'));
+        }
+
         $filters = (array) $user->filters;
         $selected = array_filter(array_keys($filters), fn($v, $k) => array_values($filters)[$k], ARRAY_FILTER_USE_BOTH);
         $statuses = TicketStatus::whereIn(DB::raw('lower(name)'), $selected)->pluck('id')->toArray();
